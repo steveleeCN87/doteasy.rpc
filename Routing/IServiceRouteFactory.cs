@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Easy.Rpc.Routing
+namespace DotEasy.Rpc.Routing
 {
     /// <summary>
     /// 抽象的服务路由工厂

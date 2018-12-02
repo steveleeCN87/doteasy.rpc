@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using Easy.Rpc.Core.Communally.Entitys.Address;
+using DotEasy.Rpc.Core.Communally.Entitys.Address;
 
-namespace Easy.Rpc.Core.Client.Address.Resolvers
+namespace DotEasy.Rpc.Core.Client.Address.Resolvers
 {
     /// <summary>
     /// 抽象的服务地址解析器

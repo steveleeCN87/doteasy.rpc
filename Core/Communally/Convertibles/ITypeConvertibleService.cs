@@ -1,6 +1,6 @@
 using System;
 
-namespace Easy.Rpc.Core.Communally.Convertibles
+namespace DotEasy.Rpc.Core.Communally.Convertibles
 {
     /// <summary>
     /// 抽象的类型转换服务

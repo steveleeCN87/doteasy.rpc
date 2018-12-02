@@ -1,4 +1,4 @@
-﻿namespace Easy.Rpc.Core.Communally.Entitys.Messages
+﻿namespace DotEasy.Rpc.Core.Communally.Entitys.Messages
 {
     /// <summary>
     /// 远程调用结果消息

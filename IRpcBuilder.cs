@@ -1,6 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Easy.Rpc
+namespace DotEasy.Rpc
 {
     /// <summary>
     /// 一个抽象的Rpc服务构建者

@@ -1,4 +1,4 @@
-﻿namespace Easy.Rpc.Routing.Impl
+﻿namespace DotEasy.Rpc.Routing.Impl
 {
     /// <summary>
     /// 服务路由事件参数

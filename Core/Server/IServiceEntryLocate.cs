@@ -1,7 +1,7 @@
-﻿using Easy.Rpc.Core.Communally.Entitys;
-using Easy.Rpc.Core.Communally.Entitys.Messages;
+﻿using DotEasy.Rpc.Core.Communally.Entitys;
+using DotEasy.Rpc.Core.Communally.Entitys.Messages;
 
-namespace Easy.Rpc.Core.Server
+namespace DotEasy.Rpc.Core.Server
 {
     /// <summary>
     //抽象的服务条目定位器

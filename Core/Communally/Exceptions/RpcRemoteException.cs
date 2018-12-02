@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Easy.Rpc.Core.Communally.Exceptions
+namespace DotEasy.Rpc.Core.Communally.Exceptions
 {
     /// <summary>
     /// RPC远程执行异常（由服务端转发至客户端的异常信息）

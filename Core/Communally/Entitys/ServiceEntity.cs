@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Easy.Rpc.Core.Communally.Entitys
+namespace DotEasy.Rpc.Core.Communally.Entitys
 {
     /// <summary>
     /// 服务实体

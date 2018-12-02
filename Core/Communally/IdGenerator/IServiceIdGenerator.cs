@@ -1,6 +1,6 @@
 using System.Reflection;
 
-namespace Easy.Rpc.Core.Communally.IdGenerator
+namespace DotEasy.Rpc.Core.Communally.IdGenerator
 {
     /// <summary>
     /// 抽象的服务Id生成器

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Easy.Rpc.Core.Communally.Entitys.Messages
+namespace DotEasy.Rpc.Core.Communally.Entitys.Messages
 {
     /// <summary>
     /// 远程调用消息

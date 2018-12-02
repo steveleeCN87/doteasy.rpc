@@ -3,7 +3,7 @@ using System.Linq;
 using System.Reflection;
 using Microsoft.Extensions.Logging;
 
-namespace Easy.Rpc.Core.Communally.IdGenerator.Impl
+namespace DotEasy.Rpc.Core.Communally.IdGenerator.Impl
 {
     /// <summary>
     /// 默认服务Id生成器

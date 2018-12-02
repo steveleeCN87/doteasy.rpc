@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Easy.Rpc.Core.Communally.Serialization
+namespace DotEasy.Rpc.Core.Communally.Serialization
 {
     /// <summary>
     /// 抽象的序列化器

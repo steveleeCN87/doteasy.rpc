@@ -1,9 +1,9 @@
 ﻿using System.Net;
 using System.Threading.Tasks;
-using Easy.Rpc.Transport;
-using Easy.Rpc.Transport.Impl;
+using DotEasy.Rpc.Transport;
+using DotEasy.Rpc.Transport.Impl;
 
-namespace Easy.Rpc.Core.Server.Impl
+namespace DotEasy.Rpc.Core.Server.Impl
 {
     /// <summary>
     /// 服务主机基类

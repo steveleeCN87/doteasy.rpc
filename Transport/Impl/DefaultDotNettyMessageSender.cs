@@ -1,8 +1,8 @@
-﻿using DotNetty.Buffers;
-using Easy.Rpc.Core.Communally.Entitys.Messages;
-using Easy.Rpc.Transport.Codec;
+﻿using DotEasy.Rpc.Core.Communally.Entitys.Messages;
+using DotEasy.Rpc.Transport.Codec;
+using DotNetty.Buffers;
 
-namespace Easy.Rpc.Transport.Impl
+namespace DotEasy.Rpc.Transport.Impl
 {
     /// <summary>
     /// 基于DotNetty的消息发送者基类

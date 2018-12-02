@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Easy.Rpc.Core.Client.HealthChecks;
-using Easy.Rpc.Core.Communally.Entitys;
-using Easy.Rpc.Core.Communally.Entitys.Address;
-using Easy.Rpc.Routing;
-using Easy.Rpc.Routing.Impl;
+using DotEasy.Rpc.Core.Client.HealthChecks;
+using DotEasy.Rpc.Core.Communally.Entitys;
+using DotEasy.Rpc.Core.Communally.Entitys.Address;
+using DotEasy.Rpc.Routing;
+using DotEasy.Rpc.Routing.Impl;
 
-namespace Easy.Rpc.Core.Client.Address.Resolvers.Implementation.Selectors.Implementation
+namespace DotEasy.Rpc.Core.Client.Address.Resolvers.Implementation.Selectors.Implementation
 {
     /// <summary>
     /// 轮询的地址选择器

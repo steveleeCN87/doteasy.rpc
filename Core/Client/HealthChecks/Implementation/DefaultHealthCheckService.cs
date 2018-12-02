@@ -6,10 +6,10 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
-using Easy.Rpc.Core.Communally.Entitys.Address;
-using Easy.Rpc.Routing;
+using DotEasy.Rpc.Core.Communally.Entitys.Address;
+using DotEasy.Rpc.Routing;
 
-namespace Easy.Rpc.Core.Client.HealthChecks.Implementation
+namespace DotEasy.Rpc.Core.Client.HealthChecks.Implementation
 {
     public class DefaultHealthCheckService : IHealthCheckService, IDisposable
     {

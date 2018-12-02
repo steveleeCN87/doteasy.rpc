@@ -1,8 +1,8 @@
 ﻿using System.Linq;
-using Easy.Rpc.Core.Communally.Entitys;
-using Easy.Rpc.Core.Communally.Entitys.Messages;
+using DotEasy.Rpc.Core.Communally.Entitys;
+using DotEasy.Rpc.Core.Communally.Entitys.Messages;
 
-namespace Easy.Rpc.Core.Server.Impl
+namespace DotEasy.Rpc.Core.Server.Impl
 {
     /// <summary>
     /// 默认的服务条目定位器

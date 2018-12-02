@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
+using DotEasy.Rpc.Core.Communally.Entitys.Messages;
+using DotEasy.Rpc.Transport.Codec;
 using DotNetty.Transport.Channels;
-using Easy.Rpc.Core.Communally.Entitys.Messages;
-using Easy.Rpc.Transport.Codec;
 
-namespace Easy.Rpc.Transport.Impl
+namespace DotEasy.Rpc.Transport.Impl
 {
     /// <summary>
     /// 基于DotNetty服务端的消息发送者

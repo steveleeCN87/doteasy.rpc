@@ -6,18 +6,18 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.Loader;
 using System.Threading.Tasks;
-using Easy.Rpc.Core.Client;
-using Easy.Rpc.Core.Communally.Convertibles;
-using Easy.Rpc.Core.Communally.IdGenerator;
-using Easy.Rpc.Core.Communally.Serialization;
-using Easy.Rpc.ProxyGenerator.Utilitys;
+using DotEasy.Rpc.Core.Client;
+using DotEasy.Rpc.Core.Communally.Convertibles;
+using DotEasy.Rpc.Core.Communally.IdGenerator;
+using DotEasy.Rpc.Core.Communally.Serialization;
+using DotEasy.Rpc.ProxyGenerator.Utilitys;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.DependencyModel;
 using Microsoft.Extensions.Logging;
 
-namespace Easy.Rpc.ProxyGenerator.Implementation
+namespace DotEasy.Rpc.ProxyGenerator.Implementation
 {
     public class ServiceProxyGenerater : IServiceProxyGenerater
     {

@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Easy.Rpc.Core.Communally.Entitys;
-using Easy.Rpc.Core.Server;
+using DotEasy.Rpc.Core.Communally.Entitys;
+using DotEasy.Rpc.Core.Server;
 using Microsoft.Extensions.Logging;
 
-namespace Easy.Rpc.Attributes
+namespace DotEasy.Rpc.Attributes
 {
     /// <summary>
     /// 特性提供者实现类

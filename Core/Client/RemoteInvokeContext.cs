@@ -1,6 +1,6 @@
-﻿using Easy.Rpc.Core.Communally.Entitys.Messages;
+﻿using DotEasy.Rpc.Core.Communally.Entitys.Messages;
 
-namespace Easy.Rpc.Core.Client
+namespace DotEasy.Rpc.Core.Client
 {
     /// <summary>
     /// 远程调用上下文

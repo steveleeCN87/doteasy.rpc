@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using Easy.Rpc.Core.Communally.Entitys;
+using DotEasy.Rpc.Core.Communally.Entitys;
 
-namespace Easy.Rpc.Core.Server
+namespace DotEasy.Rpc.Core.Server
 {
     /// <summary>
     //抽象的服务条目提供程序

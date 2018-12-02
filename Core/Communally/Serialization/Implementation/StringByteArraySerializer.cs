@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace Easy.Rpc.Core.Communally.Serialization.Implementation
+namespace DotEasy.Rpc.Core.Communally.Serialization.Implementation
 {
     /// <summary>
     /// 基于string类型的byte[]序列化器

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using Easy.Rpc.Core.Communally.Convertibles.Impl;
+using DotEasy.Rpc.Core.Communally.Convertibles.Impl;
 
-namespace Easy.Rpc.Core.Communally.Convertibles
+namespace DotEasy.Rpc.Core.Communally.Convertibles
 {
     /// <summary>
     /// 抽象的类型转换提供程序

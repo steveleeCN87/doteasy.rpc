@@ -1,8 +1,8 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using Easy.Rpc.Core.Communally.Entitys.Messages;
+using DotEasy.Rpc.Core.Communally.Entitys.Messages;
 
-namespace Easy.Rpc.Core.Client
+namespace DotEasy.Rpc.Core.Client
 {
     /// <summary>
     /// 抽象的远程调用服务

@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Easy.Rpc.Core.Client;
-using Easy.Rpc.Core.Communally.Convertibles;
-using Easy.Rpc.Core.Communally.Entitys.Messages;
+using DotEasy.Rpc.Core.Client;
+using DotEasy.Rpc.Core.Communally.Convertibles;
+using DotEasy.Rpc.Core.Communally.Entitys.Messages;
 
-namespace Easy.Rpc.ProxyGenerator.Implementation
+namespace DotEasy.Rpc.ProxyGenerator.Implementation
 {
     /// <summary>
     /// 一个抽象的服务代理基类

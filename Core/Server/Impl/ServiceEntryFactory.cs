@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using Easy.Rpc.Core.Communally.Convertibles;
-using Easy.Rpc.Core.Communally.Entitys;
-using Easy.Rpc.Core.Communally.IdGenerator;
+using DotEasy.Rpc.Core.Communally.Convertibles;
+using DotEasy.Rpc.Core.Communally.Entitys;
+using DotEasy.Rpc.Core.Communally.IdGenerator;
 using Microsoft.Extensions.DependencyInjection;
-using ServiceDescriptor = Easy.Rpc.Core.Communally.Entitys.ServiceDescriptor;
+using ServiceDescriptor = DotEasy.Rpc.Core.Communally.Entitys.ServiceDescriptor;
 
-namespace Easy.Rpc.Core.Server.Impl
+namespace DotEasy.Rpc.Core.Server.Impl
 {
     public class ServiceEntryFactory : IServiceEntryFactory
     {

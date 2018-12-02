@@ -2,7 +2,7 @@
 using System.Net;
 using System.Threading.Tasks;
 
-namespace Easy.Rpc.Core.Server
+namespace DotEasy.Rpc.Core.Server
 {
     /// <summary>
     //抽象的服务主机

@@ -5,14 +5,14 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using Easy.Rpc.Core.Client;
-using Easy.Rpc.Core.Communally.Entitys;
+using DotEasy.Rpc.Core.Client;
+using DotEasy.Rpc.Core.Communally.Entitys;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.Logging;
 
-namespace Easy.Rpc.ProxyGenerator.Utilitys
+namespace DotEasy.Rpc.ProxyGenerator.Utilitys
 {
     public static class CompilationUtilitys
     {

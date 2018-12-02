@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Easy.Rpc.Core.Communally.Entitys;
-using Easy.Rpc.Core.Communally.Entitys.Address;
+using DotEasy.Rpc.Core.Communally.Entitys;
+using DotEasy.Rpc.Core.Communally.Entitys.Address;
 
-namespace Easy.Rpc.Routing
+namespace DotEasy.Rpc.Routing
 {
     /// <summary>
     /// 服务路由

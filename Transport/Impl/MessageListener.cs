@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using Easy.Rpc.Core.Communally.Entitys.Messages;
+using DotEasy.Rpc.Core.Communally.Entitys.Messages;
 
-namespace Easy.Rpc.Transport.Impl
+namespace DotEasy.Rpc.Transport.Impl
 {
     /// <summary>
     /// 消息监听者

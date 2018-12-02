@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Easy.Rpc.Core.Communally.Entitys;
+using DotEasy.Rpc.Core.Communally.Entitys;
 
-namespace Easy.Rpc.Core.Server.Impl
+namespace DotEasy.Rpc.Core.Server.Impl
 {
     /// <summary>
     /// 实现一个默认的Services实体对象管理器

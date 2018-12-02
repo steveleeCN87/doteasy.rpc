@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.CodeAnalysis;
 
-namespace Easy.Rpc.ProxyGenerator
+namespace DotEasy.Rpc.ProxyGenerator
 {
     /// <summary>
     /// 一个抽象的服务代理生成器

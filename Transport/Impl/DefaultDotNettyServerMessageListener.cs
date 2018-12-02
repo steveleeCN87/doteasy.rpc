@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Net;
 using System.Threading.Tasks;
+using DotEasy.Rpc.Core.Communally.Entitys.Messages;
+using DotEasy.Rpc.Transport.Codec;
+using DotEasy.Rpc.Transport.InternalAdaper;
 using DotNetty.Codecs;
 using DotNetty.Transport.Bootstrapping;
 using DotNetty.Transport.Channels;
 using DotNetty.Transport.Channels.Sockets;
-using Easy.Rpc.Core.Communally.Entitys.Messages;
-using Easy.Rpc.Transport.Codec;
-using Easy.Rpc.Transport.InternalAdaper;
 using Microsoft.Extensions.Logging;
 
-namespace Easy.Rpc.Transport.Impl
+namespace DotEasy.Rpc.Transport.Impl
 {
     /// <summary>
     /// 基于DotNetty的消息监听者

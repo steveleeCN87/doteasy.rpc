@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
-using Easy.Rpc.Core.Client;
-using Easy.Rpc.Core.Communally.Convertibles;
+using DotEasy.Rpc.Core.Client;
+using DotEasy.Rpc.Core.Communally.Convertibles;
 
-namespace Easy.Rpc.ProxyGenerator.Implementation
+namespace DotEasy.Rpc.ProxyGenerator.Implementation
 {
     /// <summary>
     /// 默认的服务代理工厂实现

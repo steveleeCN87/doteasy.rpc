@@ -1,4 +1,4 @@
-﻿namespace Easy.Rpc.Core.Communally.Serialization.Implementation
+﻿namespace DotEasy.Rpc.Core.Communally.Serialization.Implementation
 {
     /// <summary>
     /// 序列化器扩展方法

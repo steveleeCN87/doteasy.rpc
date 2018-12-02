@@ -1,4 +1,4 @@
-﻿namespace Easy.Rpc.Transport.Codec.Implementation
+﻿namespace DotEasy.Rpc.Transport.Codec.Implementation
 {
     public class JsonTransportMessageCodecFactory : ITransportMessageCodecFactory
     {

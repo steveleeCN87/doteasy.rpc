@@ -1,8 +1,8 @@
-﻿using DotNetty.Buffers;
+﻿using DotEasy.Rpc.Transport.Codec;
+using DotNetty.Buffers;
 using DotNetty.Transport.Channels;
-using Easy.Rpc.Transport.Codec;
 
-namespace Easy.Rpc.Transport.InternalAdaper
+namespace DotEasy.Rpc.Transport.InternalAdaper
 {
     /// <summary>
     /// 标准通道的编码适配器

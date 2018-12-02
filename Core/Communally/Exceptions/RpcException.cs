@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Easy.Rpc.Core.Communally.Exceptions
+namespace DotEasy.Rpc.Core.Communally.Exceptions
 {
     /// <summary>
     /// 基础的Rpc异常类

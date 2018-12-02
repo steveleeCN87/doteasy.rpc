@@ -1,6 +1,6 @@
 using System;
 
-namespace Easy.Rpc.Core.Communally.Convertibles.Impl
+namespace DotEasy.Rpc.Core.Communally.Convertibles.Impl
 {
     /// <summary>
     /// 类型转换代理类

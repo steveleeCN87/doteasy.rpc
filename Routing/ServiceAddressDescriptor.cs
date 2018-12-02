@@ -1,7 +1,7 @@
-﻿using Easy.Rpc.Core.Communally.Entitys.Address;
-using Easy.Rpc.Core.Communally.Serialization;
+﻿using DotEasy.Rpc.Core.Communally.Entitys.Address;
+using DotEasy.Rpc.Core.Communally.Serialization;
 
-namespace Easy.Rpc.Routing
+namespace DotEasy.Rpc.Routing
 {
     /// <summary>
     /// 服务地址描述符

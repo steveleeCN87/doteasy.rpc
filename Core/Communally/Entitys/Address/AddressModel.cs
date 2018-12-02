@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace Easy.Rpc.Core.Communally.Entitys.Address
+namespace DotEasy.Rpc.Core.Communally.Entitys.Address
 {
     /// <summary>
     /// 抽象的地址模型
