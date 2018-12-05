@@ -16,7 +16,7 @@ namespace DotEasy.Rpc.Core.Communally.IdGenerator.Impl
         {
             _logger = logger;
         }
-        
+
         /// <summary>
         /// 生成默认的Id(string)
         /// </summary>
@@ -35,8 +35,8 @@ namespace DotEasy.Rpc.Core.Communally.IdGenerator.Impl
             {
                 id += "_" + string.Join("_", parameters.Select(i => i.Name));
             }
-            
-                Console.WriteLine($"为方法：{method}生成服务Id：{id}。");
+
+            Console.WriteLine($"为方法：{method}生成服务Id：{id}。");
             Console.WriteLine($"为方法：{method}生成服务Id：{id}。");
             return id;
         }

@@ -17,10 +17,7 @@ namespace DotEasy.Rpc.Core.Server.Impl
 
         protected ServiceHostAbstract(IServiceExecutor serviceExecutor)
         {
-            MessageListener.Received += async (sender, message) =>
-            {
-                await serviceExecutor.ExecuteAsync(sender, message);
-            };
+            MessageListener.Received += async (sender, message) => { await serviceExecutor.ExecuteAsync(sender, message); };
         }
 
         /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>

@@ -11,7 +11,7 @@ namespace DotEasy.Rpc.Core.Server.Impl
     public class DefaultServiceEntryManager : IServiceEntryManager
     {
         private readonly IEnumerable<ServiceEntity> _serviceEntries;
-        
+
         /// <summary>
         /// 根据提供者创建一个默认的服务条目实体对象
         /// </summary>

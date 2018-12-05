@@ -32,7 +32,7 @@ namespace DotEasy.Rpc.Core.Server.Impl
             返回序列中满足指定条件的唯一元素，如果没有此类元素，则返回默认值；如果超过一个元素满足条件，则此方法抛出异常
             根据服务ID和调用消息中的服务Id定位当前服务.
             */
-            
+
             return serviceEntries.SingleOrDefault(entity => entity.Descriptor.Id == invokeMessage.ServiceId);
         }
 

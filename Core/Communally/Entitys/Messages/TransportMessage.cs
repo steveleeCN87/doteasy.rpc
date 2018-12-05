@@ -7,7 +7,6 @@ namespace DotEasy.Rpc.Core.Communally.Entitys.Messages
     /// </summary>
     public class TransportMessage
     {
-
         public TransportMessage(object content)
         {
             Content = content ?? throw new ArgumentNullException(nameof(content));
@@ -70,6 +69,5 @@ namespace DotEasy.Rpc.Core.Communally.Entitys.Messages
             {
                 Id = id
             };
-        
     }
 }

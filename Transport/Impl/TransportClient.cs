@@ -20,7 +20,7 @@ namespace DotEasy.Rpc.Transport.Impl
         private readonly ConcurrentDictionary<string, TaskCompletionSource<TransportMessage>> _resultDictionary
             = new ConcurrentDictionary<string, TaskCompletionSource<TransportMessage>>();
 
-        public TransportClient(IMessageSender messageSender, IMessageListener messageListener, 
+        public TransportClient(IMessageSender messageSender, IMessageListener messageListener,
             IServiceExecutor serviceExecutor, ILogger logger)
         {
             var serviceExecutor1 = serviceExecutor;
@@ -61,8 +61,7 @@ namespace DotEasy.Rpc.Transport.Impl
         {
             try
             {
-                
-                    Console.WriteLine("准备发送消息。");
+                Console.WriteLine("准备发送消息。");
 
                 var transportMessage = TransportMessage.CreateInvokeMessage(message);
 
@@ -79,8 +78,8 @@ namespace DotEasy.Rpc.Transport.Impl
                     throw new RpcCommunicationException("与服务端通讯时发生了异常", exception);
                 }
 
-                
-                    Console.WriteLine("消息发送成功。");
+
+                Console.WriteLine("消息发送成功。");
 
                 return await callbackTask;
             }
@@ -113,8 +112,7 @@ namespace DotEasy.Rpc.Transport.Impl
         /// <returns>远程调用结果消息模型</returns>
         private async Task<RemoteInvokeResultMessage> RegisterResultCallbackAsync(string id)
         {
-            
-                Console.WriteLine($"准备获取Id为：{id}的响应内容。");
+            Console.WriteLine($"准备获取Id为：{id}的响应内容。");
 
             var task = new TaskCompletionSource<TransportMessage>();
             _resultDictionary.TryAdd(id, task);

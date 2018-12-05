@@ -12,7 +12,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.Logging;
 
-namespace DotEasy.Rpc.ProxyGenerator.Utilitys
+namespace DotEasy.Rpc.Proxy.Utilitys
 {
     public static class CompilationUtilitys
     {

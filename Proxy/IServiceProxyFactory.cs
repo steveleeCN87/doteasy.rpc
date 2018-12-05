@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DotEasy.Rpc.ProxyGenerator
+namespace DotEasy.Rpc.Proxy
 {
     /// <summary>
     /// 一个抽象的服务代理工厂

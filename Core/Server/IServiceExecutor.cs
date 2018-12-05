@@ -14,6 +14,6 @@ namespace DotEasy.Rpc.Core.Server
         /// </summary>
         /// <param name="sender">消息发送者</param>
         /// <param name="message">调用消息</param>
-        Task ExecuteAsync(IMessageSender sender,TransportMessage message);
+        Task ExecuteAsync(IMessageSender sender, TransportMessage message);
     }
 }

@@ -4,7 +4,7 @@ using DotEasy.Rpc.Core.Client;
 using DotEasy.Rpc.Core.Communally.Convertibles;
 using DotEasy.Rpc.Core.Communally.Entitys.Messages;
 
-namespace DotEasy.Rpc.ProxyGenerator.Implementation
+namespace DotEasy.Rpc.Proxy.Impl
 {
     /// <summary>
     /// 一个抽象的服务代理基类

@@ -12,6 +12,6 @@ namespace DotEasy.Rpc.Core.Communally.IdGenerator
         /// </summary>
         /// <param name="method">本地方法信息</param>
         /// <returns>对应方法的唯一服务Id</returns>
-        string GenerateServiceId(MethodInfo method);       
+        string GenerateServiceId(MethodInfo method);
     }
 }

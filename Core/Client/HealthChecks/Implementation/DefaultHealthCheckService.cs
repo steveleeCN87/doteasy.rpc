@@ -21,16 +21,10 @@ namespace DotEasy.Rpc.Core.Client.HealthChecks.Implementation
         public DefaultHealthCheckService(IServiceRouteManager serviceRouteManager)
         {
             var timeSpan = TimeSpan.FromSeconds(10);
-            _timer = new Timer(s =>
-            {
-                Check(_dictionary.ToArray().Select(i => i.Value));
-            }, null, timeSpan, timeSpan);
+            _timer = new Timer(s => { Check(_dictionary.ToArray().Select(i => i.Value)); }, null, timeSpan, timeSpan);
 
             //去除监控
-            serviceRouteManager.Removed += (s, e) =>
-            {
-                Remove(e.Route.Address);
-            };
+            serviceRouteManager.Removed += (s, e) => { Remove(e.Route.Address); };
             //重新监控
             serviceRouteManager.Created += (s, e) =>
             {
@@ -128,6 +122,7 @@ namespace DotEasy.Rpc.Core.Client.HealthChecks.Implementation
                     }
                 }
             }
+
             /*foreach (var entry in entrys)
             {
                 var socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);

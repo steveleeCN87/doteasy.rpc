@@ -41,13 +41,15 @@ namespace DotEasy.Rpc.Core.Client.Address.Resolvers.Implementation.Selectors.Imp
         {
             var key = GetCacheKey(context.Descriptor);
             //根据服务id缓存服务地址
-            var addressEntry = _concurrent.GetOrAdd(key, k => new Lazy<AddressEntry>(() => new AddressEntry(context.Address))).Value;
+            var addressEntry = _concurrent.GetOrAdd(key, k => new Lazy<AddressEntry>(() => new AddressEntry(context.Address)))
+                .Value;
 
             AddressModel addressModel;
             do
             {
                 addressModel = addressEntry.GetAddress();
             } while (await _healthCheckService.IsHealth(addressModel) == false);
+
             return addressModel;
         }
 

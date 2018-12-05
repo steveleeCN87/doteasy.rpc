@@ -14,13 +14,14 @@ namespace DotEasy.Rpc.Core.Communally.Convertibles.Impl
     {
         private readonly IEnumerable<TypeConvertDelegate> _converters;
         private readonly ILogger<DefaultTypeConvertibleService> _logger;
-        
-        public DefaultTypeConvertibleService(IEnumerable<ITypeConvertibleProvider> providers, ILogger<DefaultTypeConvertibleService> logger)
+
+        public DefaultTypeConvertibleService(IEnumerable<ITypeConvertibleProvider> providers,
+            ILogger<DefaultTypeConvertibleService> logger)
         {
             _logger = logger;
             providers = providers.ToArray();
-            
-                Console.WriteLine($"发现了以下类型转换提供程序：{string.Join(",", providers.Select(p => p.ToString()))}。");
+
+            Console.WriteLine($"发现了以下类型转换提供程序：{string.Join(",", providers.Select(p => p.ToString()))}。");
             Console.WriteLine($"发现了以下类型转换提供程序：{string.Join(",", providers.Select(p => p.ToString()))}。");
             _converters = providers.SelectMany(p => p.GetConverters()).ToArray();
         }
@@ -39,10 +40,10 @@ namespace DotEasy.Rpc.Core.Communally.Convertibles.Impl
             // 确定指定对象是否为当前类型的实例
             if (conversionType.GetTypeInfo().IsInstanceOfType(instance)) return instance;
 
-            
-                Console.WriteLine($"准备将 {instance.GetType()} 转换为：{conversionType}。");
+
             Console.WriteLine($"准备将 {instance.GetType()} 转换为：{conversionType}。");
-            
+            Console.WriteLine($"准备将 {instance.GetType()} 转换为：{conversionType}。");
+
             object result = null;
             foreach (var converter in _converters)
             {

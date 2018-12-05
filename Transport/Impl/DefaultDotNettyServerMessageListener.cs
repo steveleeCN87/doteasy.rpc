@@ -51,7 +51,7 @@ namespace DotEasy.Rpc.Transport.Impl
         public async Task StartAsync(EndPoint endPoint)
         {
             Console.WriteLine($"准备启动服务主机，监听地址：{endPoint}。");
-            
+
             var bossGroup = new MultithreadEventLoopGroup(1);
             var workerGroup = new MultithreadEventLoopGroup();
             var bootstrap = new ServerBootstrap();

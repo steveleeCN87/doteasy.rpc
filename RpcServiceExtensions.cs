@@ -18,8 +18,8 @@ using DotEasy.Rpc.Core.Communally.Serialization;
 using DotEasy.Rpc.Core.Communally.Serialization.Implementation;
 using DotEasy.Rpc.Core.Server;
 using DotEasy.Rpc.Core.Server.Impl;
-using DotEasy.Rpc.ProxyGenerator;
-using DotEasy.Rpc.ProxyGenerator.Implementation;
+using DotEasy.Rpc.Proxy;
+using DotEasy.Rpc.Proxy.Impl;
 using DotEasy.Rpc.Routing;
 using DotEasy.Rpc.Routing.Impl;
 using DotEasy.Rpc.Transport;
@@ -32,7 +32,7 @@ using Microsoft.Extensions.Logging;
 
 namespace DotEasy.Rpc
 {
-    public static class RpcServiceCollectionExtensions
+    public static class RpcServiceExtensions
     {
         /// <summary>
         /// 添加Json序列化支持

@@ -4,7 +4,7 @@ using System.Reflection;
 using DotEasy.Rpc.Core.Client;
 using DotEasy.Rpc.Core.Communally.Convertibles;
 
-namespace DotEasy.Rpc.ProxyGenerator.Implementation
+namespace DotEasy.Rpc.Proxy.Impl
 {
     /// <summary>
     /// 默认的服务代理工厂实现

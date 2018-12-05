@@ -94,8 +94,7 @@ namespace DotEasy.Rpc.Routing.Impl
             ServiceRoute[] routes;
             if (File.Exists(file))
             {
-                
-                    Console.WriteLine($"准备从文件：{file}中获取服务路由");
+                Console.WriteLine($"准备从文件：{file}中获取服务路由");
                 string content;
                 while (true)
                 {

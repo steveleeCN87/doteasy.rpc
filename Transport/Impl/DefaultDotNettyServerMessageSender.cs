@@ -12,7 +12,8 @@ namespace DotEasy.Rpc.Transport.Impl
     {
         private readonly IChannelHandlerContext _context;
 
-        public DefaultDotNettyServerMessageSender(ITransportMessageEncoder transportMessageEncoder, IChannelHandlerContext context) : base(transportMessageEncoder)
+        public DefaultDotNettyServerMessageSender(ITransportMessageEncoder transportMessageEncoder,
+            IChannelHandlerContext context) : base(transportMessageEncoder)
         {
             _context = context;
         }
@@ -38,6 +39,5 @@ namespace DotEasy.Rpc.Transport.Impl
             var buffer = GetByteBuffer(message);
             return _context.WriteAndFlushAsync(buffer);
         }
-
     }
 }

@@ -14,10 +14,12 @@ namespace DotEasy.Rpc.Transport.Codec.Implementation
             {
                 message.Content = JsonConvert.DeserializeObject<RemoteInvokeMessage>(message.Content.ToString());
             }
+
             if (message.IsInvokeResultMessage())
             {
                 message.Content = JsonConvert.DeserializeObject<RemoteInvokeResultMessage>(message.Content.ToString());
             }
+
             return message;
         }
     }

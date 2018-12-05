@@ -47,12 +47,12 @@ namespace DotEasy.Rpc.Core.Server.Impl
             {
                 if (_logger.IsEnabled(LogLevel.Error))
 //                    _logger.LogError($"根据服务Id：{remoteInvokeMessage.ServiceId}，找不到服务条目。");
-                Console.WriteLine($"根据服务Id：{remoteInvokeMessage.ServiceId}，找不到服务条目。");
+                    Console.WriteLine($"根据服务Id：{remoteInvokeMessage.ServiceId}，找不到服务条目。");
                 return;
             }
 
-            
-                Console.WriteLine("准备执行本地逻辑。");
+
+            Console.WriteLine("准备执行本地逻辑。");
             Console.WriteLine("准备执行本地逻辑。");
 
             var resultMessage = new RemoteInvokeResultMessage();
@@ -113,14 +113,12 @@ namespace DotEasy.Rpc.Core.Server.Impl
         {
             try
             {
-                
-                
-                    Console.WriteLine("准备发送响应消息。");
+                Console.WriteLine("准备发送响应消息。");
 
                 await sender.SendAndFlushAsync(TransportMessage.CreateInvokeResultMessage(messageId, resultMessage));
 
-                
-                    Console.WriteLine("响应消息发送成功。");
+
+                Console.WriteLine("响应消息发送成功。");
             }
             catch (Exception exception)
             {

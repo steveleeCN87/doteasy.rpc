@@ -54,11 +54,12 @@ namespace DotEasy.Rpc.Attributes
             ).ToArray();
 
             Console.WriteLine($"发现了以下服务：{string.Join(",", services.Select(i => i.ToString()))}。");
-            
+
             var entries = new List<ServiceEntity>();
             foreach (var service in services)
             {
-                foreach (var serviceImplementation in serviceImplementations.Where(i => service.GetTypeInfo().IsAssignableFrom(i)))
+                foreach (var serviceImplementation in serviceImplementations.Where(i => service.GetTypeInfo().IsAssignableFrom(i))
+                )
                 {
                     entries.AddRange(_serviceEntryFactory.CreateServiceEntry(service, serviceImplementation));
                 }

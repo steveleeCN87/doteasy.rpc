@@ -10,14 +10,14 @@ using DotEasy.Rpc.Core.Client;
 using DotEasy.Rpc.Core.Communally.Convertibles;
 using DotEasy.Rpc.Core.Communally.IdGenerator;
 using DotEasy.Rpc.Core.Communally.Serialization;
-using DotEasy.Rpc.ProxyGenerator.Utilitys;
+using DotEasy.Rpc.Proxy.Utilitys;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.DependencyModel;
 using Microsoft.Extensions.Logging;
 
-namespace DotEasy.Rpc.ProxyGenerator.Implementation
+namespace DotEasy.Rpc.Proxy.Impl
 {
     public class ServiceProxyGenerater : IServiceProxyGenerater
     {
@@ -85,14 +85,15 @@ namespace DotEasy.Rpc.ProxyGenerator.Implementation
                             SyntaxFactory.IdentifierName("ClientProxys"))).WithMembers(
                         SyntaxFactory.SingletonList<MemberDeclarationSyntax>(
                             SyntaxFactory.ClassDeclaration(className).WithModifiers(
-                                SyntaxFactory.TokenList(SyntaxFactory.Token(SyntaxKind.PublicKeyword))).WithBaseList(SyntaxFactory.BaseList(
-                                SyntaxFactory.SeparatedList<BaseTypeSyntax>(new SyntaxNodeOrToken[]
-                                {
-                                    SyntaxFactory.SimpleBaseType(
-                                        SyntaxFactory.IdentifierName("ServiceProxyBase")),
-                                    SyntaxFactory.Token(SyntaxKind.CommaToken),
-                                    SyntaxFactory.SimpleBaseType(GetQualifiedNameSyntax(interfaceType))
-                                }))).WithMembers(
+                                SyntaxFactory.TokenList(SyntaxFactory.Token(SyntaxKind.PublicKeyword))).WithBaseList(
+                                SyntaxFactory.BaseList(
+                                    SyntaxFactory.SeparatedList<BaseTypeSyntax>(new SyntaxNodeOrToken[]
+                                    {
+                                        SyntaxFactory.SimpleBaseType(
+                                            SyntaxFactory.IdentifierName("ServiceProxyBase")),
+                                        SyntaxFactory.Token(SyntaxKind.CommaToken),
+                                        SyntaxFactory.SimpleBaseType(GetQualifiedNameSyntax(interfaceType))
+                                    }))).WithMembers(
                                 SyntaxFactory.List(members)))))).NormalizeWhitespace().SyntaxTree;
         }
 
@@ -249,7 +250,8 @@ namespace DotEasy.Rpc.ProxyGenerator.Implementation
             if (method.ReturnType != typeof(Task))
             {
                 expressionSyntax = SyntaxFactory.GenericName(
-                    SyntaxFactory.Identifier("Invoke")).WithTypeArgumentList(((GenericNameSyntax) returnDeclaration).TypeArgumentList);
+                        SyntaxFactory.Identifier("Invoke"))
+                    .WithTypeArgumentList(((GenericNameSyntax) returnDeclaration).TypeArgumentList);
             }
             else
             {
