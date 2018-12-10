@@ -55,7 +55,7 @@ namespace DotEasy.Rpc.Core.Client.Implementation
                 var endPoint = address.CreateEndPoint();
 
 
-                Console.WriteLine($"使用地址：'{endPoint}'进行调用");
+                _logger.LogInformation($"使用地址：'{endPoint}'进行调用");
 
                 var client = _transportClientFactory.CreateClient(endPoint);
                 return await client.SendAsync(context.InvokeMessage);

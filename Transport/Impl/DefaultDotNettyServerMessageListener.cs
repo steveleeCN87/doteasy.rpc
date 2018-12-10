@@ -50,7 +50,7 @@ namespace DotEasy.Rpc.Transport.Impl
 
         public async Task StartAsync(EndPoint endPoint)
         {
-            Console.WriteLine($"准备启动服务主机，监听地址：{endPoint}。");
+            _logger.LogInformation($"准备启动服务主机，监听地址：{endPoint}");
 
             var bossGroup = new MultithreadEventLoopGroup(1);
             var workerGroup = new MultithreadEventLoopGroup();
@@ -73,11 +73,9 @@ namespace DotEasy.Rpc.Transport.Impl
                         _logger));
                 }));
             _channel = await bootstrap.BindAsync(endPoint);
-            Console.WriteLine($"服务主机启动成功，监听地址：{endPoint}。");
+            _logger.LogInformation($"服务主机启动成功，监听地址：{endPoint}");
         }
 
-        /// <summary>Performs application-defined tasks associated with freeing, releasing,
-        /// or resetting unmanaged resources.</summary>
         public void Dispose()
         {
             Task.Run(async () => { await _channel.DisconnectAsync(); }).Wait();

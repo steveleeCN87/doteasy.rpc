@@ -20,7 +20,6 @@ namespace DotEasy.Rpc.Core.Server.Impl
             MessageListener.Received += async (sender, message) => { await serviceExecutor.ExecuteAsync(sender, message); };
         }
 
-        /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
         public abstract void Dispose();
 
         /// <summary>

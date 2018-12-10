@@ -37,7 +37,7 @@ namespace DotEasy.Rpc.Core.Client.Address.Resolvers.Implementation
         /// <returns>服务地址模型</returns>
         public async Task<AddressModel> Resolver(string serviceId)
         {
-            Console.WriteLine($"准备为服务id：{serviceId}，解析可用地址");
+            _logger.LogInformation($"准备为服务id：{serviceId}，解析可用地址");
             var descriptors = await _serviceRouteManager.GetRoutesAsync();
             var descriptor = descriptors.FirstOrDefault(i => i.ServiceDescriptor.Id == serviceId);
 
@@ -61,14 +61,11 @@ namespace DotEasy.Rpc.Core.Client.Address.Resolvers.Implementation
             var hasAddress = address.Any();
             if (!hasAddress)
             {
-                if (_logger.IsEnabled(LogLevel.Warning))
-                    _logger.LogWarning($"根据服务id：{serviceId}，找不到可用的地址");
+                _logger.LogWarning($"根据服务id：{serviceId}，找不到可用的地址");
                 return null;
             }
 
-            if (_logger.IsEnabled(LogLevel.Information))
-                Console.Write(
-                    $"根据服务id：{serviceId}，找到以下可用地址：{string.Join(",", address.Select(i => i.ToString()))}");
+            _logger.LogInformation($"根据服务id：{serviceId}，找到以下可用地址：{string.Join(",", address.Select(i => i.ToString()))}");
 
             return await _addressSelector.SelectAsync(new AddressSelectContext
             {

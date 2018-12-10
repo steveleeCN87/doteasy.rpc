@@ -82,10 +82,6 @@ namespace DotEasy.Rpc.Core.Client.HealthChecks.Implementation
             });
         }
 
-        #endregion Implementation of IHealthCheckService
-
-        #region Implementation of IDisposable
-
         /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
         public void Dispose()
         {
@@ -145,10 +141,6 @@ namespace DotEasy.Rpc.Core.Client.HealthChecks.Implementation
                 socket.ConnectAsync(socketAsyncEventArgs);
             }*/
         }
-
-        #endregion Private Method
-
-        #region Help Class
 
         protected class MonitorEntry
         {

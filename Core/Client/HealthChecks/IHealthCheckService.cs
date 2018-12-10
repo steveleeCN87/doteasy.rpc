@@ -4,7 +4,7 @@ using DotEasy.Rpc.Core.Communally.Entitys.Address;
 namespace DotEasy.Rpc.Core.Client.HealthChecks
 {
     /// <summary>
-    //抽象的健康检查服务
+    /// 抽象的健康检查服务
     /// </summary>
     public interface IHealthCheckService
     {

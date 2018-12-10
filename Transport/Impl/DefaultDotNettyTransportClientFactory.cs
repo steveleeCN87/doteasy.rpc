@@ -69,7 +69,7 @@ namespace DotEasy.Rpc.Transport.Impl
         {
             var key = endPoint;
 
-            Console.WriteLine($"准备为服务端地址：{key}创建客户端。");
+            _logger.LogInformation($"准备为服务端地址：{key}创建客户端。");
 
             try
             {

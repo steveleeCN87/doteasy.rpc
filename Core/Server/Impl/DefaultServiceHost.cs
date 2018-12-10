@@ -14,15 +14,12 @@ namespace DotEasy.Rpc.Core.Server.Impl
         private readonly Func<EndPoint, Task<IMessageListener>> _messageListenerFactory;
         private IMessageListener _serverMessageListener;
 
-
-        public DefaultServiceHost(Func<EndPoint, Task<IMessageListener>> messageListenerFactory,
-            IServiceExecutor serviceExecutor) : base(serviceExecutor)
+        public DefaultServiceHost(Func<EndPoint, Task<IMessageListener>> messageListenerFactory, IServiceExecutor serviceExecutor)
+            : base(serviceExecutor)
         {
             _messageListenerFactory = messageListenerFactory;
         }
 
-
-        /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
         public override void Dispose()
         {
             (_serverMessageListener as IDisposable)?.Dispose();

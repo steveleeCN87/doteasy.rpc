@@ -252,10 +252,10 @@ namespace DotEasy.Rpc
             services.AddSingleton<IServiceEntryFactory, ServiceEntryFactory>();
             services.AddSingleton<IServiceEntryProvider>(provider =>
             {
-                var assemblys = DependencyContext.Default.RuntimeLibraries.SelectMany(i =>
+                var assembles = DependencyContext.Default.RuntimeLibraries.SelectMany(i =>
                     i.GetDefaultAssemblyNames(DependencyContext.Default).Select(z => Assembly.Load(new AssemblyName(z.Name))));
 
-                var types = assemblys.Where(i => i.IsDynamic == false).SelectMany(i => i.ExportedTypes).ToArray();
+                var types = assembles.Where(i => i.IsDynamic == false).SelectMany(i => i.ExportedTypes).ToArray();
 
                 return new AttributeServiceEntryProvider(types, provider.GetRequiredService<IServiceEntryFactory>(),
                     provider.GetRequiredService<ILogger<AttributeServiceEntryProvider>>());

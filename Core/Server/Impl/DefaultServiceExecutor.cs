@@ -46,15 +46,11 @@ namespace DotEasy.Rpc.Core.Server.Impl
             if (entry == null)
             {
                 if (_logger.IsEnabled(LogLevel.Error))
-//                    _logger.LogError($"根据服务Id：{remoteInvokeMessage.ServiceId}，找不到服务条目。");
-                    Console.WriteLine($"根据服务Id：{remoteInvokeMessage.ServiceId}，找不到服务条目。");
+                    _logger.LogError($"根据服务Id：{remoteInvokeMessage.ServiceId}，找不到服务条目");
                 return;
             }
 
-
-            Console.WriteLine("准备执行本地逻辑。");
-            Console.WriteLine("准备执行本地逻辑。");
-
+            _logger.LogInformation("准备执行本地逻辑");
             var resultMessage = new RemoteInvokeResultMessage();
 
             // 是否需要等待执行
@@ -97,13 +93,13 @@ namespace DotEasy.Rpc.Core.Server.Impl
 
                     var taskType = task.GetType().GetTypeInfo();
                     if (taskType.IsGenericType)
-                        resultMessage.Result = taskType.GetProperty("Result").GetValue(task);
+                        resultMessage.Result = taskType.GetProperty("Result")?.GetValue(task);
                 }
             }
             catch (Exception exception)
             {
                 if (_logger.IsEnabled(LogLevel.Error))
-                    _logger.LogError("执行本地逻辑时候发生了错误。", exception);
+                    _logger.LogError("执行本地逻辑时候发生了错误", exception);
                 resultMessage.ExceptionMessage = GetExceptionMessage(exception);
             }
         }
@@ -113,12 +109,9 @@ namespace DotEasy.Rpc.Core.Server.Impl
         {
             try
             {
-                Console.WriteLine("准备发送响应消息。");
-
+                _logger.LogInformation("准备发送响应消息");
                 await sender.SendAndFlushAsync(TransportMessage.CreateInvokeResultMessage(messageId, resultMessage));
-
-
-                Console.WriteLine("响应消息发送成功。");
+                _logger.LogInformation("响应消息发送成功");
             }
             catch (Exception exception)
             {
