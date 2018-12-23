@@ -12,9 +12,9 @@ namespace DotEasy.Rpc.Proxy
         /// <summary>
         /// 生成服务代理
         /// </summary>
-        /// <param name="interfacTypes">需要被代理的接口类型</param>
+        /// <param name="interfaceTypes">需要被代理的接口类型</param>
         /// <returns>服务代理实现</returns>
-        IEnumerable<Type> GenerateProxys(IEnumerable<Type> interfacTypes);
+        IEnumerable<Type> GenerateProxys(IEnumerable<Type> interfaceTypes);
 
         /// <summary>
         /// 生成服务代理代码树

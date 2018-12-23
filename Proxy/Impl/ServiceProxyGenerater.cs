@@ -1,6 +1,4 @@
-﻿// TODO: Default Service Proxy Generator class
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -33,24 +31,29 @@ namespace DotEasy.Rpc.Proxy.Impl
         /// <summary>
         /// 生成服务代理
         /// </summary>
-        /// <param name="interfacTypes">需要被代理的接口类型</param>
+        /// <param name="interfaceTypes">需要被代理的接口类型</param>
         /// <returns>服务代理实现</returns>
-        public IEnumerable<Type> GenerateProxys(IEnumerable<Type> interfacTypes)
+        public IEnumerable<Type> GenerateProxys(IEnumerable<Type> interfaceTypes)
         {
-            var assemblys = DependencyContext.Default.RuntimeLibraries.SelectMany(i =>
-                i.GetDefaultAssemblyNames(DependencyContext.Default)
+            var assembles = DependencyContext.Default.RuntimeLibraries
+                .SelectMany(i => i.GetDefaultAssemblyNames(DependencyContext.Default)
                     .Select(z => Assembly.Load(new AssemblyName(z.Name))));
 
-            assemblys = assemblys.Where(i => i.IsDynamic == false).ToArray();
-            var trees = interfacTypes.Select(GenerateProxyTree).ToList();
+            assembles = assembles.Where(i => i.IsDynamic == false).ToArray();
+            var trees = interfaceTypes.Select(GenerateProxyTree).ToList();
             var stream = CompilationUtilitys.CompileClientProxy(trees,
-                assemblys
+                assembles
                     .Select(a => MetadataReference.CreateFromFile(a.Location))
                     .Concat(new[]
                     {
                         MetadataReference.CreateFromFile(typeof(Task).GetTypeInfo().Assembly.Location)
                     }),
                 _logger);
+
+            if (stream == null)
+            {
+                throw new ArgumentException("没有生成任何客户端代码", nameof(stream));
+            }
 
             using (stream)
             {
@@ -179,16 +182,13 @@ namespace DotEasy.Rpc.Proxy.Impl
 
         private static TypeSyntax GetTypeSyntax(Type type)
         {
-            //没有返回值
             if (type == null)
                 return null;
 
-            //非泛型
             if (!type.GetTypeInfo().IsGenericType)
                 return GetQualifiedNameSyntax(type.FullName);
 
             var list = new List<SyntaxNodeOrToken>();
-
             foreach (var genericTypeArgument in type.GenericTypeArguments)
             {
                 list.Add(genericTypeArgument.GetTypeInfo().IsGenericType
@@ -206,7 +206,7 @@ namespace DotEasy.Rpc.Proxy.Impl
         private MemberDeclarationSyntax GenerateMethodDeclaration(MethodInfo method)
         {
             var serviceId = _serviceIdGenerator.GenerateServiceId(method);
-            var returnDeclaration = GetTypeSyntax(method.ReturnType);
+            TypeSyntax returnDeclaration = GetTypeSyntax(method.ReturnType);
 
             var parameterList = new List<SyntaxNodeOrToken>();
             var parameterDeclarationList = new List<SyntaxNodeOrToken>();
@@ -237,52 +237,107 @@ namespace DotEasy.Rpc.Proxy.Impl
                 parameterDeclarationList.RemoveAt(parameterDeclarationList.Count - 1);
             }
 
-            var declaration = SyntaxFactory.MethodDeclaration(returnDeclaration,
-                SyntaxFactory.Identifier(method.Name)).WithModifiers(
-                SyntaxFactory.TokenList(SyntaxFactory.Token(SyntaxKind.PublicKeyword),
-                    SyntaxFactory.Token(SyntaxKind.AsyncKeyword))).WithParameterList(
-                SyntaxFactory.ParameterList(
-                    SyntaxFactory.SeparatedList<ParameterSyntax>(parameterDeclarationList)));
+            MethodDeclarationSyntax declaration;
+            if (method.ToString().Contains("Task"))
+            {
+                declaration = SyntaxFactory.MethodDeclaration(
+                    returnDeclaration, SyntaxFactory.Identifier(method.Name)
+                ).WithModifiers(
+                    SyntaxFactory.TokenList(
+                        SyntaxFactory.Token(SyntaxKind.PublicKeyword),
+                        SyntaxFactory.Token(SyntaxKind.AsyncKeyword)
+                    )
+                ).WithParameterList(
+                    SyntaxFactory.ParameterList(
+                        SyntaxFactory.SeparatedList<ParameterSyntax>(parameterDeclarationList)
+                    )
+                );
+            }
+            else
+            {
+                declaration = SyntaxFactory.MethodDeclaration(
+                    returnDeclaration, SyntaxFactory.Identifier(method.Name)
+                ).WithModifiers(
+                    SyntaxFactory.TokenList(
+                        SyntaxFactory.Token(SyntaxKind.PublicKeyword)
+                    )
+                ).WithParameterList(
+                    SyntaxFactory.ParameterList(
+                        SyntaxFactory.SeparatedList<ParameterSyntax>(parameterDeclarationList)
+                    )
+                );
+            }
 
             ExpressionSyntax expressionSyntax;
             StatementSyntax statementSyntax;
 
-            if (method.ReturnType != typeof(Task))
+            if (method.ReturnType.ToString().Contains("Task"))
             {
-                expressionSyntax = SyntaxFactory.GenericName(
-                        SyntaxFactory.Identifier("Invoke"))
+                expressionSyntax = SyntaxFactory.GenericName(SyntaxFactory.Identifier("InvokeAsync"))
                     .WithTypeArgumentList(((GenericNameSyntax) returnDeclaration).TypeArgumentList);
             }
             else
             {
-                expressionSyntax = SyntaxFactory.IdentifierName("Invoke");
+                var list = new List<SyntaxNodeOrToken> {GetQualifiedNameSyntax(method.ReturnType.FullName)};
+                var typeArgumentListSyntax = SyntaxFactory.TypeArgumentList(SyntaxFactory.SeparatedList<TypeSyntax>(list.ToArray()));
+                expressionSyntax = SyntaxFactory.GenericName("Invoke").WithTypeArgumentList(typeArgumentListSyntax);
             }
 
-            expressionSyntax = SyntaxFactory.AwaitExpression(
-                SyntaxFactory.InvocationExpression(expressionSyntax).WithArgumentList(
+            Console.WriteLine(expressionSyntax.GetType());
+            if (method.ReturnType.ToString().Contains("Task"))
+            {
+                expressionSyntax = SyntaxFactory.AwaitExpression(
+                    SyntaxFactory.InvocationExpression(expressionSyntax).WithArgumentList(
+                        SyntaxFactory.ArgumentList(SyntaxFactory.SeparatedList<ArgumentSyntax>(new SyntaxNodeOrToken[]
+                        {
+                            SyntaxFactory.Argument(
+                                SyntaxFactory.ObjectCreationExpression(
+                                    SyntaxFactory.GenericName(SyntaxFactory.Identifier("Dictionary")).WithTypeArgumentList(
+                                        SyntaxFactory.TypeArgumentList(
+                                            SyntaxFactory.SeparatedList<TypeSyntax>(new SyntaxNodeOrToken[]
+                                            {
+                                                SyntaxFactory.PredefinedType(
+                                                    SyntaxFactory.Token(SyntaxKind.StringKeyword)),
+                                                SyntaxFactory.Token(SyntaxKind.CommaToken),
+                                                SyntaxFactory.PredefinedType(
+                                                    SyntaxFactory.Token(SyntaxKind.ObjectKeyword))
+                                            })))).WithInitializer(
+                                    SyntaxFactory.InitializerExpression(SyntaxKind.CollectionInitializerExpression,
+                                        SyntaxFactory.SeparatedList<ExpressionSyntax>(parameterList)))),
+                            SyntaxFactory.Token(SyntaxKind.CommaToken),
+                            SyntaxFactory.Argument(SyntaxFactory.LiteralExpression(SyntaxKind.StringLiteralExpression,
+                                SyntaxFactory.Literal(serviceId)))
+                        }))));
+            }
+            else
+            {
+                expressionSyntax = SyntaxFactory.InvocationExpression(expressionSyntax).WithArgumentList(
                     SyntaxFactory.ArgumentList(SyntaxFactory.SeparatedList<ArgumentSyntax>(new SyntaxNodeOrToken[]
-                    {
-                        SyntaxFactory.Argument(
-                            SyntaxFactory.ObjectCreationExpression(
-                                SyntaxFactory.GenericName(SyntaxFactory.Identifier("Dictionary")).WithTypeArgumentList(
-                                    SyntaxFactory.TypeArgumentList(
-                                        SyntaxFactory.SeparatedList<TypeSyntax>(new SyntaxNodeOrToken[]
-                                        {
-                                            SyntaxFactory.PredefinedType(
-                                                SyntaxFactory.Token(SyntaxKind.StringKeyword)),
-                                            SyntaxFactory.Token(SyntaxKind.CommaToken),
-                                            SyntaxFactory.PredefinedType(
-                                                SyntaxFactory.Token(SyntaxKind.ObjectKeyword))
-                                        })))).WithInitializer(
-                                SyntaxFactory.InitializerExpression(SyntaxKind.CollectionInitializerExpression,
-                                    SyntaxFactory.SeparatedList<ExpressionSyntax>(parameterList)))),
-
-                        SyntaxFactory.Token(SyntaxKind.CommaToken),
-
-                        SyntaxFactory.Argument(SyntaxFactory.LiteralExpression(SyntaxKind.StringLiteralExpression,
-                            SyntaxFactory.Literal(serviceId)))
-                    }))));
-
+                        {
+                            SyntaxFactory.Argument(
+                                SyntaxFactory.ObjectCreationExpression(
+                                        SyntaxFactory.GenericName(SyntaxFactory.Identifier("Dictionary"))
+                                            .WithTypeArgumentList(
+                                                SyntaxFactory.TypeArgumentList(
+                                                    SyntaxFactory.SeparatedList<TypeSyntax>(new SyntaxNodeOrToken[]
+                                                        {
+                                                            SyntaxFactory.PredefinedType(SyntaxFactory.Token(SyntaxKind.StringKeyword)),
+                                                            SyntaxFactory.Token(SyntaxKind.CommaToken),
+                                                            SyntaxFactory.PredefinedType(SyntaxFactory.Token(SyntaxKind.ObjectKeyword))
+                                                        }
+                                                    )
+                                                )
+                                            )
+                                    )
+                                    .WithInitializer(SyntaxFactory.InitializerExpression(SyntaxKind.CollectionInitializerExpression,
+                                        SyntaxFactory.SeparatedList<ExpressionSyntax>(parameterList))
+                                    )
+                            ),
+                            SyntaxFactory.Token(SyntaxKind.CommaToken),
+                            SyntaxFactory.Argument(SyntaxFactory.LiteralExpression(SyntaxKind.StringLiteralExpression, SyntaxFactory.Literal(serviceId)))
+                        }
+                    )));
+            }
 
             if (method.ReturnType != typeof(Task))
             {

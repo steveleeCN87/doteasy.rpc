@@ -14,7 +14,14 @@
 
 请配合其他相关DotEasy.Rpc.*扩展库进行使用
 
+##1.0.2:
+<ol>
+<li>新增预编译同步和异步远程调用方法。</li>
+<li>取消强制使用Task作为异步调用和预编译。</li>
+</ol>
+
 <hr/>
+<br/>
 
 ##A lightweight RPC framework based on NET Core 2.0 Standard 2
 
@@ -31,4 +38,10 @@
 <li>More in the future</li>
 </ol>
 
-Please cooperate with other related DotEasy.Rpc. * Extension libraries for use
+Please cooperate with other related DotEasy.Rpc.* Extension libraries for use
+
+##1.0.2:
+<ol>
+<li>New pre-compiled synchronous and asynchronous remote invocation methods.</li>
+<li>Unforce the use of Task as an asynchronous call and precompilation.</li>
+</ol>

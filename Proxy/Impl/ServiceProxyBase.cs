@@ -21,13 +21,13 @@ namespace DotEasy.Rpc.Proxy.Impl
         }
 
         /// <summary>
-        /// 远程调用
+        /// 异步远程调用
         /// </summary>
         /// <typeparam name="T">返回类型</typeparam>
         /// <param name="parameters">参数字典</param>
         /// <param name="serviceId">服务Id</param>
         /// <returns>调用结果</returns>
-        protected async Task<T> Invoke<T>(IDictionary<string, object> parameters, string serviceId)
+        protected async Task<T> InvokeAsync<T>(IDictionary<string, object> parameters, string serviceId)
         {
             var message = await _remoteInvokeService.InvokeAsync(new RemoteInvokeContext
             {
@@ -46,21 +46,27 @@ namespace DotEasy.Rpc.Proxy.Impl
         }
 
         /// <summary>
-        /// 远程调用
+        /// 非异步远程调用
         /// </summary>
-        /// <param name="parameters">参数字典</param>
-        /// <param name="serviceId">服务Id</param>
-        /// <returns>调用任务</returns>
-        protected async Task Invoke(IDictionary<string, object> parameters, string serviceId)
+        /// <param name="parameters"></param>
+        /// <param name="serviceId"></param>
+        /// <param name="_"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        protected T Invoke<T>(IDictionary<string, object> parameters, string serviceId)
         {
-            await _remoteInvokeService.InvokeAsync(new RemoteInvokeContext
+            var message = _remoteInvokeService.InvokeAsync(new RemoteInvokeContext
             {
                 InvokeMessage = new RemoteInvokeMessage
                 {
                     Parameters = parameters,
                     ServiceId = serviceId
                 }
-            });
+            }).Result;
+            
+            if (message == null) return default(T);
+            var result = _typeConvertibleService.Convert(message.Result, typeof(T));
+            return (T) result;
         }
     }
 }

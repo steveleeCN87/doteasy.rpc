@@ -16,9 +16,7 @@ namespace DotEasy.Rpc.Proxy.Utilitys
 {
     public static class CompilationUtilitys
     {
-        public static MemoryStream CompileClientProxy(IEnumerable<SyntaxTree> trees,
-            IEnumerable<MetadataReference> references,
-            ILogger logger = null)
+        public static MemoryStream CompileClientProxy(IEnumerable<SyntaxTree> trees, IEnumerable<MetadataReference> references, ILogger logger = null)
         {
             references = new[]
             {
@@ -27,21 +25,15 @@ namespace DotEasy.Rpc.Proxy.Utilitys
                 MetadataReference.CreateFromFile(typeof(IRemoteInvokeService).GetTypeInfo().Assembly.Location),
                 MetadataReference.CreateFromFile(typeof(IServiceProxyGenerater).GetTypeInfo().Assembly.Location)
             }.Concat(references);
-            return Compile(AssemblyInfo.Create("Easy.Rpc.ClientProxys"), trees, references, logger);
+            return Compile(AssemblyInfo.Create("DotEasy.Rpc.ClientProxys"), trees, references, logger);
         }
 
-        public static MemoryStream Compile(AssemblyInfo assemblyInfo, IEnumerable<SyntaxTree> trees,
-            IEnumerable<MetadataReference> references, ILogger logger = null)
-        {
-            return Compile(assemblyInfo.Title, assemblyInfo, trees, references, logger);
-        }
+        public static MemoryStream Compile(AssemblyInfo assemblyInfo, IEnumerable<SyntaxTree> trees, IEnumerable<MetadataReference> references, ILogger logger = null) => Compile(assemblyInfo.Title, assemblyInfo, trees, references, logger);
 
-        public static MemoryStream Compile(string assemblyName, AssemblyInfo assemblyInfo,
-            IEnumerable<SyntaxTree> trees, IEnumerable<MetadataReference> references, ILogger logger = null)
+        public static MemoryStream Compile(string assemblyName, AssemblyInfo assemblyInfo, IEnumerable<SyntaxTree> trees, IEnumerable<MetadataReference> references, ILogger logger = null)
         {
             trees = trees.Concat(new[] {GetAssemblyInfo(assemblyInfo)});
-            var compilation = CSharpCompilation.Create(assemblyName, trees, references,
-                new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
+            var compilation = CSharpCompilation.Create(assemblyName, trees, references, new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
 
             var stream = new MemoryStream();
             var result = compilation.Emit(stream);
@@ -58,7 +50,6 @@ namespace DotEasy.Rpc.Proxy.Utilitys
             stream.Seek(0, SeekOrigin.Begin);
             return stream;
         }
-
 
         private static SyntaxTree GetAssemblyInfo(AssemblyInfo info)
         {
@@ -84,18 +75,7 @@ namespace DotEasy.Rpc.Proxy.Utilitys
                                     SyntaxFactory.IdentifierName("Runtime")),
                                 SyntaxFactory.IdentifierName("Versioning")))
                         }))
-                // before
-                // start: add reflection code and set custom tips text or framework version
-                /*
-                    [0] = {AttributeListSyntax} "[assembly:TargetFramework(".NETFramework,Version=v4.5",FrameworkDisplayName=".NET Framework 4.5")]"
-                    [1] = {AttributeListSyntax} "[assembly:AssemblyTitle("Rabbit.Rpc.ClientProxys")]"
-                    [2] = {AttributeListSyntax} "[assembly:AssemblyProduct("Rabbit.Rpc.ClientProxys")]"
-                    [3] = {AttributeListSyntax} "[assembly:AssemblyCopyright("Copyright ©  Rabbit")]"
-                    [4] = {AttributeListSyntax} "[assembly:ComVisible(false)]"
-                    [5] = {AttributeListSyntax} "[assembly:Guid("a40f0c95-b12d-4f76-a983-d7fea7a90f1d")]"
-                    [6] = {AttributeListSyntax} "[assembly:AssemblyVersion("1.0.0.0")]"
-                    [7] = {AttributeListSyntax} "[assembly:AssemblyFileVersion("1.0.0.0")]"
-                 */
+                
                 .WithAttributeLists(
                     SyntaxFactory.List(
                         new[]
@@ -121,7 +101,7 @@ namespace DotEasy.Rpc.Proxy.Utilitys
                                     SyntaxFactory.AttributeTargetSpecifier(
                                         SyntaxFactory.Token(SyntaxKind.AssemblyKeyword))),
 
-                            // [AssemblyTitle("Rabbit.Rpc.ClientProxys")]
+                            
                             SyntaxFactory.AttributeList(SyntaxFactory.SingletonSeparatedList(SyntaxFactory
                                     .Attribute(SyntaxFactory.IdentifierName("AssemblyTitle"))
                                     .WithArgumentList(
@@ -204,7 +184,6 @@ namespace DotEasy.Rpc.Proxy.Utilitys
                 .SyntaxTree;
         }
 
-
         public class AssemblyInfo
         {
             public string Title { get; set; }
@@ -215,7 +194,7 @@ namespace DotEasy.Rpc.Proxy.Utilitys
             public string FileVersion { get; set; }
             public bool ComVisible { get; set; }
 
-            public static AssemblyInfo Create(string name, string copyright = "Copyright ©  Rabbit",
+            public static AssemblyInfo Create(string name, string copyright = "Copyright ©  DotEasy.Rpc",
                 string version = "1.0.0.0")
             {
                 return new AssemblyInfo
