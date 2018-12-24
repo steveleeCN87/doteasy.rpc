@@ -13,12 +13,10 @@ Based on NET Core 2.0 Standard 2 development, DotEasy.RPC supports transparent c
 
 
 # Related extension library
-## DotEasy.Rpc.Consul
+##DotEasy.Rpc.Consul
 Based conusl register center service find and discover. [https://github.com/steveleeCN87/doteasy.rpc.consul](https://github.com/steveleeCN87/doteasy.rpc.consul)
-## DotEasy.Rpc.Entry
+##DotEasy.Rpc.Entry
 Lazy dedicated library to further hide the customizable service build entry. [https://github.com/steveleeCN87/doteasy.rpc.entry](https://github.com/steveleeCN87/doteasy.rpc.entry)
-## DotEasy.Rpc.Etcd
-Based etcd register center service find and discover.
 
 # Demo
 A code example that implements a simple interface and implements separation, with extensions based on asp.net core middleware and console applications
@@ -105,9 +103,9 @@ you can start register service 'consul' or 'etcd' completed, and start client pr
 # *so easy!* 
 
 # Change log
-##1.0.2
+## 1.0.2
 1. Added precompiled synchronous and asynchronous remote invocation methods, unforcing the use of Task as asynchronous calls and precompiled builds.
 
-##1.0.1
+## 1.0.1
 1. Added Consul registration and callback to implement the configuration of the Consul registry.
 2. Added Entry lazy entry class library package to implement Asp.net middleware extension and host based on Console application.
