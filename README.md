@@ -100,8 +100,6 @@ _**Just need to reference the interface project, not the implementation project*
 
 you can start register service 'consul' or 'etcd' completed, and start client program before start you asp.net core web server, running the result is 'hello world'.
 
-# *so easy!* 
-
 # Change log
 ## 1.0.2
 1. Added precompiled synchronous and asynchronous remote invocation methods, unforcing the use of Task as asynchronous calls and precompiled builds.
@@ -109,3 +107,7 @@ you can start register service 'consul' or 'etcd' completed, and start client pr
 ## 1.0.1
 1. Added Consul registration and callback to implement the configuration of the Consul registry.
 2. Added Entry lazy entry class library package to implement Asp.net middleware extension and host based on Console application.
+
+# Next version expectation
+1. Replace Microsoft.Extensions.Dependency with Autofac, support batch import of qualified names and improve Ioc container performance.
+2. When the 500+ interface is pre-compiled client(or consumer), the total time needs to be shortened to solve the suspended caused by large-scale pre-compilation.
