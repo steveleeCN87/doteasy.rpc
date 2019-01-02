@@ -1,5 +1,5 @@
 ﻿using System.Text;
-using DotEasy.Rpc.Core.Communally.Entitys.Messages;
+using DotEasy.Rpc.Runtime.Communally.Entitys.Messages;
 using Newtonsoft.Json;
 
 namespace DotEasy.Rpc.Transport.Codec.Implementation

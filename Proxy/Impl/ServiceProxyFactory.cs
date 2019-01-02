@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
-using DotEasy.Rpc.Core.Client;
-using DotEasy.Rpc.Core.Communally.Convertibles;
+using DotEasy.Rpc.Runtime.Client;
+using DotEasy.Rpc.Runtime.Communally.Convertibles;
 
 namespace DotEasy.Rpc.Proxy.Impl
 {

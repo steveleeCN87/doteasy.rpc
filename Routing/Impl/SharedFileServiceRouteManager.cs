@@ -4,8 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DotEasy.Rpc.Core.Communally.Serialization;
-using DotEasy.Rpc.Core.Communally.Serialization.Implementation;
+using DotEasy.Rpc.Runtime.Communally.Serialization;
+using DotEasy.Rpc.Runtime.Communally.Serialization.Implementation;
 using Microsoft.Extensions.Logging;
 
 namespace DotEasy.Rpc.Routing.Impl

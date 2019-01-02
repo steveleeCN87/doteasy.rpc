@@ -1,5 +1,5 @@
-﻿using DotEasy.Rpc.Core.Communally.Entitys.Address;
-using DotEasy.Rpc.Core.Communally.Serialization;
+﻿using DotEasy.Rpc.Runtime.Communally.Entitys.Address;
+using DotEasy.Rpc.Runtime.Communally.Serialization;
 
 namespace DotEasy.Rpc.Routing
 {

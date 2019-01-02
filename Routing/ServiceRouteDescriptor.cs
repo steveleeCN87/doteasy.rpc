@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using DotEasy.Rpc.Core.Communally.Entitys;
+using DotEasy.Rpc.Runtime.Communally.Entitys;
 
 namespace DotEasy.Rpc.Routing
 {

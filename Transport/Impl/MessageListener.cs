@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using DotEasy.Rpc.Core.Communally.Entitys.Messages;
+using DotEasy.Rpc.Runtime.Communally.Entitys.Messages;
 
 namespace DotEasy.Rpc.Transport.Impl
 {
