@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Threading.Tasks;
-using DotEasy.Rpc.Core.Communally.Entitys.Messages;
+using DotEasy.Rpc.Runtime.Communally.Entitys.Messages;
 using DotEasy.Rpc.Transport.Codec;
 using DotEasy.Rpc.Transport.InternalAdaper;
 using DotNetty.Codecs;

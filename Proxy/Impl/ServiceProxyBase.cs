@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using DotEasy.Rpc.Core.Client;
-using DotEasy.Rpc.Core.Communally.Convertibles;
-using DotEasy.Rpc.Core.Communally.Entitys.Messages;
+using DotEasy.Rpc.Runtime.Client;
+using DotEasy.Rpc.Runtime.Communally.Convertibles;
+using DotEasy.Rpc.Runtime.Communally.Entitys.Messages;
 
 namespace DotEasy.Rpc.Proxy.Impl
 {

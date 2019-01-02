@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using DotEasy.Rpc.Core.Communally.Entitys;
-using DotEasy.Rpc.Core.Communally.Entitys.Address;
+using DotEasy.Rpc.Runtime.Communally.Entitys;
+using DotEasy.Rpc.Runtime.Communally.Entitys.Address;
 
 namespace DotEasy.Rpc.Routing
 {

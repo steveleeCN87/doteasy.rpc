@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using DotEasy.Rpc.Core.Communally.Entitys;
-using DotEasy.Rpc.Core.Server;
+using DotEasy.Rpc.Runtime.Communally.Entitys;
+using DotEasy.Rpc.Runtime.Server;
 using Microsoft.Extensions.Logging;
 
 namespace DotEasy.Rpc.Attributes

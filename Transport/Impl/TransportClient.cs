@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Threading.Tasks;
-using DotEasy.Rpc.Core.Communally.Entitys.Messages;
-using DotEasy.Rpc.Core.Communally.Exceptions;
-using DotEasy.Rpc.Core.Server;
+using DotEasy.Rpc.Runtime.Communally.Entitys.Messages;
+using DotEasy.Rpc.Runtime.Communally.Exceptions;
+using DotEasy.Rpc.Runtime.Server;
 using Microsoft.Extensions.Logging;
 
 namespace DotEasy.Rpc.Transport.Impl
