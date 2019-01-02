@@ -1,5 +1,3 @@
-using Microsoft.Extensions.DependencyInjection;
-
 namespace DotEasy.Rpc
 {
     /// <summary>
@@ -10,6 +8,8 @@ namespace DotEasy.Rpc
         /// <summary>
         /// 服务集合
         /// </summary>
-        IServiceCollection Services { get; }
+//        IServiceCollection Services { get; }
+        
+        Autofac.ContainerBuilder Services { get; }
     }
 }

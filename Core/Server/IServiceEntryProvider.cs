@@ -4,7 +4,7 @@ using DotEasy.Rpc.Core.Communally.Entitys;
 namespace DotEasy.Rpc.Core.Server
 {
     /// <summary>
-    //抽象的服务条目提供程序
+    /// 抽象的服务条目提供程序
     /// </summary>
     public interface IServiceEntryProvider
     {

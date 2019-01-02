@@ -110,4 +110,5 @@ you can start register service 'consul' or 'etcd' completed, and start client pr
 
 # Next version expectation
 1. Replace Microsoft.Extensions.Dependency with Autofac, support batch import of qualified names and improve Ioc container performance.
-2. When the 500+ interface is pre-compiled client(or consumer), the total time needs to be shortened to solve the suspended caused by large-scale pre-compilation.
+2. When the 500+ interface(or service) is pre-compiled client(or consumer), the total time needs to be shortened to solve the suspended caused by large-scale pre-compilation.
+3. interface auto disponse.

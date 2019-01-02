@@ -1,5 +1,6 @@
 using System;
-using Microsoft.Extensions.DependencyInjection;
+
+//using Microsoft.Extensions.DependencyInjection;
 
 namespace DotEasy.Rpc
 {
@@ -8,7 +9,8 @@ namespace DotEasy.Rpc
     /// </summary>
     internal sealed class RpcBuilder : IRpcBuilder
     {
-        public RpcBuilder(IServiceCollection services)
+        public RpcBuilder(Autofac.ContainerBuilder services)
+//        public RpcBuilder(IServiceCollection services)
         {
             Services = services ?? throw new ArgumentNullException(nameof(services));
         }
@@ -16,6 +18,7 @@ namespace DotEasy.Rpc
         /// <summary>
         /// 服务集合
         /// </summary>
-        public IServiceCollection Services { get; }
+//        public IServiceCollection Services { get; }
+        public Autofac.ContainerBuilder Services { get; }
     }
 }

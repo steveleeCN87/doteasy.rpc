@@ -12,9 +12,9 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.Logging;
 
-namespace DotEasy.Rpc.Proxy.Utilitys
+namespace DotEasy.Rpc.Proxy.Unit
 {
-    public static class CompilationUtilitys
+    public static class CompilationUnits
     {
         public static MemoryStream CompileClientProxy(IEnumerable<SyntaxTree> trees, IEnumerable<MetadataReference> references, ILogger logger = null)
         {

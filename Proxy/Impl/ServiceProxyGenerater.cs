@@ -8,11 +8,10 @@ using DotEasy.Rpc.Core.Client;
 using DotEasy.Rpc.Core.Communally.Convertibles;
 using DotEasy.Rpc.Core.Communally.IdGenerator;
 using DotEasy.Rpc.Core.Communally.Serialization;
-using DotEasy.Rpc.Proxy.Utilitys;
+using DotEasy.Rpc.Proxy.Unit;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.Extensions.DependencyModel;
 using Microsoft.Extensions.Logging;
 
 namespace DotEasy.Rpc.Proxy.Impl
@@ -20,9 +19,9 @@ namespace DotEasy.Rpc.Proxy.Impl
     public class ServiceProxyGenerater : IServiceProxyGenerater
     {
         private readonly IServiceIdGenerator _serviceIdGenerator;
-        private readonly ILogger<ServiceProxyGenerater> _logger;
+        private readonly ILogger _logger;
 
-        public ServiceProxyGenerater(IServiceIdGenerator serviceIdGenerator, ILogger<ServiceProxyGenerater> logger)
+        public ServiceProxyGenerater(IServiceIdGenerator serviceIdGenerator, ILogger logger)
         {
             _serviceIdGenerator = serviceIdGenerator;
             _logger = logger;
@@ -35,13 +34,16 @@ namespace DotEasy.Rpc.Proxy.Impl
         /// <returns>服务代理实现</returns>
         public IEnumerable<Type> GenerateProxys(IEnumerable<Type> interfaceTypes)
         {
-            var assembles = DependencyContext.Default.RuntimeLibraries
-                .SelectMany(i => i.GetDefaultAssemblyNames(DependencyContext.Default)
-                    .Select(z => Assembly.Load(new AssemblyName(z.Name))));
+//            var assembles = DependencyContext.Default.RuntimeLibraries
+//                .SelectMany(i => i.GetDefaultAssemblyNames(DependencyContext.Default)
+//                    .Select(z => Assembly.Load(new AssemblyName(z.Name))));
 
-            assembles = assembles.Where(i => i.IsDynamic == false).ToArray();
+            var assembles = AppDomain.CurrentDomain.GetAssemblies().AsParallel().Where(i => i.IsDynamic == false).ToArray();
+            
+//            assembles = assembles.Where(i => i.IsDynamic == false).ToArray();
+            
             var trees = interfaceTypes.Select(GenerateProxyTree).ToList();
-            var stream = CompilationUtilitys.CompileClientProxy(trees,
+            var stream = CompilationUnits.CompileClientProxy(trees,
                 assembles
                     .Select(a => MetadataReference.CreateFromFile(a.Location))
                     .Concat(new[]
