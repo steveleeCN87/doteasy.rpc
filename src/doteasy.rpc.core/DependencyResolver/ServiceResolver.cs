@@ -3,7 +3,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace DotEasy.Rpc.DependencyResolver
+namespace DotEasy.Rpc.Core.DependencyResolver
 {
     /// <summary>
     /// IOC容器对象

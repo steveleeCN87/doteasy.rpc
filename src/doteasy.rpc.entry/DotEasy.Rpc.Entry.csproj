@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
@@ -6,9 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\doteasy.rpc.consul\DotEasy.Rpc.Consul.csproj" />
-    <ProjectReference Include="..\doteasy.rpc\DotEasy.Rpc.csproj" />
-    <ProjectReference Include="..\TestAndDemo\doteasy.rpc.implement\doteasy.rpc.implement.csproj" />
-    <ProjectReference Include="..\TestAndDemo\doteasy.rpc.interface\doteasy.rpc.interface.csproj" />
+    <ProjectReference Include="..\doteasy.rpc.core\DotEasy.Rpc.Core.csproj" />
   </ItemGroup>
 
 </Project>

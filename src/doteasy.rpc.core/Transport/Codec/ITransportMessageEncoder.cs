@@ -1,6 +1,6 @@
-﻿using DotEasy.Rpc.Runtime.Communally.Entitys.Messages;
+﻿using DotEasy.Rpc.Core.Runtime.Communally.Entitys.Messages;
 
-namespace DotEasy.Rpc.Transport.Codec
+namespace DotEasy.Rpc.Core.Transport.Codec
 {
     public interface ITransportMessageEncoder
     {

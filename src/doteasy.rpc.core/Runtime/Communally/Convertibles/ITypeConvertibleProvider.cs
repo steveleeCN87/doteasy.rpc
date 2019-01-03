@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using DotEasy.Rpc.Runtime.Communally.Convertibles.Impl;
+using DotEasy.Rpc.Core.Runtime.Communally.Convertibles.Impl;
 
-namespace DotEasy.Rpc.Runtime.Communally.Convertibles
+namespace DotEasy.Rpc.Core.Runtime.Communally.Convertibles
 {
     /// <summary>
     /// 抽象的类型转换提供程序

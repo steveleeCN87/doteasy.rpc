@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using DotEasy.Rpc.Runtime.Client.Address.Resolvers;
-using DotEasy.Rpc.Runtime.Client.HealthChecks;
-using DotEasy.Rpc.Runtime.Communally.Entitys.Messages;
-using DotEasy.Rpc.Runtime.Communally.Exceptions;
-using DotEasy.Rpc.Transport;
+using DotEasy.Rpc.Core.Runtime.Client.Address.Resolvers;
+using DotEasy.Rpc.Core.Runtime.Client.HealthChecks;
+using DotEasy.Rpc.Core.Runtime.Communally.Entitys.Messages;
+using DotEasy.Rpc.Core.Runtime.Communally.Exceptions;
+using DotEasy.Rpc.Core.Transport;
 using Microsoft.Extensions.Logging;
 
-namespace DotEasy.Rpc.Runtime.Client.Implementation
+namespace DotEasy.Rpc.Core.Runtime.Client.Implementation
 {
     public class RemoteInvokeService : IRemoteInvokeService
     {

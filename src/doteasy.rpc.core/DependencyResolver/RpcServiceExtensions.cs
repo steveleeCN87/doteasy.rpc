@@ -1,34 +1,34 @@
 using System;
 using System.Linq;
-using Autofac;
-using DotEasy.Rpc.Attributes;
-using DotEasy.Rpc.Proxy;
-using DotEasy.Rpc.Proxy.Impl;
-using DotEasy.Rpc.Routing;
-using DotEasy.Rpc.Routing.Impl;
-using DotEasy.Rpc.Runtime.Client;
-using DotEasy.Rpc.Runtime.Client.Address.Resolvers;
-using DotEasy.Rpc.Runtime.Client.Address.Resolvers.Implementation;
-using DotEasy.Rpc.Runtime.Client.Address.Resolvers.Implementation.Selectors;
-using DotEasy.Rpc.Runtime.Client.Address.Resolvers.Implementation.Selectors.Implementation;
-using DotEasy.Rpc.Runtime.Client.HealthChecks;
-using DotEasy.Rpc.Runtime.Client.HealthChecks.Implementation;
-using DotEasy.Rpc.Runtime.Client.Implementation;
-using DotEasy.Rpc.Runtime.Communally.Convertibles;
-using DotEasy.Rpc.Runtime.Communally.Convertibles.Impl;
-using DotEasy.Rpc.Runtime.Communally.IdGenerator;
-using DotEasy.Rpc.Runtime.Communally.IdGenerator.Impl;
-using DotEasy.Rpc.Runtime.Communally.Serialization;
-using DotEasy.Rpc.Runtime.Communally.Serialization.Implementation;
-using DotEasy.Rpc.Runtime.Server;
-using DotEasy.Rpc.Runtime.Server.Impl;
-using DotEasy.Rpc.Transport;
-using DotEasy.Rpc.Transport.Codec;
-using DotEasy.Rpc.Transport.Codec.Implementation;
-using DotEasy.Rpc.Transport.Impl;
+using DotEasy.Rpc.Core.Attributes;
+using DotEasy.Rpc.Core.Proxy;
+using DotEasy.Rpc.Core.Proxy.Impl;
+using DotEasy.Rpc.Core.Routing;
+using DotEasy.Rpc.Core.Routing.Impl;
+using DotEasy.Rpc.Core.Runtime.Client;
+using DotEasy.Rpc.Core.Runtime.Client.Address.Resolvers;
+using DotEasy.Rpc.Core.Runtime.Client.Address.Resolvers.Implementation;
+using DotEasy.Rpc.Core.Runtime.Client.Address.Resolvers.Implementation.Selectors;
+using DotEasy.Rpc.Core.Runtime.Client.Address.Resolvers.Implementation.Selectors.Implementation;
+using DotEasy.Rpc.Core.Runtime.Client.HealthChecks;
+using DotEasy.Rpc.Core.Runtime.Client.HealthChecks.Implementation;
+using DotEasy.Rpc.Core.Runtime.Client.Implementation;
+using DotEasy.Rpc.Core.Runtime.Communally.Convertibles;
+using DotEasy.Rpc.Core.Runtime.Communally.Convertibles.Impl;
+using DotEasy.Rpc.Core.Runtime.Communally.IdGenerator;
+using DotEasy.Rpc.Core.Runtime.Communally.IdGenerator.Impl;
+using DotEasy.Rpc.Core.Runtime.Communally.Serialization;
+using DotEasy.Rpc.Core.Runtime.Communally.Serialization.Implementation;
+using DotEasy.Rpc.Core.Runtime.Server;
+using DotEasy.Rpc.Core.Runtime.Server.Impl;
+using DotEasy.Rpc.Core.Transport;
+using DotEasy.Rpc.Core.Transport.Codec;
+using DotEasy.Rpc.Core.Transport.Codec.Implementation;
+using DotEasy.Rpc.Core.Transport.Impl;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace DotEasy.Rpc
+namespace DotEasy.Rpc.Core.DependencyResolver
 {
     public static class RpcServiceExtensions
     {
@@ -40,11 +40,15 @@ namespace DotEasy.Rpc
         private static IRpcBuilder AddJsonSerialization(this IRpcBuilder builder)
         {
             var services = builder.Services;
-            services.RegisterType<JsonSerializer>().As<ISerializer<string>>();
-            services.RegisterType<StringByteArraySerializer>().As<ISerializer<byte[]>>();
-            services.RegisterType<StringObjectSerializer>().As<ISerializer<object>>();
+
+            services.AddSingleton<ISerializer<string>, JsonSerializer>();
+            services.AddSingleton<ISerializer<byte[]>, StringByteArraySerializer>();
+            services.AddSingleton<ISerializer<object>, StringObjectSerializer>();
+
             return builder;
         }
+
+        #region RouteManager
 
         /// <summary>
         /// 设置服务路由管理者
@@ -54,7 +58,7 @@ namespace DotEasy.Rpc
         /// <returns>Rpc服务构建者</returns>
         public static IRpcBuilder UseRouteManager<T>(this IRpcBuilder builder) where T : class, IServiceRouteManager
         {
-            builder.Services.RegisterType<T>().As<IServiceRouteManager>();
+            builder.Services.AddSingleton<IServiceRouteManager, T>();
             return builder;
         }
 
@@ -66,7 +70,7 @@ namespace DotEasy.Rpc
         /// <returns>Rpc服务构建者</returns>
         public static IRpcBuilder UseRouteManager(this IRpcBuilder builder, Func<IServiceProvider, IServiceRouteManager> factory)
         {
-            builder.Services.RegisterInstance(factory);
+            builder.Services.AddSingleton(factory);
             return builder;
         }
 
@@ -78,9 +82,30 @@ namespace DotEasy.Rpc
         /// <returns>Rpc服务构建者</returns>
         public static IRpcBuilder UseRouteManager(this IRpcBuilder builder, IServiceRouteManager instance)
         {
-            builder.Services.RegisterInstance(instance);
+            builder.Services.AddSingleton(instance);
             return builder;
         }
+
+        #endregion RouteManager
+
+        /// <summary>
+        /// 设置共享文件路由管理者
+        /// </summary>
+        /// <param name="builder">Rpc服务构建者</param>
+        /// <param name="filePath">文件路径</param>
+        /// <returns>Rpc服务构建者</returns>
+        public static IRpcBuilder UseSharedFileRouteManager(this IRpcBuilder builder, string filePath)
+        {
+            return builder.UseRouteManager(provider =>
+                new SharedFileServiceRouteManager(
+                    filePath,
+                    provider.GetRequiredService<ISerializer<string>>(),
+                    provider.GetRequiredService<IServiceRouteFactory>(),
+                    provider.GetRequiredService<ILogger<SharedFileServiceRouteManager>>()
+                ));
+        }
+
+        #region AddressSelector
 
         /// <summary>
         /// 设置服务地址选择器
@@ -90,7 +115,7 @@ namespace DotEasy.Rpc
         /// <returns>Rpc服务构建者</returns>
         public static IRpcBuilder UseAddressSelector<T>(this IRpcBuilder builder) where T : class, IAddressSelector
         {
-            builder.Services.RegisterType<T>().As<IAddressSelector>();
+            builder.Services.AddSingleton<IAddressSelector, T>();
             return builder;
         }
 
@@ -100,9 +125,11 @@ namespace DotEasy.Rpc
         /// <param name="builder">Rpc服务构建者</param>
         /// <param name="factory">服务地址选择器实例工厂</param>
         /// <returns>Rpc服务构建者</returns>
-        public static IRpcBuilder UseAddressSelector(this IRpcBuilder builder, Func<IServiceProvider, IAddressSelector> factory)
+        public static IRpcBuilder UseAddressSelector(this IRpcBuilder builder,
+            Func<IServiceProvider, IAddressSelector> factory)
         {
-            builder.Services.RegisterInstance(factory);
+            builder.Services.AddSingleton(factory);
+
             return builder;
         }
 
@@ -114,9 +141,12 @@ namespace DotEasy.Rpc
         /// <returns>Rpc服务构建者</returns>
         public static IRpcBuilder UseAddressSelector(this IRpcBuilder builder, IAddressSelector instance)
         {
-            builder.Services.RegisterInstance(instance);
+            builder.Services.AddSingleton(instance);
+
             return builder;
         }
+
+        #endregion AddressSelector
 
         /// <summary>
         /// 使用轮询的地址选择器
@@ -125,7 +155,7 @@ namespace DotEasy.Rpc
         /// <returns>Rpc服务构建者</returns>
         public static IRpcBuilder UsePollingAddressSelector(this IRpcBuilder builder)
         {
-            builder.Services.RegisterType<PollingAddressSelector>().As<IAddressSelector>();
+            builder.Services.AddSingleton<IAddressSelector, PollingAddressSelector>();
             return builder;
         }
 
@@ -136,9 +166,11 @@ namespace DotEasy.Rpc
         /// <returns>Rpc服务构建者</returns>
         public static IRpcBuilder UseRandomAddressSelector(this IRpcBuilder builder)
         {
-            builder.Services.RegisterType<RandomAddressSelector>().As<IAddressSelector>();
+            builder.Services.AddSingleton<IAddressSelector, RandomAddressSelector>();
             return builder;
         }
+
+        #region Codec Factory
 
         /// <summary>
         /// 使用编解码器
@@ -148,7 +180,7 @@ namespace DotEasy.Rpc
         /// <returns>Rpc服务构建者</returns>
         public static IRpcBuilder UseCodec(this IRpcBuilder builder, ITransportMessageCodecFactory codecFactory)
         {
-            builder.Services.RegisterInstance(codecFactory);
+            builder.Services.AddSingleton(codecFactory);
             return builder;
         }
 
@@ -160,7 +192,7 @@ namespace DotEasy.Rpc
         /// <returns>Rpc服务构建者</returns>
         public static IRpcBuilder UseCodec<T>(this IRpcBuilder builder) where T : class, ITransportMessageCodecFactory
         {
-            builder.Services.RegisterType<T>().As<ITransportMessageCodecFactory>();
+            builder.Services.AddSingleton<ITransportMessageCodecFactory, T>();
             return builder;
         }
 
@@ -173,9 +205,12 @@ namespace DotEasy.Rpc
         public static IRpcBuilder UseCodec(this IRpcBuilder builder,
             Func<IServiceProvider, ITransportMessageCodecFactory> codecFactory)
         {
-            builder.Services.RegisterInstance(codecFactory);
+            builder.Services.AddSingleton(codecFactory);
+
             return builder;
         }
+
+        #endregion Codec Factory
 
         /// <summary>
         /// 使用Json编解码器
@@ -195,9 +230,11 @@ namespace DotEasy.Rpc
         public static IRpcBuilder AddClientRuntime(this IRpcBuilder builder)
         {
             var services = builder.Services;
-            services.RegisterType<DefaultHealthCheckService>().As<IHealthCheckService>();
-            services.RegisterType<DefaultAddressResolver>().As<IAddressResolver>();
-            services.RegisterType<RemoteInvokeService>().As<IRemoteInvokeService>();
+
+            services.AddSingleton<IHealthCheckService, DefaultHealthCheckService>();
+            services.AddSingleton<IAddressResolver, DefaultAddressResolver>();
+            services.AddSingleton<IRemoteInvokeService, RemoteInvokeService>();
+
             return builder.UsePollingAddressSelector();
         }
 
@@ -209,16 +246,16 @@ namespace DotEasy.Rpc
         public static IRpcBuilder AddService(this IRpcBuilder builder)
         {
             var services = builder.Services;
-            services.RegisterType<ServiceEntryFactory>().As<IServiceEntryFactory>();
-            services.Register<IServiceEntryProvider>(provider =>
+
+            services.AddSingleton<IServiceEntryFactory, ServiceEntryFactory>();
+            services.AddSingleton<IServiceEntryProvider>(provider =>
                 new AttributeServiceEntryProvider(
                     AppDomain.CurrentDomain.GetAssemblies().AsParallel().Where(i => i.IsDynamic == false).SelectMany(i => i.ExportedTypes).ToArray(),
-                    provider.Resolve<IServiceEntryFactory>(),
-                    provider.Resolve<ILogger<AttributeServiceEntryProvider>>()));
-
-            services.RegisterType<DefaultServiceEntryManager>().As<IServiceEntryManager>();
-            services.RegisterType<DefaultServiceEntryLocate>().As<IServiceEntryLocate>();
-            services.RegisterType<DefaultServiceExecutor>().As<IServiceExecutor>();
+                    provider.GetRequiredService<IServiceEntryFactory>(),
+                    provider.GetRequiredService<ILogger<AttributeServiceEntryProvider>>()));
+            services.AddSingleton<IServiceEntryManager, DefaultServiceEntryManager>();
+            services.AddSingleton<IServiceEntryLocate, DefaultServiceEntryLocate>();
+            services.AddSingleton<IServiceExecutor, DefaultServiceExecutor>();
 
             return builder;
         }
@@ -228,29 +265,34 @@ namespace DotEasy.Rpc
         /// </summary>
         /// <param name="services">服务集合</param>
         /// <returns>Rpc服务构建者</returns>
-        public static IRpcBuilder AddRpcCore(this ContainerBuilder services)
+        public static IRpcBuilder AddRpcCore(this IServiceCollection services)
         {
-            if (services == null) throw new ArgumentNullException(nameof(services));
+            if (services == null)
+                throw new ArgumentNullException(nameof(services));
 
-            services.RegisterType<DefaultServiceIdGenerator>().As<IServiceIdGenerator>();
-            services.RegisterType<DefaultTypeConvertibleProvider>().As<ITypeConvertibleProvider>();
-            services.RegisterType<DefaultTypeConvertibleService>().As<ITypeConvertibleService>();
-            services.RegisterType<DefaultServiceRouteFactory>().As<IServiceRouteFactory>();
+            services.AddSingleton<IServiceIdGenerator, DefaultServiceIdGenerator>();
 
-            return new RpcBuilder(services).AddJsonSerialization().UseJsonCodec();
+            services.AddSingleton<ITypeConvertibleProvider, DefaultTypeConvertibleProvider>();
+            services.AddSingleton<ITypeConvertibleService, DefaultTypeConvertibleService>();
+
+            services.AddSingleton<IServiceRouteFactory, DefaultServiceRouteFactory>();
+
+            return new RpcBuilder(services)
+                .AddJsonSerialization()
+                .UseJsonCodec();
         }
 
         public static IRpcBuilder AddClientProxy(this IRpcBuilder builder)
         {
             var services = builder.Services;
 
-            services.RegisterType<ServiceProxyFactory>().As<IServiceProxyFactory>();
-            services.RegisterType<ServiceProxyGenerater>().As<IServiceProxyGenerater>();
+            services.AddSingleton<IServiceProxyGenerater, ServiceProxyGenerater>();
+            services.AddSingleton<IServiceProxyFactory, ServiceProxyFactory>();
 
             return builder;
         }
 
-        public static IRpcBuilder AddClient(this ContainerBuilder services)
+        public static IRpcBuilder AddClient(this IServiceCollection services)
         {
             return services
                 .AddRpcCore()
@@ -267,28 +309,22 @@ namespace DotEasy.Rpc
         {
             var services = builder.Services;
 
-            services.RegisterType<DefaultDotNettyTransportClientFactory>().As<ITransportClientFactory>();
-            services.RegisterType<DefaultDotNettyServerMessageListener>();
-            services.RegisterType<DefaultServiceHost>().As<IServiceHost>();
-            services.Register<IServiceHost>(r => new DefaultServiceHost(async endPoint =>
-            {
-                var messageListener = r.Resolve<DefaultDotNettyServerMessageListener>();
-                await messageListener.StartAsync(endPoint);
-                return messageListener;
-            }, r.Resolve<IServiceExecutor>()));
+            services.AddSingleton<ITransportClientFactory, DefaultDotNettyTransportClientFactory>();
 
-            return builder;
-        }
+            services.AddSingleton<DefaultDotNettyServerMessageListener>();
 
-        /// <summary>
-        /// 添加控制台输出
-        /// </summary>
-        /// <param name="builder"></param>
-        /// <returns></returns>
-        public static ContainerBuilder AddLogging(this ContainerBuilder builder)
-        {
-            builder.RegisterType<LoggerFactory>().As<ILoggerFactory>();
-//            builder.RegisterType<ILogger>();
+            services.AddSingleton<IServiceHost, DefaultServiceHost>(
+                provider => new DefaultServiceHost(
+                    async endPoint =>
+                    {
+                        var messageListener = provider.GetRequiredService<DefaultDotNettyServerMessageListener>();
+                        await messageListener.StartAsync(endPoint);
+                        return messageListener;
+                    },
+                    provider.GetRequiredService<IServiceExecutor>()
+                )
+            );
+
             return builder;
         }
     }

@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace DotEasy.Rpc.Transport
+namespace DotEasy.Rpc.Core.Transport
 {
     /// <summary>
     //抽象的传输客户端工厂

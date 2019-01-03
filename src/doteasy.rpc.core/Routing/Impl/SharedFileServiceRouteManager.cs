@@ -4,11 +4,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DotEasy.Rpc.Runtime.Communally.Serialization;
-using DotEasy.Rpc.Runtime.Communally.Serialization.Implementation;
+using DotEasy.Rpc.Core.Runtime.Communally.Serialization;
+using DotEasy.Rpc.Core.Runtime.Communally.Serialization.Implementation;
 using Microsoft.Extensions.Logging;
 
-namespace DotEasy.Rpc.Routing.Impl
+namespace DotEasy.Rpc.Core.Routing.Impl
 {
     /// <summary>
     /// 基于共享文件的服务路由管理者

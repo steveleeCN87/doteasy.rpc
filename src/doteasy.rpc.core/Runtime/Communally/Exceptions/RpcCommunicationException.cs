@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DotEasy.Rpc.Runtime.Communally.Exceptions
+namespace DotEasy.Rpc.Core.Runtime.Communally.Exceptions
 {
     /// <summary>
     /// RPC通讯异常（与服务端进行通讯时发生的异常）

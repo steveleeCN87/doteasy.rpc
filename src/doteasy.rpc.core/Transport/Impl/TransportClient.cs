@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Threading.Tasks;
-using DotEasy.Rpc.Runtime.Communally.Entitys.Messages;
-using DotEasy.Rpc.Runtime.Communally.Exceptions;
-using DotEasy.Rpc.Runtime.Server;
+using DotEasy.Rpc.Core.Runtime.Communally.Entitys.Messages;
+using DotEasy.Rpc.Core.Runtime.Communally.Exceptions;
+using DotEasy.Rpc.Core.Runtime.Server;
 using Microsoft.Extensions.Logging;
 
-namespace DotEasy.Rpc.Transport.Impl
+namespace DotEasy.Rpc.Core.Transport.Impl
 {
     /// <summary>
     /// 默认的传输客户端实现, 包含默认接收和方法发送

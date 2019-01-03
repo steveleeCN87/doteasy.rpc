@@ -3,44 +3,34 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using Consul;
-using DotEasy.Rpc.Consul;
-using DotEasy.Rpc.Core.Communally.Entitys.Address;
-using DotEasy.Rpc.Core.Server;
-using DotEasy.Rpc.Routing;
+using DotEasy.Rpc.Core.DependencyResolver;
+using DotEasy.Rpc.Core.Routing;
+using DotEasy.Rpc.Core.Runtime.Communally.Entitys.Address;
+using DotEasy.Rpc.Core.Runtime.Server;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace DotEasy.Rpc.Entry
+namespace DotEasy.Rpc.Consul.Entry
 {
-    public class BaseServer
+    public class ServerBase
     {
         private readonly ServiceCollection _serviceCollection = new ServiceCollection();
-        private readonly ConsulRpcOptionsConfiguration _consulRpcOptionsConfiguration = new ConsulRpcOptionsConfiguration();
+        private readonly ConsulRpcOptionsConfiguration _consulRpcOptionsConfiguration;
 
         public delegate void RegisterEventHandler(ServiceCollection serviceCollection);
 
         public event RegisterEventHandler RegisterEvent;
 
         /// <summary>
-        /// 采用ConsulRpcOptionsConfiguration的构造函数
-        /// </summary>
-        /// <param name="configuration"></param>
-        public BaseServer(ConsulRpcOptionsConfiguration configuration)
-        {
-            if (configuration != null) _consulRpcOptionsConfiguration = configuration;
-            Builder();
-        }
-
-        /// <summary>
         /// 采用IConfiguration的构造函数
         /// </summary>
         /// <param name="configuration"></param>
-        public BaseServer(IConfiguration configuration)
+        public ServerBase(IConfiguration configuration)
         {
             var configuration1 = configuration ?? throw new ArgumentNullException(nameof(configuration));
 
-            _consulRpcOptionsConfiguration = new ConsulRpcOptionsConfiguration()
+            _consulRpcOptionsConfiguration = new ConsulRpcOptionsConfiguration
             {
                 HostingAndRpcHealthCheck = configuration1["Hosting.And.Rpc.Health.Check"],
                 GRpc = new Consul.Rpc
@@ -48,7 +38,7 @@ namespace DotEasy.Rpc.Entry
                     Ip = configuration1["Rpc:IP"],
                     Port = int.Parse(configuration1["Rpc:Port"])
                 },
-                ServiceDescriptors = new DotEasy.Rpc.Consul.ServiceDescriptor
+                ServiceDescriptors = new Consul.ServiceDescriptor
                 {
                     Name = configuration1["ServiceDescriptor:Name"]
                 },

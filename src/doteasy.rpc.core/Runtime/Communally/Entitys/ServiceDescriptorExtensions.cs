@@ -1,4 +1,4 @@
-namespace DotEasy.Rpc.Runtime.Communally.Entitys
+namespace DotEasy.Rpc.Core.Runtime.Communally.Entitys
 {
     /// <summary>
     /// 服务描述符扩展方法

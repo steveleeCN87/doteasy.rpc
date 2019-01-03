@@ -1,7 +1,7 @@
 using System;
-using DotEasy.Rpc.Cache.Model;
+using DotEasy.Rpc.Core.Cache.Model;
 
-namespace DotEasy.Rpc.Attributes
+namespace DotEasy.Rpc.Core.Attributes
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Interface)]
     public class IdentifyCacheAttribute : Attribute

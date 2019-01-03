@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DotEasy.Rpc.DependencyResolver
+namespace DotEasy.Rpc.Core.DependencyResolver
 {
     /// <summary>
     /// 扩展依赖注入IOC容器
     /// </summary>
     public static class DependencyResolverExtensions
     {
-        #region 公共方法
-
         /// <summary>
         /// 通过KEY获取<see cref="T"/>实例
         /// </summary>
@@ -20,7 +18,7 @@ namespace DotEasy.Rpc.DependencyResolver
         /// <returns>返回<see cref="T"/>实例</returns>
         public static T GetService<T>(this IDependencyResolver resolver, object key)
         {
-            return (T)resolver.GetService(typeof(T), key);
+            return (T) resolver.GetService(typeof(T), key);
         }
 
         /// <summary>
@@ -31,7 +29,7 @@ namespace DotEasy.Rpc.DependencyResolver
         /// <returns>返回<see cref="T"/>实例</returns>
         public static T GetService<T>(this IDependencyResolver resolver)
         {
-            return (T)resolver.GetService(typeof(T), null);
+            return (T) resolver.GetService(typeof(T), null);
         }
 
         /// <summary>
@@ -79,8 +77,6 @@ namespace DotEasy.Rpc.DependencyResolver
             return resolver.GetServices(type, null);
         }
 
-        #endregion
-
         /// <summary>
         /// 通过KEY和TYPE获取实例对象集合
         /// </summary>
@@ -92,7 +88,7 @@ namespace DotEasy.Rpc.DependencyResolver
             object key)
         {
             var service = resolver.GetService(type, key);
-            return service == null ? Enumerable.Empty<object>() : new[] { service };
+            return service == null ? Enumerable.Empty<object>() : new[] {service};
         }
     }
 }

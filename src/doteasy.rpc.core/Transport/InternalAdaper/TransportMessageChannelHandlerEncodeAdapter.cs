@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
-using DotEasy.Rpc.Runtime.Communally.Entitys.Messages;
+using DotEasy.Rpc.Core.Runtime.Communally.Entitys.Messages;
 using DotNetty.Transport.Channels;
 using Microsoft.Extensions.Logging;
 
-namespace DotEasy.Rpc.Transport.InternalAdaper
+namespace DotEasy.Rpc.Core.Transport.InternalAdaper
 {
     /// <summary>
     /// 默认通道的解码器

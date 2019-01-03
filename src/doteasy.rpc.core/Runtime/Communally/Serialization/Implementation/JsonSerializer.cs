@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 
-namespace DotEasy.Rpc.Runtime.Communally.Serialization.Implementation
+namespace DotEasy.Rpc.Core.Runtime.Communally.Serialization.Implementation
 {
     /// <summary>
     /// Json序列化器

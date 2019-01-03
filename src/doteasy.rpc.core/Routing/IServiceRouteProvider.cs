@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace DotEasy.Rpc.Routing
+namespace DotEasy.Rpc.Core.Routing
 {
     public interface IServiceRouteProvider
     {

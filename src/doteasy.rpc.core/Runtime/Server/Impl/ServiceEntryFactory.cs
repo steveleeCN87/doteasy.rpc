@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using DotEasy.Rpc.Runtime.Communally.Convertibles;
-using DotEasy.Rpc.Runtime.Communally.Entitys;
-using DotEasy.Rpc.Runtime.Communally.IdGenerator;
+using DotEasy.Rpc.Core.Runtime.Communally.Convertibles;
+using DotEasy.Rpc.Core.Runtime.Communally.Entitys;
+using DotEasy.Rpc.Core.Runtime.Communally.IdGenerator;
 using Microsoft.Extensions.DependencyInjection;
-using ServiceDescriptor = DotEasy.Rpc.Runtime.Communally.Entitys.ServiceDescriptor;
+using ServiceDescriptor = DotEasy.Rpc.Core.Runtime.Communally.Entitys.ServiceDescriptor;
 
-namespace DotEasy.Rpc.Runtime.Server.Impl
+namespace DotEasy.Rpc.Core.Runtime.Server.Impl
 {
     public class ServiceEntryFactory : IServiceEntryFactory
     {
@@ -28,8 +28,7 @@ namespace DotEasy.Rpc.Runtime.Server.Impl
         /// </summary>
         private readonly ITypeConvertibleService _typeConvertibleService;
 
-        public ServiceEntryFactory(IServiceProvider serviceProvider, IServiceIdGenerator serviceIdGenerator,
-            ITypeConvertibleService typeConvertibleService)
+        public ServiceEntryFactory(IServiceProvider serviceProvider, IServiceIdGenerator serviceIdGenerator, ITypeConvertibleService typeConvertibleService)
         {
             _serviceProvider = serviceProvider;
             _serviceIdGenerator = serviceIdGenerator;

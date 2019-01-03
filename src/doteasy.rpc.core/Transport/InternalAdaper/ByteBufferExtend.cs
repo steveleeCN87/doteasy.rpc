@@ -1,7 +1,7 @@
 ﻿using DotNetty.Buffers;
 using DotNetty.Common.Utilities;
 
-namespace DotEasy.Rpc.Transport.InternalAdaper
+namespace DotEasy.Rpc.Core.Transport.InternalAdaper
 {
     public static class ByteBufferExtend
     {

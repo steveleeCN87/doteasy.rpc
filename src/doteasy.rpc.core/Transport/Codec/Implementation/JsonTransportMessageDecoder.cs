@@ -1,8 +1,8 @@
 ﻿using System.Text;
-using DotEasy.Rpc.Runtime.Communally.Entitys.Messages;
+using DotEasy.Rpc.Core.Runtime.Communally.Entitys.Messages;
 using Newtonsoft.Json;
 
-namespace DotEasy.Rpc.Transport.Codec.Implementation
+namespace DotEasy.Rpc.Core.Transport.Codec.Implementation
 {
     public sealed class JsonTransportMessageDecoder : ITransportMessageDecoder
     {

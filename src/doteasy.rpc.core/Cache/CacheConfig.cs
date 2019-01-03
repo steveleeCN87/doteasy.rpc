@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography;
-using DotEasy.Rpc.Attributes;
-using DotEasy.Rpc.Cache.Model;
-using DotEasy.Rpc.DependencyResolver;
+using DotEasy.Rpc.Core.Attributes;
+using DotEasy.Rpc.Core.Cache.Model;
+using DotEasy.Rpc.Core.DependencyResolver;
 using Microsoft.Extensions.Configuration;
 
-namespace DotEasy.Rpc.Cache
+namespace DotEasy.Rpc.Core.Cache
 {
     public class CacheConfig
     {

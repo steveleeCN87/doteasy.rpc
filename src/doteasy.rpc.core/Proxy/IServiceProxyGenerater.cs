@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.CodeAnalysis;
 
-namespace DotEasy.Rpc.Proxy
+namespace DotEasy.Rpc.Core.Proxy
 {
     /// <summary>
     /// 一个抽象的服务代理生成器

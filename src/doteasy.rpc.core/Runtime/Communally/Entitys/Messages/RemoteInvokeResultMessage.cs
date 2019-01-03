@@ -1,4 +1,4 @@
-﻿namespace DotEasy.Rpc.Runtime.Communally.Entitys.Messages
+﻿namespace DotEasy.Rpc.Core.Runtime.Communally.Entitys.Messages
 {
     /// <summary>
     /// 远程调用结果消息

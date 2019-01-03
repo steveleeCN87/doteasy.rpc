@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DotEasy.Rpc.Runtime.Communally.Entitys.Address;
-using DotEasy.Rpc.Runtime.Communally.Serialization;
+using DotEasy.Rpc.Core.Runtime.Communally.Entitys.Address;
+using DotEasy.Rpc.Core.Runtime.Communally.Serialization;
 
-namespace DotEasy.Rpc.Routing.Impl
+namespace DotEasy.Rpc.Core.Routing.Impl
 {
     /// <summary>
     /// 默认的服务路由工厂实现

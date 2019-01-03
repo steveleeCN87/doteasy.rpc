@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DotEasy.Rpc.Routing;
-using DotEasy.Rpc.Runtime.Client.Address.Resolvers.Implementation.Selectors;
-using DotEasy.Rpc.Runtime.Client.HealthChecks;
-using DotEasy.Rpc.Runtime.Communally.Entitys.Address;
+using DotEasy.Rpc.Core.Routing;
+using DotEasy.Rpc.Core.Runtime.Client.Address.Resolvers.Implementation.Selectors;
+using DotEasy.Rpc.Core.Runtime.Client.HealthChecks;
+using DotEasy.Rpc.Core.Runtime.Communally.Entitys.Address;
 using Microsoft.Extensions.Logging;
 
-namespace DotEasy.Rpc.Runtime.Client.Address.Resolvers.Implementation
+namespace DotEasy.Rpc.Core.Runtime.Client.Address.Resolvers.Implementation
 {
     /// <summary>
     /// 人默认的服务地址解析器

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DotEasy.Rpc.Runtime.Communally.Entitys
+namespace DotEasy.Rpc.Core.Runtime.Communally.Entitys
 {
     /// <summary>
     /// 服务描述符

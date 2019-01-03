@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace DotEasy.Rpc.Proxy
+namespace DotEasy.Rpc.Core.Proxy
 {
    public interface  IServiceProxyProvider
     {

@@ -3,12 +3,12 @@
 using System;
 using System.Reflection;
 using System.Threading.Tasks;
-using DotEasy.Rpc.Runtime.Communally.Entitys;
-using DotEasy.Rpc.Runtime.Communally.Entitys.Messages;
-using DotEasy.Rpc.Transport;
+using DotEasy.Rpc.Core.Runtime.Communally.Entitys;
+using DotEasy.Rpc.Core.Runtime.Communally.Entitys.Messages;
+using DotEasy.Rpc.Core.Transport;
 using Microsoft.Extensions.Logging;
 
-namespace DotEasy.Rpc.Runtime.Server.Impl
+namespace DotEasy.Rpc.Core.Runtime.Server.Impl
 {
     public class DefaultServiceExecutor : IServiceExecutor
     {

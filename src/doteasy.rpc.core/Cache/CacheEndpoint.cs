@@ -1,4 +1,4 @@
-namespace DotEasy.Rpc.Cache
+namespace DotEasy.Rpc.Core.Cache
 {
     public abstract class CacheEndpoint
     {

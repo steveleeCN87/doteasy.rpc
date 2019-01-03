@@ -1,7 +1,7 @@
-﻿using DotEasy.Rpc.Runtime.Communally.Entitys;
-using DotEasy.Rpc.Runtime.Communally.Entitys.Messages;
+﻿using DotEasy.Rpc.Core.Runtime.Communally.Entitys;
+using DotEasy.Rpc.Core.Runtime.Communally.Entitys.Messages;
 
-namespace DotEasy.Rpc.Runtime.Server
+namespace DotEasy.Rpc.Core.Runtime.Server
 {
     /// <summary>
     //抽象的服务条目定位器

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DotEasy.Rpc.Runtime.Communally.Serialization.Implementation
+namespace DotEasy.Rpc.Core.Runtime.Communally.Serialization.Implementation
 {
     /// <summary>
     /// 基于string类型的object序列化器

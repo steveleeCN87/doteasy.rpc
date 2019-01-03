@@ -1,4 +1,4 @@
-namespace DotEasy.Rpc.Gateway.OAuth.Impl
+namespace DotEasy.Rpc.Core.Gateway.OAuth.Impl
 {
     public enum JwtSecureDataType
     {

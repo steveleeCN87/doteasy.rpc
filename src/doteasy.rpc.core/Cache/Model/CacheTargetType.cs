@@ -1,4 +1,4 @@
-namespace DotEasy.Rpc.Cache.Model
+namespace DotEasy.Rpc.Core.Cache.Model
 {
     public enum CacheTargetType
     {

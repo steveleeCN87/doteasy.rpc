@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DotEasy.Rpc.Runtime.Communally.Serialization;
+using DotEasy.Rpc.Core.Runtime.Communally.Serialization;
 
-namespace DotEasy.Rpc.Routing.Impl
+namespace DotEasy.Rpc.Core.Routing.Impl
 {
     /// <summary>
     /// 服务路由变更事件参数

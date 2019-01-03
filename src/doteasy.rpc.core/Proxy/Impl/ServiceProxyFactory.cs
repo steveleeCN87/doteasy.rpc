@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
-using DotEasy.Rpc.Runtime.Client;
-using DotEasy.Rpc.Runtime.Communally.Convertibles;
+using DotEasy.Rpc.Core.Runtime.Client;
+using DotEasy.Rpc.Core.Runtime.Communally.Convertibles;
 
-namespace DotEasy.Rpc.Proxy.Impl
+namespace DotEasy.Rpc.Core.Proxy.Impl
 {
     /// <summary>
     /// 默认的服务代理工厂实现

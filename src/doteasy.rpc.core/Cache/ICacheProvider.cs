@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace DotEasy.Rpc.Cache
+namespace DotEasy.Rpc.Core.Cache
 {
     public interface ICacheProvider
     {

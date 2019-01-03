@@ -7,7 +7,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\doteasy.rpc.consul\DotEasy.Rpc.Consul.csproj" />
-    <ProjectReference Include="..\..\doteasy.rpc.entry\DotEasy.Rpc.Entry.csproj" />
+    <ProjectReference Include="..\..\doteasy.rpc.core\DotEasy.Rpc.Core.csproj" />
     <ProjectReference Include="..\doteasy.rpc.interface\doteasy.rpc.interface.csproj" />
   </ItemGroup>
 

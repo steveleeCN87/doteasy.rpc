@@ -7,9 +7,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Consul;
-using DotEasy.Rpc.Core.Communally.Serialization;
-using DotEasy.Rpc.Routing;
-using DotEasy.Rpc.Routing.Impl;
+using DotEasy.Rpc.Core.Routing;
+using DotEasy.Rpc.Core.Routing.Impl;
+using DotEasy.Rpc.Core.Runtime.Communally.Serialization;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
@@ -107,15 +107,15 @@ namespace DotEasy.Rpc.Consul
                 {
                     new ServiceAddressDescriptor
                     {
-                        Type = "DotEasy.Rpc.Core.Communally.Entitys.Address.IpAddressModel",
-                        Value = JsonConvert.SerializeObject(new Dictionary<string, dynamic>()
+                        Type = "DotEasy.Rpc.Core.Runtime.Communally.Entitys.Address.IpAddressModel",
+                        Value = JsonConvert.SerializeObject(new Dictionary<string, dynamic>
                         {
                             {"Ip", consulServiceMetaInfo.ServiceAddress},
                             {"Port", consulServiceMetaInfo.ServicePort}
                         })
                     }
                 },
-                ServiceDescriptor = new Core.Communally.Entitys.ServiceDescriptor
+                ServiceDescriptor = new Core.Runtime.Communally.Entitys.ServiceDescriptor
                 {
                     Id = consulServiceMetaInfo.ServiceName,
                     Metadatas = JsonConvert.DeserializeObject<Dictionary<string, Object>>(

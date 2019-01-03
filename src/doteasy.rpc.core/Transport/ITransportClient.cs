@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using DotEasy.Rpc.Runtime.Communally.Entitys.Messages;
+using DotEasy.Rpc.Core.Runtime.Communally.Entitys.Messages;
 
-namespace DotEasy.Rpc.Transport
+namespace DotEasy.Rpc.Core.Transport
 {
     /// <summary>
     //默认传输客户端

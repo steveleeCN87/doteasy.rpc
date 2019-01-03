@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using DotEasy.Rpc.Runtime.Communally.Exceptions;
+using DotEasy.Rpc.Core.Runtime.Communally.Exceptions;
 using Microsoft.Extensions.Logging;
 
-namespace DotEasy.Rpc.Runtime.Communally.Convertibles.Impl
+namespace DotEasy.Rpc.Core.Runtime.Communally.Convertibles.Impl
 {
     /// <summary>
     /// 默认类型转换服务（需要注入）

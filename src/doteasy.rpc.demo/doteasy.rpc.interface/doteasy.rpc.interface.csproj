@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\doteasy.rpc\DotEasy.Rpc.csproj" />
+    <ProjectReference Include="..\..\doteasy.rpc.core\DotEasy.Rpc.Core.csproj" />
   </ItemGroup>
 
 </Project>

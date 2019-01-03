@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Extensions.Configuration;
 
-namespace DotEasy.Rpc.Gateway
+namespace DotEasy.Rpc.Core.Gateway
 {
     public static class GatewayConfig
     {

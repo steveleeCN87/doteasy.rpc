@@ -1,7 +1,7 @@
 using System;
 using Autofac;
 
-namespace DotEasy.Rpc.Runtime
+namespace DotEasy.Rpc.Core.Runtime
 {
     public class ServiceLocator
     {

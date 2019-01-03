@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using DotEasy.Rpc.Runtime.Communally.Entitys;
+using DotEasy.Rpc.Core.Runtime.Communally.Entitys;
 
-namespace DotEasy.Rpc.Runtime.Server
+namespace DotEasy.Rpc.Core.Runtime.Server
 {
     /// <summary>
     /// 抽象的服务条目提供程序

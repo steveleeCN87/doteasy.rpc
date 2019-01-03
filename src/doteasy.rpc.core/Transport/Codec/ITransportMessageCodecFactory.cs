@@ -1,4 +1,4 @@
-﻿namespace DotEasy.Rpc.Transport.Codec
+﻿namespace DotEasy.Rpc.Core.Transport.Codec
 {
     /// <summary>
     //抽象的传输消息编解码器工厂

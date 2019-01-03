@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using DotEasy.Rpc.Runtime.Client;
-using DotEasy.Rpc.Runtime.Communally.Convertibles;
-using DotEasy.Rpc.Runtime.Communally.Entitys.Messages;
+using DotEasy.Rpc.Core.Runtime.Client;
+using DotEasy.Rpc.Core.Runtime.Communally.Convertibles;
+using DotEasy.Rpc.Core.Runtime.Communally.Entitys.Messages;
 
-namespace DotEasy.Rpc.Proxy.Impl
+namespace DotEasy.Rpc.Core.Proxy.Impl
 {
     /// <summary>
     /// 一个抽象的服务代理基类

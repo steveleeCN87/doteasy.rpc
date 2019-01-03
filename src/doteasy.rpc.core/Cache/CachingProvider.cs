@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using DotEasy.Rpc.Cache.Model;
+using DotEasy.Rpc.Core.Cache.Model;
 
-namespace DotEasy.Rpc.Cache
+namespace DotEasy.Rpc.Core.Cache
 {
    public class CachingProvider
     {

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
-using DotEasy.Rpc.Runtime.Communally.Serialization;
+using DotEasy.Rpc.Core.Runtime.Communally.Serialization;
 
-namespace DotEasy.Rpc.Runtime.Communally.Convertibles.Impl
+namespace DotEasy.Rpc.Core.Runtime.Communally.Convertibles.Impl
 {
     /// <summary>
     /// 一个默认的类型转换提供程序

@@ -1,7 +1,7 @@
 using System;
-using DotEasy.Rpc.Runtime;
+using DotEasy.Rpc.Core.Runtime;
 
-namespace DotEasy.Rpc.Cache.Caching
+namespace DotEasy.Rpc.Core.Cache.Caching
 {
     public class CacheContainer
     {

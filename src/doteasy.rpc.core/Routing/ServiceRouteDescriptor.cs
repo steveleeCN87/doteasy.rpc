@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using DotEasy.Rpc.Runtime.Communally.Entitys;
+using DotEasy.Rpc.Core.Runtime.Communally.Entitys;
 
-namespace DotEasy.Rpc.Routing
+namespace DotEasy.Rpc.Core.Routing
 {
     /// <summary>
     /// 服务路由描述符

@@ -1,30 +1,23 @@
 using System;
 using System.Linq;
 using System.Reflection;
-
 using Consul;
-using DotEasy.Rpc.Consul;
-using DotEasy.Rpc.Proxy;
+using DotEasy.Rpc.Core.DependencyResolver;
+using DotEasy.Rpc.Core.Proxy;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace DotEasy.Rpc.Entry
+namespace DotEasy.Rpc.Consul.Entry
 {
-    public class BaseClient
+    public class ClientBase
     {
-        
-        
         private readonly ServiceCollection _serviceCollection = new ServiceCollection();
         private readonly IServiceProvider _serviceProvider;
-
-        public delegate void RegisterEventHandler(ServiceCollection serviceCollection);
-
-        public event RegisterEventHandler RegisterEvent;
 
         /// <summary>
         /// 默认内用内部配置的构造函数
         /// </summary>
-        protected BaseClient()
+        protected ClientBase()
         {
             _serviceCollection
                 .AddLogging()
@@ -32,26 +25,7 @@ namespace DotEasy.Rpc.Entry
                 .UseDotNettyTransport()
                 .UseConsulRouteManager(new ConsulRpcOptionsConfiguration
                 {
-                    ConsulClientConfiguration = new ConsulClientConfiguration
-                        {Address = new Uri("http://127.0.0.1:8500")}
-                });
-            
-            _serviceProvider = _serviceCollection.BuildServiceProvider();
-        }
-
-        /// <summary>
-        /// 默认内用urlAddress的构造函数
-        /// </summary>
-        /// <param name="urlAddress"></param>
-        public BaseClient(string urlAddress)
-        {
-            _serviceCollection
-                .AddLogging()
-                .AddClient()
-                .UseDotNettyTransport()
-                .UseConsulRouteManager(new ConsulRpcOptionsConfiguration
-                {
-                    ConsulClientConfiguration = new ConsulClientConfiguration {Address = new Uri(urlAddress)}
+                    ConsulClientConfiguration = new ConsulClientConfiguration {Address = new Uri("http://127.0.0.1:8500")}
                 });
 
             _serviceProvider = _serviceCollection.BuildServiceProvider();
@@ -64,8 +38,6 @@ namespace DotEasy.Rpc.Entry
         /// <returns></returns>
         protected T Proxy<T>()
         {
-            RegisterEvent?.Invoke(_serviceCollection);
-
             _serviceProvider.GetRequiredService<ILoggerFactory>().AddConsole((c, l) => (int) l >= 4);
 
             var serviceProxyGenerate = _serviceProvider.GetRequiredService<IServiceProxyGenerater>();

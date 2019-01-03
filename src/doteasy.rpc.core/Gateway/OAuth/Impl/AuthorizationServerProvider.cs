@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-using DotEasy.Rpc.Cache;
-using DotEasy.Rpc.Cache.Caching;
-using DotEasy.Rpc.Proxy;
-using DotEasy.Rpc.Routing;
+using DotEasy.Rpc.Core.Cache;
+using DotEasy.Rpc.Core.Cache.Caching;
+using DotEasy.Rpc.Core.Proxy;
+using DotEasy.Rpc.Core.Routing;
 using Newtonsoft.Json;
 
-namespace DotEasy.Rpc.Gateway.OAuth.Impl
+namespace DotEasy.Rpc.Core.Gateway.OAuth.Impl
 {
     public class AuthorizationServerProvider : IAuthorizationServerProvider
     {

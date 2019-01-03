@@ -5,14 +5,14 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using DotEasy.Rpc.Runtime.Client;
-using DotEasy.Rpc.Runtime.Communally.Entitys;
+using DotEasy.Rpc.Core.Runtime.Client;
+using DotEasy.Rpc.Core.Runtime.Communally.Entitys;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.Logging;
 
-namespace DotEasy.Rpc.Proxy.Unit
+namespace DotEasy.Rpc.Core.Proxy.Unit
 {
     public static class CompilationUnits
     {

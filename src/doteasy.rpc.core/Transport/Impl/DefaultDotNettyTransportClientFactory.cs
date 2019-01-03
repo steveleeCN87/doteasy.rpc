@@ -2,10 +2,10 @@
 using System.Collections.Concurrent;
 using System.Linq;
 using System.Net;
-using DotEasy.Rpc.Runtime.Communally.Entitys.Messages;
-using DotEasy.Rpc.Runtime.Server;
-using DotEasy.Rpc.Transport.Codec;
-using DotEasy.Rpc.Transport.InternalAdaper;
+using DotEasy.Rpc.Core.Runtime.Communally.Entitys.Messages;
+using DotEasy.Rpc.Core.Runtime.Server;
+using DotEasy.Rpc.Core.Transport.Codec;
+using DotEasy.Rpc.Core.Transport.InternalAdaper;
 using DotNetty.Codecs;
 using DotNetty.Common.Utilities;
 using DotNetty.Transport.Bootstrapping;
@@ -13,7 +13,7 @@ using DotNetty.Transport.Channels;
 using DotNetty.Transport.Channels.Sockets;
 using Microsoft.Extensions.Logging;
 
-namespace DotEasy.Rpc.Transport.Impl
+namespace DotEasy.Rpc.Core.Transport.Impl
 {
     /// <summary>
     /// 基于DotNetty的传输客户端工厂

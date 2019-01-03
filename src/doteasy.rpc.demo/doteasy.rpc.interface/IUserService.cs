@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using DotEasy.Rpc.Attributes;
+using DotEasy.Rpc.Core.Attributes;
 
 namespace doteasy.rpc.interfaces
 {

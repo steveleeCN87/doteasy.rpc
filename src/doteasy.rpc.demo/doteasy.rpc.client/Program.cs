@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
 using doteasy.rpc.interfaces;
-using DotEasy.Rpc.Entry;
+using DotEasy.Rpc.Consul.Entry;
 
-namespace DotEasy.Client
+namespace doteasy.client
 {
-    class Program : BaseClient
+    class Program
     {
         static void Main()
         {
@@ -13,7 +13,7 @@ namespace DotEasy.Client
         }
     }
 
-    public class TestClient : BaseClient
+    public class TestClient : ClientBase
     {
         public TestClient()
         {

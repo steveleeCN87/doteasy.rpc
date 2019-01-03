@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DotEasy.Rpc.DependencyResolver
+namespace DotEasy.Rpc.Core.DependencyResolver
 {
     /// <summary>
     /// 注入IOC容器接口

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using DotEasy.Rpc.Runtime.Communally.Entitys;
+using DotEasy.Rpc.Core.Runtime.Communally.Entitys;
 
-namespace DotEasy.Rpc.Runtime.Server
+namespace DotEasy.Rpc.Core.Runtime.Server
 {
     /// <summary>
     /// 服务条目工厂

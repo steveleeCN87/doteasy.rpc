@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using DotEasy.Rpc.Runtime.Communally.Entitys.Address;
+using DotEasy.Rpc.Core.Runtime.Communally.Entitys.Address;
 
-namespace DotEasy.Rpc.Runtime.Client.Address.Resolvers.Implementation.Selectors.Implementation
+namespace DotEasy.Rpc.Core.Runtime.Client.Address.Resolvers.Implementation.Selectors.Implementation
 {
     /// <summary>
     //随机的地址选择器

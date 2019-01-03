@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using DotEasy.Rpc.Routing.Impl;
+using DotEasy.Rpc.Core.Routing.Impl;
 
-namespace DotEasy.Rpc.Routing
+namespace DotEasy.Rpc.Core.Routing
 {
     /// <summary>
     /// 抽象的服务路由发现者

@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 
-namespace DotEasy.Rpc.Routing.Impl
+namespace DotEasy.Rpc.Core.Routing.Impl
 {
     /// <summary>
     /// 服务路由管理者扩展方法

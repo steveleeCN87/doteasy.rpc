@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
-using DotEasy.Rpc.Runtime.Communally.Entitys.Messages;
-using DotEasy.Rpc.Transport;
+using DotEasy.Rpc.Core.Runtime.Communally.Entitys.Messages;
+using DotEasy.Rpc.Core.Transport;
 
-namespace DotEasy.Rpc.Runtime.Server
+namespace DotEasy.Rpc.Core.Runtime.Server
 {
     /// <summary>
     //抽象的服务执行器

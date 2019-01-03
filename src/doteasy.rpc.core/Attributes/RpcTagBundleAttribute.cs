@@ -1,6 +1,6 @@
 using System;
 
-namespace DotEasy.Rpc.Attributes
+namespace DotEasy.Rpc.Core.Attributes
 {
     /// <summary>
     /// 服务集标记

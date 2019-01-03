@@ -9,11 +9,11 @@
   </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\DotEasy.Rpc\DotEasy.Rpc.csproj" />
+    <PackageReference Include="Consul" Version="0.7.2.6" />
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="Consul" Version="0.7.2.6" />
+    <ProjectReference Include="..\doteasy.rpc.core\DotEasy.Rpc.Core.csproj" />
   </ItemGroup>
   
 </Project>

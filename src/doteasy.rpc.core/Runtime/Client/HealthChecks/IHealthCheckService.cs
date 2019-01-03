@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using DotEasy.Rpc.Runtime.Communally.Entitys.Address;
+using DotEasy.Rpc.Core.Runtime.Communally.Entitys.Address;
 
-namespace DotEasy.Rpc.Runtime.Client.HealthChecks
+namespace DotEasy.Rpc.Core.Runtime.Client.HealthChecks
 {
     /// <summary>
     /// 抽象的健康检查服务
