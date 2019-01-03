@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <AssemblyName>doteasy.rpc.interfaces</AssemblyName>
+    <RootNamespace>doteasy.rpc.interfaces</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\doteasy.rpc\DotEasy.Rpc.csproj" />
+  </ItemGroup>
+
+</Project>
