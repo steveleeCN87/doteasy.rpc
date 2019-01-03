@@ -6,7 +6,7 @@ using DotEasy.Rpc.Core.Attributes;
 namespace doteasy.rpc.interfaces
 {
     [RpcTagBundle]
-    public interface IUserService
+    public interface IUserService : IDisposable
     {
         Task<string> Async(int id);
 

@@ -19,10 +19,12 @@ namespace doteasy.client
         {
             Task.Run(async () =>
             {
-                var userService = Proxy<IUserService>();
-                Console.WriteLine($"{userService.GetDictionary().Result["key"]}");
-                Console.WriteLine($"{await userService.Async(1)}");
-                Console.WriteLine($"{userService.Sync(1)}");
+                using (var userService = Proxy<IUserService>())
+                {
+                    Console.WriteLine($"{userService.GetDictionary().Result["key"]}");
+                    Console.WriteLine($"{await userService.Async(1)}");
+                    Console.WriteLine($"{userService.Sync(1)}");
+                }
             }).Wait();
             Console.ReadKey();
         }

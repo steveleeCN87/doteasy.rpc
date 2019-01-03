@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Autofac.Util;
 using doteasy.rpc.interfaces;
 
 namespace doteasy.rpc.implement
 {
-    public class UserService : IUserService
+    public class UserService : ServiceBase, IUserService
     {
         public Task<string> Async(int id)
         {
@@ -20,5 +21,6 @@ namespace doteasy.rpc.implement
         {
             return $"我执行了同步方法{id}.";
         }
+
     }
 }
