@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Autofac.Util;
 using doteasy.rpc.interfaces;
+using DotEasy.Rpc.Core.DependencyResolver;
 
 namespace doteasy.rpc.implement
 {
-    public class UserService : ServiceBase, IUserService
+    public class ProxyImpl : ServiceBase, IProxyService
     {
         public Task<string> Async(int id)
         {

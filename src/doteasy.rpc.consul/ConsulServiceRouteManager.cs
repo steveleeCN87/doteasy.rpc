@@ -18,7 +18,7 @@ namespace DotEasy.Rpc.Consul
     public class ConsulServiceRouteManager : ServiceRouteManagerBase, IDisposable
     {
         private ConsulClient _consulClient;
-        private readonly ConsulRpcOptionsConfiguration _rpcOptionsConfiguration;
+        private readonly RpcOptionsConfiguration _rpcOptionsConfiguration;
         private readonly ConsulClientConfiguration _configInfo;
         private AgentServiceCheck _agentServiceCheck;
         private readonly ISerializer<byte[]> _byteSerializer;
@@ -28,15 +28,15 @@ namespace DotEasy.Rpc.Consul
         private readonly ManualResetEvent _connectionWait = new ManualResetEvent(false);
 
         public ConsulServiceRouteManager(
-            ConsulRpcOptionsConfiguration consulRpcOptionsConfiguration,
+            RpcOptionsConfiguration rpcOptionsConfiguration,
             ISerializer<byte[]> byteSerializer,
             ISerializer<string> stringSerializer,
             IServiceRouteFactory serviceRouteFactory,
             ILogger<ConsulServiceRouteManager> logger
         ) : base(stringSerializer)
         {
-            _rpcOptionsConfiguration = consulRpcOptionsConfiguration;
-            _configInfo = consulRpcOptionsConfiguration.ConsulClientConfiguration;
+            _rpcOptionsConfiguration = rpcOptionsConfiguration;
+            _configInfo = rpcOptionsConfiguration.ConsulClientConfiguration;
             _byteSerializer = byteSerializer;
             _serviceRouteFactory = serviceRouteFactory;
             _logger = logger;
@@ -72,7 +72,6 @@ namespace DotEasy.Rpc.Consul
         {
             var task = new Task<IEnumerable<ServiceRoute>>(() =>
             {
-//                if (_routes != null) _connectionWait.WaitOne();
                 _logger.LogInformation("准备获取所有路由配置。");
 
                 var allService = GetResponseData(

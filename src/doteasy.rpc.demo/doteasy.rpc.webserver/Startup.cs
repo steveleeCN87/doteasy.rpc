@@ -1,5 +1,6 @@
 ﻿using doteasy.rpc.implement;
 using doteasy.rpc.interfaces;
+using DotEasy.Rpc.Consul;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -24,7 +25,7 @@ namespace doteasy.rpc.webserver
         public void Configure(IApplicationBuilder app)
         {
             app.UseDeveloperExceptionPage();
-            app.UseConsulServerExtensions(Configuration, collection => { collection.AddSingleton<IUserService, UserService>(); });
+            app.UseConsulServerExtensions(Configuration, collection => { collection.AddSingleton<IProxyService, ProxyImpl>(); });
             app.UseHttpsRedirection();
             app.UseMvc();
         }

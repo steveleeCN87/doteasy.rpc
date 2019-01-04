@@ -28,7 +28,7 @@ using DotEasy.Rpc.Core.Transport.Impl;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace DotEasy.Rpc.Core.DependencyResolver
+namespace DotEasy.Rpc.Core.DependencyResolver.Builder
 {
     public static class RpcServiceExtensions
     {

@@ -1,8 +1,7 @@
 using System;
-using Autofac;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace DotEasy.Rpc.Core.DependencyResolver
+namespace DotEasy.Rpc.Core.DependencyResolver.Builder
 {
     /// <summary>
     /// 默认的Rpc服务构建者
@@ -10,12 +9,6 @@ namespace DotEasy.Rpc.Core.DependencyResolver
     internal sealed class RpcBuilder : IRpcBuilder
     {
         public IServiceCollection Services { get; }
-        public ContainerBuilder AutofacContainer { get; }
-
-        public RpcBuilder(ContainerBuilder services)
-        {
-            AutofacContainer = services ?? throw new ArgumentNullException(nameof(services));
-        }
 
         public RpcBuilder(IServiceCollection services)
         {

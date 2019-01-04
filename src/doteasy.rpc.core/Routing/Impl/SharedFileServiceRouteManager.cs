@@ -122,7 +122,7 @@ namespace DotEasy.Rpc.Core.Routing.Impl
                             _serviceRouteFactory.CreateServiceRoutesAsync(
                                 serializer.Deserialize<string, ServiceRouteDescriptor[]>(content))).ToArray();
                     if (_logger.IsEnabled(LogLevel.Information))
-                        Console.Write(
+                        _logger.LogInformation(
                             $"成功获取到以下路由信息：{string.Join(",\n\t", routes.Select(i => i.ServiceDescriptor.Id))}");
                 }
                 catch (Exception exception)
@@ -199,7 +199,7 @@ namespace DotEasy.Rpc.Core.Routing.Impl
         private async void _fileSystemWatcher_Changed(object sender, FileSystemEventArgs e)
         {
             if (_logger.IsEnabled(LogLevel.Information))
-                Console.Write($"文件{_filePath}发生了变更，将重新获取路由信息");
+                _logger.LogInformation($"文件{_filePath}发生了变更，将重新获取路由信息");
 
             if (e.ChangeType == WatcherChangeTypes.Changed)
             {

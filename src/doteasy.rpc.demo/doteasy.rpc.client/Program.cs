@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using doteasy.rpc.interfaces;
 using DotEasy.Rpc.Consul.Entry;
 
@@ -7,25 +6,15 @@ namespace doteasy.client
 {
     class Program
     {
-        static void Main()
+        private static void Main()
         {
-            new TestClient();
-        }
-    }
-
-    public class TestClient : ClientBase
-    {
-        public TestClient()
-        {
-            Task.Run(async () =>
+            using (var proxy = ClientProxy.Generate<IProxyService>("http://127.0.0.1:8500"))
             {
-                using (var userService = Proxy<IUserService>())
-                {
-                    Console.WriteLine($"{userService.GetDictionary().Result["key"]}");
-                    Console.WriteLine($"{await userService.Async(1)}");
-                    Console.WriteLine($"{userService.Sync(1)}");
-                }
-            }).Wait();
+                Console.WriteLine($"{proxy.GetDictionary().Result["key"]}");
+                Console.WriteLine($"{proxy.Async(1).Result}");
+                Console.WriteLine($"{proxy.Sync(1)}");
+            }
+
             Console.ReadKey();
         }
     }

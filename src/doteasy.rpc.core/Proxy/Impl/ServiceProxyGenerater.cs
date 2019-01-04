@@ -1,4 +1,6 @@
-﻿using System;
+﻿// https://github.com/KirillOsenkov/RoslynQuoter
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -28,18 +30,11 @@ namespace DotEasy.Rpc.Core.Proxy.Impl
             _logger = logger;
         }
 
-        /// <summary>
-        /// 生成服务代理
-        /// </summary>
-        /// <param name="interfaceTypes">需要被代理的接口类型</param>
-        /// <returns>服务代理实现</returns>
         public IEnumerable<Type> GenerateProxys(IEnumerable<Type> interfaceTypes)
         {
             var assembles = DependencyContext.Default.RuntimeLibraries
                 .SelectMany(i => i.GetDefaultAssemblyNames(DependencyContext.Default)
                     .Select(z => Assembly.Load(new AssemblyName(z.Name))));
-
-//            var assembles = AppDomain.CurrentDomain.GetAssemblies().AsParallel().Where(i => i.IsDynamic == false).ToArray();
 
             assembles = assembles.Where(i => i.IsDynamic == false).ToArray();
 
@@ -65,11 +60,6 @@ namespace DotEasy.Rpc.Core.Proxy.Impl
             }
         }
 
-        /// <summary>
-        /// 生成服务代理代码树
-        /// </summary>
-        /// <param name="interfaceType">需要被代理的接口类型</param>
-        /// <returns>代码树</returns>
         public SyntaxTree GenerateProxyTree(Type interfaceType)
         {
             var className = interfaceType.Name.StartsWith("I") ? interfaceType.Name.Substring(1) : interfaceType.Name;
@@ -80,7 +70,18 @@ namespace DotEasy.Rpc.Core.Proxy.Impl
                 GetConstructorDeclaration(className)
             };
 
-            members.AddRange(GenerateMethodDeclarations(interfaceType.GetMethods()));
+            var interf = interfaceType.GetInterfaces()[0];
+            var mthods = interfaceType.GetMethods();
+            if (interf.FullName.Contains("IDisposable"))
+            {
+                var m = interf.GetMethods()[0];
+                var mm = mthods.ToList();
+                mm.Add(m);
+                mthods = mm.ToArray();
+            }
+
+            members.AddRange(GenerateMethodDeclarations(mthods));
+
             return SyntaxFactory.CompilationUnit().WithUsings(GetUsings()).WithMembers(
                 SyntaxFactory.SingletonList<MemberDeclarationSyntax>(
                     SyntaxFactory.NamespaceDeclaration(
@@ -245,34 +246,35 @@ namespace DotEasy.Rpc.Core.Proxy.Impl
             {
                 declaration = SyntaxFactory.MethodDeclaration(
                     returnDeclaration, SyntaxFactory.Identifier(method.Name)
-                ).WithModifiers(
-                    SyntaxFactory.TokenList(
-                        SyntaxFactory.Token(SyntaxKind.PublicKeyword),
-                        SyntaxFactory.Token(SyntaxKind.AsyncKeyword)
-                    )
-                ).WithParameterList(
-                    SyntaxFactory.ParameterList(
-                        SyntaxFactory.SeparatedList<ParameterSyntax>(parameterDeclarationList)
-                    )
-                );
+                ).WithModifiers(SyntaxFactory.TokenList(
+                    SyntaxFactory.Token(SyntaxKind.PublicKeyword),
+                    SyntaxFactory.Token(SyntaxKind.AsyncKeyword))
+                ).WithParameterList(SyntaxFactory.ParameterList(SyntaxFactory.SeparatedList<ParameterSyntax>(parameterDeclarationList)));
             }
             else
             {
-                declaration = SyntaxFactory.MethodDeclaration(
-                    returnDeclaration, SyntaxFactory.Identifier(method.Name)
-                ).WithModifiers(
-                    SyntaxFactory.TokenList(
-                        SyntaxFactory.Token(SyntaxKind.PublicKeyword)
-                    )
-                ).WithParameterList(
-                    SyntaxFactory.ParameterList(
-                        SyntaxFactory.SeparatedList<ParameterSyntax>(parameterDeclarationList)
-                    )
-                );
+                if (method.ToString().Contains("Void"))
+                {
+                    declaration = SyntaxFactory.MethodDeclaration(
+                        SyntaxFactory.PredefinedType(SyntaxFactory.Token(SyntaxKind.VoidKeyword)),
+                        SyntaxFactory.Identifier("Dispose")
+                    ).WithModifiers(
+                        SyntaxFactory.TokenList(SyntaxFactory.Token(SyntaxKind.PublicKeyword)));
+//                                    .WithBody(SyntaxFactory.Block())));
+                }
+                else
+                {
+                    declaration = SyntaxFactory.MethodDeclaration(
+                        returnDeclaration,
+                        SyntaxFactory.Identifier(method.Name)
+                    ).WithModifiers(
+                        SyntaxFactory.TokenList(SyntaxFactory.Token(SyntaxKind.PublicKeyword)
+                        )).WithParameterList(SyntaxFactory.ParameterList(SyntaxFactory.SeparatedList<ParameterSyntax>(parameterDeclarationList)));
+                }
             }
 
             ExpressionSyntax expressionSyntax;
-            StatementSyntax statementSyntax;
+            StatementSyntax statementSyntax = null;
 
             if (method.ReturnType.ToString().Contains("Task"))
             {
@@ -286,7 +288,6 @@ namespace DotEasy.Rpc.Core.Proxy.Impl
                 expressionSyntax = SyntaxFactory.GenericName("Invoke").WithTypeArgumentList(typeArgumentListSyntax);
             }
 
-            Console.WriteLine(expressionSyntax.GetType());
             if (method.ReturnType.ToString().Contains("Task"))
             {
                 expressionSyntax = SyntaxFactory.AwaitExpression(
@@ -344,7 +345,10 @@ namespace DotEasy.Rpc.Core.Proxy.Impl
 
             if (method.ReturnType != typeof(Task))
             {
-                statementSyntax = SyntaxFactory.ReturnStatement(expressionSyntax);
+                if (!method.ToString().Contains("Void"))
+                {
+                    statementSyntax = SyntaxFactory.ReturnStatement(expressionSyntax);
+                }
             }
             else
             {

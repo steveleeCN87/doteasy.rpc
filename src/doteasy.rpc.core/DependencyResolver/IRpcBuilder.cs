@@ -1,4 +1,3 @@
-using Autofac;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DotEasy.Rpc.Core.DependencyResolver
@@ -12,10 +11,5 @@ namespace DotEasy.Rpc.Core.DependencyResolver
         /// 默认服务集合
         /// </summary>
         IServiceCollection Services { get; }
-
-        /// <summary>
-        /// Autofac容器
-        /// </summary>
-        ContainerBuilder AutofacContainer { get; }
     }
 }

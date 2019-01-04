@@ -30,7 +30,6 @@ namespace DotEasy.Rpc.Core.Transport.Impl
             _transportMessageEncoder = codecFactory.GetEncoder();
             _transportMessageDecoder = codecFactory.GetDecoder();
             _logger = logger;
-            Console.Write("create transport message for encoder and decoder.");
         }
 
         public event ReceivedDelegate Received;
@@ -44,7 +43,6 @@ namespace DotEasy.Rpc.Core.Transport.Impl
         public async Task OnReceived(IMessageSender sender, TransportMessage message)
         {
             if (Received == null) return;
-            Console.Write($"trigger 'OnReceived' event for message id {message.Id}");
             await Received(sender, message);
         }
 
