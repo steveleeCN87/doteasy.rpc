@@ -12,19 +12,9 @@ Based on NET Core 2.0 Standard 2 development, DotEasy.RPC supports transparent c
 4. Communication pipeline and host built on [DotNetty](https://github.com/Azure/DotNetty)
 
 
-# Related extension library
-#### DotEasy.Rpc.Consul
-Based conusl register center service find and discover. [https://github.com/steveleeCN87/doteasy.rpc.consul](https://github.com/steveleeCN87/doteasy.rpc.consul)
-#### DotEasy.Rpc.Entry
-Lazy dedicated library to further hide the customizable service build entry. [https://github.com/steveleeCN87/doteasy.rpc.entry](https://github.com/steveleeCN87/doteasy.rpc.entry)
-
-# Demo
-A code example that implements a simple interface and implements separation, with extensions based on asp.net core middleware and console applications
-[link](https://github.com/steveleeCN87/doteasy.rpc.demo)
-
-
 # More
 [http://www.cnblogs.com/SteveLee/](http://www.cnblogs.com/SteveLee/)
+
 
 # How to use
 **step 1:**
@@ -100,6 +90,7 @@ _**Just need to reference the interface project, not the implementation project*
 
 you can start register service 'consul' or 'etcd' completed, and start client program before start you asp.net core web server, running the result is 'hello world'.
 
+
 # Change log
 ## 1.0.2
 1. Added precompiled synchronous and asynchronous remote invocation methods, unforcing the use of Task as asynchronous calls and precompiled builds.
@@ -108,7 +99,7 @@ you can start register service 'consul' or 'etcd' completed, and start client pr
 1. Added Consul registration and callback to implement the configuration of the Consul registry.
 2. Added Entry lazy entry class library package to implement Asp.net middleware extension and host based on Console application.
 
-# Next version expectation
+# Next version expectation 1.0.3
 1. Replace Microsoft.Extensions.Dependency with Autofac, support batch import of qualified names and improve Ioc container performance.
 2. When the 500+ interface(or service) is pre-compiled client(or consumer), the total time needs to be shortened to solve the suspended caused by large-scale pre-compilation.
 3. interface auto disponse.
