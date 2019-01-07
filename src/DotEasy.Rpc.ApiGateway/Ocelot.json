@@ -1,21 +1,95 @@
 {
   "ReRoutes": [
+    // 路由规则配置节点，数组形式
+    // 可配置多个路由协议和规则，实现路由、服务聚合、服务发现、认证、鉴权、限流、熔断、缓存、Header头传递等
     {
-      "DownstreamPathTemplate": "/api/values",
+      /*
+       下游服务配置配置，网关出口，具体指向的服务器
+       /api/values - 使用限定规则的方式配置下游PATH规则
+       /{url} - 使用泛型（万用）规则方式配置下游PATH规则
+       */
+      "DownstreamPathTemplate": "/{url}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
+        /*
+        下游主机信息
+        可以配置多个主机信息，已提供Ocelot路由负载均衡模式，需配合LoadBalancer节点进行路由负载均衡。
+        */
         {
           "Host": "127.0.0.1",
           "Port": 5000
+        },
+        {
+          "Host": "127.0.0.1",
+          "Port": 5001
         }
       ],
-      "UpstreamPathTemplate": "/api/values",
+      /*
+       上游服务配置配置，请求和网关的入口。
+       /api/values - 使用限定规则的方式配置上游PATH规则
+       /{url} - 使用泛型（万用）规则方式配置上游PATH规则
+       */
+      "UpstreamPathTemplate": "/{url}",
+      // 上游支持的http请求方法
       "UpstreamHttpMethod": [
-        "Get"
+        "Get",
+        "Post",
+        "Delete",
+        "Update"
       ],
+      // 上游域名主机
+      // "UpstreamHost": "youdomain.com",
+      // 当前路由节点的优先级
+      "Priority": 99,
+      /*
+       路由负载均衡:
+       LeastConnection – 将请求发往最空闲的那个服务器
+       RoundRobin – 轮流发送
+       NoLoadBalance – 总是发往第一个请求或者是服务发现
+       */
+      "LoadBalancer": "LeastConnection",
+      "Key": "Route1"
     }
   ],
+  // 限流配置（请求限流）
+  // 对请求进行限流可以防止下游服务器因为访问过载而崩溃
+  "RateLimitOptions": {
+    // ClientWhitelist - 白名单列表
+    "ClientWhitelist": [],
+    // EnableRateLimiting - 是否启用限流
+    "EnableRateLimiting": true,
+    // Period - 统计时间段 1s, 5m, 1h, 1d
+    "Period": "1s",
+    // PeriodTimespan - 多少秒之后客户端可以重试
+    "PeriodTimespan": 1,
+    // Limit - 在统计时间段内允许的最大请求数量
+    "Limit": 1,
+    // Http头 X-Rate-Limit 和 Retry-After 是否禁用
+    // X-Rate-Limit: 为防止滥用，你应该考虑对您的 API 限流。 例如，您可以限制每个用户 10 分钟内最多调用 API 100 次。
+    // Retry-After: 响应的 HTTP 报头指示所述用户代理应该多长时间使一个后续请求之前等待
+    "DisableRateLimitHeaders": false,
+    // QuotaExceededMessage - 当请求过载被截断时返回的消息
+    "QuotaExceededMessage": "Customize Tips!",
+    // HttpStatusCode - 当请求过载被截断时返回的http status
+    "HttpStatusCode": 999,
+    // ClientIdHeader - 用来识别客户端的请求头，默认是 ClientId
+    "ClientIdHeader": "Test"
+  },
+  // 熔断的意思是停止将请求转发到下游服务。
+  // 当下游服务已经出现故障的时候再请求也是功而返，并且增加下游服务器和API网关的负担。
+  // 这个功能是用的Pollly来实现的，我们只需要为路由做一些简单配置即可
+  "QoSOptions": {
+    // ExceptionsAllowedBeforeBreaking - 允许多少个异常请求
+    "ExceptionsAllowedBeforeBreaking": 3,
+    // DurationOfBreak - 熔断的时间，单位为秒
+    "DurationOfBreak": 5,
+    // TimeoutValue - 如果下游请求的处理时间超过多少则自如将请求设置为超时
+    "TimeoutValue": 5000
+  },
+  // 本地配置
+  // 可配置多个路由协议和规则，实现服务聚合、服务发现、认证、鉴权、限流、熔断、缓存、Header头传递等
   "GlobalConfiguration": {
+    // 全局基础路径
     "BaseUrl": "http://127.0.0.1:8080"
   }
 }
