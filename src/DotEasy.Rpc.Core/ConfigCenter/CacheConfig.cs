@@ -4,12 +4,13 @@ using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography;
 using DotEasy.Rpc.Core.Attributes;
+using DotEasy.Rpc.Core.Cache;
 using DotEasy.Rpc.Core.Cache.Model;
 using DotEasy.Rpc.Core.DependencyResolver;
 using DotEasy.Rpc.Core.DependencyResolver.Builder;
 using Microsoft.Extensions.Configuration;
 
-namespace DotEasy.Rpc.Core.Cache
+namespace DotEasy.Rpc.Core.ConfigCenter
 {
     public class CacheConfig
     {

@@ -11,6 +11,9 @@ using ServiceDescriptor = DotEasy.Rpc.Core.Runtime.Communally.Entitys.ServiceDes
 
 namespace DotEasy.Rpc.Core.Runtime.Server.Impl
 {
+    /// <summary>
+    /// 服务执行工厂
+    /// </summary>
     public class ServiceEntryFactory : IServiceEntryFactory
     {
         /// <summary>
@@ -28,7 +31,8 @@ namespace DotEasy.Rpc.Core.Runtime.Server.Impl
         /// </summary>
         private readonly ITypeConvertibleService _typeConvertibleService;
 
-        public ServiceEntryFactory(IServiceProvider serviceProvider, IServiceIdGenerator serviceIdGenerator, ITypeConvertibleService typeConvertibleService)
+        public ServiceEntryFactory(IServiceProvider serviceProvider, IServiceIdGenerator serviceIdGenerator,
+            ITypeConvertibleService typeConvertibleService)
         {
             _serviceProvider = serviceProvider;
             _serviceIdGenerator = serviceIdGenerator;
@@ -37,19 +41,20 @@ namespace DotEasy.Rpc.Core.Runtime.Server.Impl
 
         public IEnumerable<ServiceEntity> CreateServiceEntry(Type service, Type serviceImplementation)
         {
-            foreach (var methodInfo in service.GetTypeInfo().GetMethods())
-            {
-                // 获取方法名和参数名（MethodInfo）
-                var implementationMethodInfo = serviceImplementation.GetTypeInfo().GetMethod(
+            return from methodInfo in service.GetTypeInfo().GetMethods()
+                let implementationMethodInfo = serviceImplementation.GetTypeInfo().GetMethod(
                     methodInfo.Name,
                     methodInfo.GetParameters().Select(p => p.ParameterType).ToArray()
-                );
-                yield return Create(methodInfo, implementationMethodInfo);
-            }
+                )
+                select Create(methodInfo, implementationMethodInfo);
         }
 
-        // 此方法严重依赖于Microsoft.Extensions.DependencyInjection库，需要拆分
-        // 通过容器实例化ServiceEntity实体
+        /// <summary>
+        /// 从容器中实例化对象，并调用对应方法
+        /// </summary>
+        /// <param name="method"></param>
+        /// <param name="implementationMethod"></param>
+        /// <returns>通过容器实例化ServiceEntity实体进行实例化，并调用相应的方法</returns>
         private ServiceEntity Create(MethodInfo method, MethodBase implementationMethod)
         {
             var serviceId = _serviceIdGenerator.GenerateServiceId(method);
@@ -65,21 +70,10 @@ namespace DotEasy.Rpc.Core.Runtime.Server.Impl
 
                     using (var scope = serviceScopeFactory.CreateScope())
                     {
-                        var instance = scope.ServiceProvider.GetRequiredService(method.DeclaringType);
-
-                        var list = new List<object>();
-                        foreach (var parameterInfo in implementationMethod.GetParameters())
-                        {
-                            list.Add(
-                                _typeConvertibleService.Convert(
-                                    parameters[parameterInfo.Name],
-                                    parameterInfo.ParameterType)
-                            );
-                        }
-
                         return Task.FromResult(implementationMethod.Invoke(
-                            instance,
-                            list.ToArray()
+                            scope.ServiceProvider.GetRequiredService(method.DeclaringType),
+                            implementationMethod.GetParameters().Select(parameterInfo =>
+                                _typeConvertibleService.Convert(parameters[parameterInfo.Name], parameterInfo.ParameterType)).ToArray()
                         ));
                     }
                 }

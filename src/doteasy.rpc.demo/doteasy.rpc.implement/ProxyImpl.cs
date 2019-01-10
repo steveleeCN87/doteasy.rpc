@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using doteasy.rpc.interfaces;
@@ -14,13 +15,12 @@ namespace doteasy.rpc.implement
 
         public Task<IDictionary<string, string>> GetDictionary()
         {
-            return Task.FromResult<IDictionary<string, string>>(new Dictionary<string, string> {{"key", "value"}});
+            return Task.FromResult<IDictionary<string, string>>(new Dictionary<string, string> {{"key", DateTime.Now.ToLongTimeString()}});
         }
 
         public string Sync(int id)
         {
             return $"我执行了同步方法{id}.";
         }
-
     }
 }

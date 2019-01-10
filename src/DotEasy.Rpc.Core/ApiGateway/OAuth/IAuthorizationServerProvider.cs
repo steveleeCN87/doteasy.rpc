@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace DotEasy.Rpc.Core.Gateway.OAuth
+namespace DotEasy.Rpc.Core.ApiGateway.OAuth
 {
     /// <summary>
     /// 身份验证服务提供者

@@ -1,16 +1,20 @@
 ﻿using System;
 using Microsoft.Extensions.Configuration;
 
-namespace DotEasy.Rpc.Core.Gateway
+namespace DotEasy.Rpc.Core.ConfigCenter
 {
     public static class GatewayConfig
     {
-        public static IConfigurationRoot Configuration => null;
+        private static IConfigurationRoot Configuration => null;
 
-        public static string _authorizationServiceKey;
+#pragma warning disable 649
+        private static string _authorizationServiceKey;
+#pragma warning restore 649
         public static string AuthorizationServiceKey => Configuration["AuthorizationServiceKey"] ?? _authorizationServiceKey;
 
-        public static string _authorizationRoutePath;
+#pragma warning disable 649
+        private static string _authorizationRoutePath;
+#pragma warning restore 649
         public static string AuthorizationRoutePath => Configuration["AuthorizationRoutePath"] ?? _authorizationRoutePath;
 
         private static TimeSpan _accessTokenExpireTimeSpan = TimeSpan.FromMinutes(30);
@@ -19,8 +23,7 @@ namespace DotEasy.Rpc.Core.Gateway
         {
             get
             {
-                int tokenExpireTime;
-                if (Configuration["AccessTokenExpireTimeSpan"] != null && int.TryParse(Configuration["AccessTokenExpireTimeSpan"], out tokenExpireTime))
+                if (Configuration["AccessTokenExpireTimeSpan"] != null && int.TryParse(Configuration["AccessTokenExpireTimeSpan"], out var tokenExpireTime))
                 {
                     _accessTokenExpireTimeSpan = TimeSpan.FromMinutes(tokenExpireTime);
                 }

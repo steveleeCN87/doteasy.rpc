@@ -25,23 +25,12 @@ namespace DotEasy.Rpc.Core.Transport.InternalAdaper
         /// received messages
         /// </summary>
         public override void ChannelRead(IChannelHandlerContext context, object message) =>
-            Task.Run(() =>
-            {
-                _readAction(context, (TransportMessage) message);
-//                if (message is IByteBuffer buffer)
-//                    Console.Write($"messages capacity: {buffer.Capacity} byte");
-//                // ReSharper disable once IsExpressionAlwaysTrue
-//                if (message is TransportMessage transportMessage)
-//                    Console.Write($"messages type： {transportMessage.ContentType}");
-//                if (((TransportMessage) message)?.Content is string content)
-//                    Console.Write($"messages content： {content.Length}");
-            });
+            Task.Run(() => _readAction(context, (TransportMessage) message));
 
         /// <summary>
         /// read complete happened
         /// </summary>
-        public override void ChannelReadComplete(IChannelHandlerContext context) =>
-            context.Flush();
+        public override void ChannelReadComplete(IChannelHandlerContext context) => context.Flush();
 
         /// <summary>
         /// exception happened

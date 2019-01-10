@@ -25,6 +25,7 @@ namespace doteasy.rpc.webserver
         public void Configure(IApplicationBuilder app)
         {
             app.UseDeveloperExceptionPage();
+            // 使用Consul服务发现
             app.UseConsulServerExtensions(Configuration, collection => { collection.AddSingleton<IProxyService, ProxyImpl>(); });
             app.UseHttpsRedirection();
             app.UseMvc();

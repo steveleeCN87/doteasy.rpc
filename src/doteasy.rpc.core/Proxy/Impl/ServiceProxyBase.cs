@@ -27,6 +27,7 @@ namespace DotEasy.Rpc.Core.Proxy.Impl
         /// <param name="parameters">参数字典</param>
         /// <param name="serviceId">服务Id</param>
         /// <returns>调用结果</returns>
+        // ReSharper disable once UnusedMember.Global
         protected async Task<T> InvokeAsync<T>(IDictionary<string, object> parameters, string serviceId)
         {
             var message = await _remoteInvokeService.InvokeAsync(new RemoteInvokeContext
@@ -50,9 +51,9 @@ namespace DotEasy.Rpc.Core.Proxy.Impl
         /// </summary>
         /// <param name="parameters"></param>
         /// <param name="serviceId"></param>
-        /// <param name="_"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
+        // ReSharper disable once UnusedMember.Global
         protected T Invoke<T>(IDictionary<string, object> parameters, string serviceId)
         {
             var message = _remoteInvokeService.InvokeAsync(new RemoteInvokeContext
@@ -63,7 +64,7 @@ namespace DotEasy.Rpc.Core.Proxy.Impl
                     ServiceId = serviceId
                 }
             }).Result;
-            
+
             if (message == null) return default(T);
             var result = _typeConvertibleService.Convert(message.Result, typeof(T));
             return (T) result;

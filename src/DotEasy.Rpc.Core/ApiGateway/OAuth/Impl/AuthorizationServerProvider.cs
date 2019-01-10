@@ -5,11 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using DotEasy.Rpc.Core.Cache;
 using DotEasy.Rpc.Core.Cache.Caching;
+using DotEasy.Rpc.Core.ConfigCenter;
 using DotEasy.Rpc.Core.Proxy;
 using DotEasy.Rpc.Core.Routing;
 using Newtonsoft.Json;
 
-namespace DotEasy.Rpc.Core.Gateway.OAuth.Impl
+namespace DotEasy.Rpc.Core.ApiGateway.OAuth.Impl
 {
     public class AuthorizationServerProvider : IAuthorizationServerProvider
     {

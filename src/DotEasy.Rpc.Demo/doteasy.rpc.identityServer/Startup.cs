@@ -1,17 +1,20 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Ocelot.DependencyInjection;
-using Ocelot.Middleware;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
-namespace DotEasy.Rpc.ApiGateway
+namespace doteasy.rpc.identityServer
 {
     public class Startup
     {
-        private const string AuthenticationProviderKey = "ApiGatewayCommonKey";
-        
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -23,12 +26,6 @@ namespace DotEasy.Rpc.ApiGateway
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddAuthentication().AddJwtBearer(AuthenticationProviderKey, x =>
-            {
-                x.Authority = "http://127.0.0.1:8080";
-                x.Audience = "test";
-            });
-            services.AddOcelot();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,7 +40,7 @@ namespace DotEasy.Rpc.ApiGateway
                 app.UseHsts();
             }
 
-            app.UseOcelot().Wait();
+            app.UseHttpsRedirection();
             app.UseMvc();
         }
     }

@@ -38,7 +38,7 @@
         "Update"
       ],
       // 上游域名主机
-      // "UpstreamHost": "youdomain.com",
+      // "UpstreamHost": "domain.com",
       // 当前路由节点的优先级
       "Priority": 99,
       /*
@@ -48,7 +48,12 @@
        NoLoadBalance – 总是发往第一个请求或者是服务发现
        */
       "LoadBalancer": "LeastConnection",
-      "Key": "Route1"
+      "Key": "Route1",
+      // 添加路由认证配置
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "ApiGatewayCommonKey",
+        "AllowedScopes": []
+      },
     }
   ],
   // 限流配置（请求限流）
@@ -76,7 +81,7 @@
     "ClientIdHeader": "Test"
   },
   // 熔断的意思是停止将请求转发到下游服务。
-  // 当下游服务已经出现故障的时候再请求也是功而返，并且增加下游服务器和API网关的负担。
+  // 当下游服务已经出现故障的时候再请求也是无功而返，并且增加下游服务器和API网关的负担。
   // 这个功能是用的Pollly来实现的，我们只需要为路由做一些简单配置即可
   "QoSOptions": {
     // ExceptionsAllowedBeforeBreaking - 允许多少个异常请求

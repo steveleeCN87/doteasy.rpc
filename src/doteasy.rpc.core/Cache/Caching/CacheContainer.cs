@@ -1,4 +1,5 @@
 using System;
+using DotEasy.Rpc.Core.ConfigCenter;
 using DotEasy.Rpc.Core.Runtime;
 
 namespace DotEasy.Rpc.Core.Cache.Caching

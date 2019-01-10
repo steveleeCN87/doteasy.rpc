@@ -2,14 +2,9 @@
 {
     public class JsonTransportMessageCodecFactory : ITransportMessageCodecFactory
     {
-        #region Field
-
         private readonly ITransportMessageEncoder _transportMessageEncoder = new JsonTransportMessageEncoder();
         private readonly ITransportMessageDecoder _transportMessageDecoder = new JsonTransportMessageDecoder();
 
-        #endregion Field
-
-        #region Implementation of ITransportMessageCodecFactory
 
         /// <summary>
         /// 获取编码器
@@ -28,7 +23,5 @@
         {
             return _transportMessageDecoder;
         }
-
-        #endregion Implementation of ITransportMessageCodecFactory
     }
 }
