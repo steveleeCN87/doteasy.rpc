@@ -6,7 +6,6 @@ namespace doteasy.client
     {
         private static void Main()
         {
-//            RpcClient.Test();
             AuthClient.TestAllDisco();
         }
     }

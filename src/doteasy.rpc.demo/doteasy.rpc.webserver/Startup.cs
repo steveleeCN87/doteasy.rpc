@@ -1,10 +1,12 @@
 ﻿using doteasy.rpc.implement;
 using doteasy.rpc.interfaces;
 using DotEasy.Rpc.Consul;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 
 namespace doteasy.rpc.webserver
 {
@@ -20,6 +22,18 @@ namespace doteasy.rpc.webserver
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddAuthentication(options =>
+                {
+                    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters();
+                    options.RequireHttpsMetadata = false;
+                    options.Audience = "api1"; //api范围
+                    options.Authority = "http://127.0.0.1:2000"; //IdentityServer地址
+                });
         }
 
         public void Configure(IApplicationBuilder app)
@@ -27,6 +41,8 @@ namespace doteasy.rpc.webserver
             app.UseDeveloperExceptionPage();
             // 使用Consul服务发现
             app.UseConsulServerExtensions(Configuration, collection => { collection.AddSingleton<IProxyService, ProxyImpl>(); });
+            // 指定该APP需要认证使用
+            app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseMvc();
         }
