@@ -11,4 +11,10 @@
     <ProjectReference Include="..\doteasy.rpc.interface\doteasy.rpc.interface.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="IdentityModel">
+      <Version>2.0.2</Version>
+    </PackageReference>
+  </ItemGroup>
+
 </Project>

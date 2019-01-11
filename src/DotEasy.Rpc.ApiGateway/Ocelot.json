@@ -49,11 +49,6 @@
        */
       "LoadBalancer": "LeastConnection",
       "Key": "Route1",
-      // 添加路由认证配置
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "ApiGatewayCommonKey",
-        "AllowedScopes": []
-      },
     }
   ],
   // 限流配置（请求限流）

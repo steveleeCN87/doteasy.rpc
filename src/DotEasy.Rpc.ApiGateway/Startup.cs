@@ -23,11 +23,6 @@ namespace DotEasy.Rpc.ApiGateway
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddAuthentication().AddJwtBearer(AuthenticationProviderKey, x =>
-            {
-                x.Authority = "http://127.0.0.1:8080";
-                x.Audience = "test";
-            });
             services.AddOcelot();
         }
 

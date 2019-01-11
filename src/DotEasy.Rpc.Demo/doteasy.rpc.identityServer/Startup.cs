@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace doteasy.rpc.identityServer
 {
+    /// <summary>
+    /// 验证和授权服务器
+    /// </summary>
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -26,6 +22,14 @@ namespace doteasy.rpc.identityServer
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            
+            services.AddIdentityServer()
+                .AddDeveloperSigningCredential()
+                .AddInMemoryApiResources(Config.GetApiResources())//添加api资源
+                .AddInMemoryClients(Config.GetClients())//添加客户端
+                .AddTestUsers(Config.GetUsers()); //添加测试用户
+            
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,6 +45,8 @@ namespace doteasy.rpc.identityServer
             }
 
             app.UseHttpsRedirection();
+            // 指定该APP是认证服务器
+            app.UseIdentityServer();
             app.UseMvc();
         }
     }
