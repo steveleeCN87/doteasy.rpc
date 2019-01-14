@@ -1,0 +1,797 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="22e17aa9-9dff-4d95-9cd2-4942053cc5fc" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Proxy/Impl/ServiceProxyGenerater.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Proxy/Impl/ServiceProxyGenerater.cs" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-1797372662">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="2" />
+          <entry key="project.open.time.1" value="2" />
+          <entry key="project.opened" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="cs" value="88" />
+          <entry key="csproj" value="5" />
+          <entry key="yml" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="C#" value="88" />
+          <entry key="Csproj" value="5" />
+          <entry key="YAML" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="cs" value="275" />
+          <entry key="csproj" value="5" />
+          <entry key="txt" value="19" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="C#" value="275" />
+          <entry key="Csproj" value="5" />
+          <entry key="PLAIN_TEXT" value="19" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DotEasy.Rpc.csproj">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="312">
+              <caret line="13" column="79" selection-start-line="13" selection-start-column="79" selection-end-line="13" selection-end-column="79" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/RpcServiceExtensions.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="354">
+              <caret line="94" column="9" lean-forward="true" selection-start-line="94" selection-start-column="9" selection-end-line="94" selection-end-column="9" />
+              <folding>
+                <marker date="1546481600925" expanded="false" signature="6:1259" ph="..." />
+                <marker date="1546481600925" expanded="true" signature="1282:11436" ph="{...}" />
+                <marker date="1546481600925" expanded="true" signature="1329:11434" ph="{...}" />
+                <marker date="1546481600925" expanded="true" signature="1344:1495" ph="/// 添加Json序列化支持 ... " />
+                <marker date="1546481600925" expanded="true" signature="1577:1926" ph="{...}" />
+                <marker date="1546481600925" expanded="true" signature="1936:2139" ph="/// 设置服务路由管理者 ... " />
+                <marker date="1546481600925" expanded="true" signature="2256:2379" ph="{...}" />
+                <marker date="1546481600925" expanded="true" signature="2389:2592" ph="/// 设置服务路由管理者 ... " />
+                <marker date="1546481600925" expanded="true" signature="2722:2826" ph="{...}" />
+                <marker date="1546481600925" expanded="true" signature="2836:3038" ph="/// 设置服务路由管理者 ... " />
+                <marker date="1546481600925" expanded="true" signature="3145:3250" ph="{...}" />
+                <marker date="1546481600925" expanded="true" signature="3260:3463" ph="/// 设置服务地址选择器 ... " />
+                <marker date="1546481600925" expanded="true" signature="3579:3698" ph="{...}" />
+                <marker date="1546481600925" expanded="true" signature="3708:3911" ph="/// 设置服务地址选择器 ... " />
+                <marker date="1546481600925" expanded="true" signature="4040:4144" ph="{...}" />
+                <marker date="1546481600925" expanded="true" signature="4154:4354" ph="/// 设置服务地址选择器 ... " />
+                <marker date="1546481600925" expanded="true" signature="4460:4565" ph="{...}" />
+                <marker date="1546481600925" expanded="true" signature="4575:4725" ph="/// 使用轮询的地址选择器 ... " />
+                <marker date="1546481600925" expanded="true" signature="4811:4951" ph="{...}" />
+                <marker date="1546481600925" expanded="true" signature="4961:5111" ph="/// 使用随机的地址选择器 ... " />
+                <marker date="1546481600925" expanded="true" signature="5196:5335" ph="{...}" />
+                <marker date="1546481600925" expanded="true" signature="5345:5539" ph="/// 使用编解码器 ... " />
+                <marker date="1546481600925" expanded="true" signature="5652:5761" ph="{...}" />
+                <marker date="1546481600925" expanded="true" signature="5771:5972" ph="/// 使用编解码器 ... " />
+                <marker date="1546481600925" expanded="true" signature="6091:6223" ph="{...}" />
+                <marker date="1546481600925" expanded="true" signature="6233:6437" ph="/// 使用编解码器 ... " />
+                <marker date="1546481600925" expanded="true" signature="6586:6695" ph="{...}" />
+                <marker date="1546481600925" expanded="true" signature="6705:6855" ph="/// 使用Json编解码器 ... " />
+                <marker date="1546481600925" expanded="true" signature="6928:7021" ph="{...}" />
+                <marker date="1546481600925" expanded="true" signature="7031:7181" ph="/// 添加客户端运行时服务 ... " />
+                <marker date="1546481600925" expanded="true" signature="7258:7638" ph="{...}" />
+                <marker date="1546481600925" expanded="true" signature="7648:7797" ph="/// 添加服务运行时服务 ... " />
+                <marker date="1546481600925" expanded="true" signature="7868:8724" ph="{...}" />
+                <marker date="1546481600925" expanded="true" signature="8734:8880" ph="/// 添加RPC核心服务 ... " />
+                <marker date="1546481600925" expanded="true" signature="8957:9527" ph="{...}" />
+                <marker date="1546481600925" expanded="true" signature="9603:9872" ph="{...}" />
+                <marker date="1546481600925" expanded="true" signature="9949:10098" ph="{...}" />
+                <marker date="1546481600925" expanded="true" signature="10108:10265" ph="/// 使用DotNetty进行传输。 ... " />
+                <marker date="1546481600925" expanded="true" signature="10346:11039" ph="{...}" />
+                <marker date="1546481600925" expanded="true" signature="10749:10966" ph="{...}" />
+                <marker date="1546481600925" expanded="true" signature="11049:11180" ph="/// 添加控制台输出 ... " />
+                <marker date="1546481600925" expanded="true" signature="11261:11428" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>_cacheWrapperSetting</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Attributes/AttributeServiceEntryProvider.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Attributes/RpcTagBundleAttribute.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Proxy/IServiceProxyProvider.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Routing/IServiceRouteProvider.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Gateway/GatewayConfig.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Attributes/IdentifyCacheAttribute.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Cache/Model/CacheTargetType.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Runtime/Communally/Convertibles/Impl/DefaultTypeConvertibleProvider.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Cache/ICacheProvider.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Runtime/Communally/Convertibles/Impl/TypeConvertDelegate.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Cache/CacheEndpoint.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Runtime/Communally/Convertibles/Impl/DefaultTypeConvertibleService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Cache/Caching/CacheContainer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IRpcBuilder.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/341DFE22-562E-4DB3-8729-B233A8CD1A5F/48/341b78b2/ValueTask`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/RpcServiceExtensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/RpcBuilder.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/62A9BDBE-24B5-4211-8F86-60F066277309/03/aab4f155/IConfigurationRoot.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Proxy/Impl/ServiceProxyGenerater.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Cache/CacheConfig.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Routing/IServiceRouteManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Routing/ServiceRoute.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Cache/CachingProvider.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Routing/Impl/ServiceRouteChangedEventArgs.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Cache/Model/binding.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Runtime/Client/HealthChecks/Implementation/DefaultHealthCheckService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Routing/Impl/ServiceRouteManagerExtensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Cache/Model/Map.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Routing/Impl/ServiceRouteEventArgs.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Cache/Model/Property.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Routing/Impl/DefaultServiceRouteFactory.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Routing/Impl/SharedFileServiceRouteManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Gateway/OAuth/IAuthorizationServerProvider.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Gateway/OAuth/Impl/EncryptMode.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DependencyResolver/ServiceResolver.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DependencyResolver/IDependencyResolver.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Gateway/OAuth/Impl/JwtSecureDataHeader.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DependencyResolver/DependencyResolverExtensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Gateway/OAuth/Impl/JwtSecureDataType.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Gateway/OAuth/Impl/AuthorizationServerProvider.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Runtime/Communally/Entitys/ServiceDescriptor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Runtime/ServiceLocator.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Core/Client/HealthChecks/Implementation/DefaultHealthCheckService.cs" />
+        <option value="$PROJECT_DIR$/Runtime/Client/HealthChecks/Implementation/DefaultHealthCheckService.cs" />
+        <option value="$PROJECT_DIR$/Routing/Impl/ServiceRouteChangedEventArgs.cs" />
+        <option value="$PROJECT_DIR$/ApiGateway/IAuthorizationServerProvider.cs" />
+        <option value="$PROJECT_DIR$/ApiGateway/OAuth/Impl/EncryptMode.cs" />
+        <option value="$PROJECT_DIR$/ApiGateway/OAuth/Impl/JWTSecureDataType.cs" />
+        <option value="$PROJECT_DIR$/ApiGateway/OAuth/Impl/JWTSecureDataHeader.cs" />
+        <option value="$PROJECT_DIR$/ApiGateway/OAuth/IAuthorizationServerProvider.cs" />
+        <option value="$PROJECT_DIR$/ApiGateway/OAuth/Impl/JwtSecureDataType.cs" />
+        <option value="$PROJECT_DIR$/Proxy/IServiceProxyProvider.cs" />
+        <option value="$PROJECT_DIR$/Routing/IServiceRouteProvider.cs" />
+        <option value="$PROJECT_DIR$/ApiGateway/AppConfig.cs" />
+        <option value="$PROJECT_DIR$/Runtime/Communally/Entitys/ServiceDescriptor.cs" />
+        <option value="$PROJECT_DIR$/Cache/ICacheProvider.cs" />
+        <option value="$PROJECT_DIR$/Cache/CacheEndpoint.cs" />
+        <option value="$PROJECT_DIR$/Cache/CachingProvider.cs" />
+        <option value="$PROJECT_DIR$/Cache/Map.cs" />
+        <option value="$PROJECT_DIR$/Cache/Property.cs" />
+        <option value="$PROJECT_DIR$/Cache/binding.cs" />
+        <option value="$PROJECT_DIR$/DependencyResolver/IDependencyResolver.cs" />
+        <option value="$PROJECT_DIR$/DependencyResolver/DependencyResolverExtensions.cs" />
+        <option value="$PROJECT_DIR$/Cache/AppConfig.cs" />
+        <option value="$PROJECT_DIR$/Runtime/ServiceLocator.cs" />
+        <option value="$PROJECT_DIR$/Cache/CacheContainer.cs" />
+        <option value="$PROJECT_DIR$/Cache/Caching/CacheContainer.cs" />
+        <option value="$PROJECT_DIR$/ApiGateway/OAuth/Impl/AuthorizationServerProvider.cs" />
+        <option value="$PROJECT_DIR$/DependencyResolver/ServiceResolver.cs" />
+        <option value="$PROJECT_DIR$/Gateway/AppConfig.cs" />
+        <option value="$PROJECT_DIR$/Gateway/OAuth/IAuthorizationServerProvider.cs" />
+        <option value="$PROJECT_DIR$/Gateway/GatewayConfig.cs" />
+        <option value="$PROJECT_DIR$/Cache/Model/CacheTargetType.cs" />
+        <option value="$PROJECT_DIR$/Attributes/IdentifyCacheAttribute.cs" />
+        <option value="$PROJECT_DIR$/DotEasy.Rpc.csproj" />
+        <option value="$PROJECT_DIR$/Cache/CacheConfig.cs" />
+        <option value="$PROJECT_DIR$/Proxy/Impl/ServiceProxyGenerater.cs" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-7" />
+    <option name="width" value="822" />
+    <option name="height" value="1057" />
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="SolutionExplorer" proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="NBKnowledgePane" />
+      <pane id="SolutionExplorer">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="DotEasy.Rpc" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+        <option name="show-all-files" value="false" />
+      </pane>
+      <pane id="FileSystemExplorer" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Rider.DefaultBreakpoints.AreToggled" value="true" />
+    <property name="Rider.ProjectViewActivator.IsNotFirstRun" value="true" />
+    <property name="ToolWindowProject.ShowToolbar" value="false" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="22e17aa9-9dff-4d95-9cd2-4942053cc5fc" name="Default Changelist" comment="" />
+      <created>1546401617622</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1546401617622</updated>
+      <workItem from="1546401619882" duration="13131000" />
+      <workItem from="1546481571443" duration="139000" />
+    </task>
+    <task id="LOCAL-00001" summary="add cache">
+      <created>1546418873062</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1546418873062</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="13270000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19206008" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="NuGet" order="7" weight="0.32887402" />
+      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32894737" />
+      <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Unit Tests" order="11" />
+      <window_info anchor="bottom" id="Terminal" order="12" weight="0.32998884" />
+      <window_info anchor="bottom" id="Event Log" order="13" side_tool="true" />
+      <window_info anchor="bottom" id="Build" order="14" visible="true" weight="0.38377193" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Consul" order="3" />
+      <window_info anchor="right" id="PlantUML" order="4" />
+      <window_info anchor="right" id="Errors In Solution" order="5" />
+      <window_info anchor="right" id="Database" order="6" />
+      <window_info anchor="right" id="Unit Tests Coverage" order="7" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add cache" />
+    <option name="LAST_COMMIT_MESSAGE" value="add cache" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" suspend="NONE" type="DotNet Exception Breakpoints">
+          <properties exception="System.Threading.ThreadAbortException" displayValue="System.Threading.ThreadAbortException" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Routing/Impl/DefaultServiceRouteFactory.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-192" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Proxy/Utilitys/CompilationUtilitys.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="11" column="43" lean-forward="true" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Routing/IServiceRouteManager.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="756">
+          <caret line="42" column="22" lean-forward="true" selection-start-line="42" selection-start-column="22" selection-end-line="42" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Runtime/Client/HealthChecks/Implementation/DefaultHealthCheckService.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="35" column="37" selection-start-line="35" selection-start-column="37" selection-end-line="35" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Routing/Impl/ServiceRouteChangedEventArgs.cs">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Routing/Impl/ServiceRouteEventArgs.cs">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Routing/Impl/ServiceRouteManagerExtensions.cs">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Routing/Impl/SharedFileServiceRouteManager.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="735">
+          <caret line="228" column="1" lean-forward="true" selection-start-line="228" selection-start-column="1" selection-end-line="228" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Runtime/Communally/Convertibles/Impl/DefaultTypeConvertibleProvider.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-642" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Runtime/Communally/Convertibles/Impl/DefaultTypeConvertibleService.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="39">
+          <caret line="27" column="21" lean-forward="true" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Runtime/Communally/Convertibles/Impl/TypeConvertDelegate.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="11" column="1" lean-forward="true" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Attributes/RpcTagBundleAttribute.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gateway/OAuth/Impl/EncryptMode.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="5" column="5" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="28" lean-forward="true" selection-start-column="28" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gateway/OAuth/Impl/JwtSecureDataType.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="5" column="34" lean-forward="true" selection-start-line="5" selection-start-column="34" selection-end-line="5" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gateway/OAuth/Impl/JwtSecureDataHeader.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Runtime/Communally/Entitys/ServiceDescriptor.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="29" column="21" lean-forward="true" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Routing/ServiceRoute.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="492">
+          <caret line="31" column="43" lean-forward="true" selection-start-line="31" selection-start-column="43" selection-end-line="31" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Proxy/IServiceProxyProvider.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="9" column="16" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/341DFE22-562E-4DB3-8729-B233A8CD1A5F/48/341b78b2/ValueTask`1.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="16" column="25" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Routing/IServiceRouteProvider.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="8" column="9" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cache/Model/Property.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="8" column="39" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DependencyResolver/IDependencyResolver.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="24" column="37" selection-start-line="24" selection-start-column="37" selection-end-line="24" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DependencyResolver/DependencyResolverExtensions.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1896">
+          <caret line="79" selection-start-line="79" selection-end-line="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Runtime/ServiceLocator.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="505">
+          <caret line="42" column="41" lean-forward="true" selection-start-line="42" selection-start-column="41" selection-end-line="42" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cache/CacheContainer.cs" />
+    <entry file="file://$PROJECT_DIR$/Cache/ICacheProvider.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cache/CachingProvider.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cache/CacheEndpoint.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="259">
+          <caret line="24" column="44" selection-start-line="24" selection-start-column="44" selection-end-line="24" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cache/Model/binding.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IRpcBuilder.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="14" column="1" lean-forward="true" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DependencyResolver/ServiceResolver.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="7" column="17" lean-forward="true" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cache/Model/Map.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gateway/OAuth/Impl/AuthorizationServerProvider.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="39">
+          <caret line="20" column="55" selection-start-line="20" selection-start-column="55" selection-end-line="20" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cache/Caching/CacheContainer.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="18" column="9" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gateway/OAuth/IAuthorizationServerProvider.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="21" column="31" lean-forward="true" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gateway/GatewayConfig.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="20" column="13" lean-forward="true" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RpcBuilder.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="16" column="16" lean-forward="true" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cache/Model/CacheTargetType.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Attributes/IdentifyCacheAttribute.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="15" column="1" lean-forward="true" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Attributes/AttributeServiceEntryProvider.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="303">
+          <caret line="28" column="9" selection-start-line="28" selection-start-column="9" selection-end-line="28" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/62A9BDBE-24B5-4211-8F86-60F066277309/03/aab4f155/IConfigurationRoot.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="18" column="18" lean-forward="true" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cache/CacheConfig.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="25" column="32" lean-forward="true" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
+          <folding>
+            <marker date="1546418839026" expanded="false" signature="6:268" ph="..." />
+            <marker date="1546418839026" expanded="true" signature="297:6083" ph="{...}" />
+            <marker date="1546418839026" expanded="true" signature="328:6081" ph="{...}" />
+            <marker date="1546418839026" expanded="true" signature="602:940" ph="{...}" />
+            <marker date="1546418839026" expanded="true" signature="993:1418" ph="{...}" />
+            <marker date="1546418839026" expanded="true" signature="1019:1408" ph="{...}" />
+            <marker date="1546418839026" expanded="true" signature="1149:1362" ph="{...}" />
+            <marker date="1546418839026" expanded="true" signature="1476:1600" ph="{...}" />
+            <marker date="1546418839026" expanded="true" signature="1669:1788" ph="{...}" />
+            <marker date="1546418839026" expanded="true" signature="1849:2282" ph="{...}" />
+            <marker date="1546418839026" expanded="true" signature="2024:2272" ph="{...}" />
+            <marker date="1546418839026" expanded="true" signature="2329:4301" ph="{...}" />
+            <marker date="1546418839026" expanded="true" signature="2427:4218" ph="{...}" />
+            <marker date="1546418839026" expanded="true" signature="2622:4204" ph="{...}" />
+            <marker date="1546418839026" expanded="true" signature="2701:3902" ph="{...}" />
+            <marker date="1546418839026" expanded="true" signature="3638:3880" ph="{...}" />
+            <marker date="1546418839026" expanded="true" signature="4249:4291" ph="{...}" />
+            <marker date="1546418839026" expanded="true" signature="4360:5562" ph="{...}" />
+            <marker date="1546418839026" expanded="true" signature="4477:5112" ph="{...}" />
+            <marker date="1546418839026" expanded="true" signature="4593:5065" ph="{...}" />
+            <marker date="1546418839026" expanded="true" signature="4829:5045" ph="{...}" />
+            <marker date="1546418839026" expanded="true" signature="5163:5409" ph="{...}" />
+            <marker date="1546418839026" expanded="true" signature="5221:5394" ph="{...}" />
+            <marker date="1546418839026" expanded="true" signature="5604:6075" ph="{...}" />
+            <marker date="1546418839026" expanded="true" signature="5773:6065" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Proxy/Impl/ServiceProxyGenerater.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="54" column="31" lean-forward="true" selection-start-line="54" selection-start-column="31" selection-end-line="54" selection-end-column="31" />
+          <folding>
+            <marker date="1546481655370" expanded="true" signature="6:514" ph="..." />
+            <marker date="1546481655370" expanded="true" signature="548:17941" ph="{...}" />
+            <marker date="1546481655370" expanded="true" signature="614:17939" ph="{...}" />
+            <marker date="1546481655370" expanded="true" signature="822:926" ph="{...}" />
+            <marker date="1546481655370" expanded="true" signature="936:1089" ph="/// 生成服务代理 ... " />
+            <marker date="1546481655370" expanded="true" signature="1171:2447" ph="{...}" />
+            <marker date="1546481655370" expanded="true" signature="1182:1420" ph="/* var assembles = DependencyContext.Default.RuntimeLibraries ... */" />
+            <marker date="1546481655370" expanded="true" signature="1955:2081" ph="{...}" />
+            <marker date="1546481655370" expanded="true" signature="2142:2246" ph="{...}" />
+            <marker date="1546481655370" expanded="true" signature="2274:2437" ph="{...}" />
+            <marker date="1546481655370" expanded="true" signature="2457:2609" ph="/// 生成服务代理代码树 ... " />
+            <marker date="1546481655370" expanded="true" signature="2673:4625" ph="{...}" />
+            <marker date="1546481655370" expanded="true" signature="2916:2984" ph="{...}" />
+            <marker date="1546481655370" expanded="true" signature="4104:4500" ph="{...}" />
+            <marker date="1546481655370" expanded="true" signature="4703:4837" ph="{...}" />
+            <marker date="1546481655370" expanded="true" signature="4921:5052" ph="{...}" />
+            <marker date="1546481655370" expanded="true" signature="5154:5633" ph="{...}" />
+            <marker date="1546481655370" expanded="true" signature="5357:5597" ph="{...}" />
+            <marker date="1546481655370" expanded="true" signature="5702:6562" ph="{...}" />
+            <marker date="1546481655370" expanded="true" signature="5790:6550" ph="{...}" />
+            <marker date="1546481655370" expanded="true" signature="6659:8350" ph="{...}" />
+            <marker date="1546481655370" expanded="true" signature="7077:7611" ph="{...}" />
+            <marker date="1546481655370" expanded="true" signature="7909:8286" ph="{...}" />
+            <marker date="1546481655370" expanded="true" signature="8464:8597" ph="{...}" />
+            <marker date="1546481655370" expanded="true" signature="8657:9624" ph="{...}" />
+            <marker date="1546481655370" expanded="true" signature="8970:9275" ph="{...}" />
+            <marker date="1546481655370" expanded="true" signature="9710:17933" ph="{...}" />
+            <marker date="1546481655370" expanded="true" signature="10073:11123" ph="{...}" />
+            <marker date="1546481655370" expanded="true" signature="10653:11026" ph="{...}" />
+            <marker date="1546481655370" expanded="true" signature="11161:11341" ph="{...}" />
+            <marker date="1546481655370" expanded="true" signature="11443:12073" ph="{...}" />
+            <marker date="1546481655370" expanded="true" signature="12090:12650" ph="{...}" />
+            <marker date="1546481655370" expanded="true" signature="12807:13038" ph="{...}" />
+            <marker date="1546481655370" expanded="true" signature="13055:13443" ph="{...}" />
+            <marker date="1546481655370" expanded="true" signature="13566:15394" ph="{...}" />
+            <marker date="1546481655370" expanded="true" signature="13881:15375" ph="{...}" />
+            <marker date="1546481655370" expanded="true" signature="14355:14849" ph="{...}" />
+            <marker date="1546481655370" expanded="true" signature="15411:17441" ph="{...}" />
+            <marker date="1546481655370" expanded="true" signature="15671:17402" ph="{...}" />
+            <marker date="1546481655370" expanded="true" signature="16222:16658" ph="{...}" />
+            <marker date="1546481655370" expanded="true" signature="17493:17604" ph="{...}" />
+            <marker date="1546481655370" expanded="true" signature="17621:17736" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DotEasy.Rpc.csproj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="13" column="79" selection-start-line="13" selection-start-column="79" selection-end-line="13" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RpcServiceExtensions.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="354">
+          <caret line="94" column="9" lean-forward="true" selection-start-line="94" selection-start-column="9" selection-end-line="94" selection-end-column="9" />
+          <folding>
+            <marker date="1546481600925" expanded="false" signature="6:1259" ph="..." />
+            <marker date="1546481600925" expanded="true" signature="1282:11436" ph="{...}" />
+            <marker date="1546481600925" expanded="true" signature="1329:11434" ph="{...}" />
+            <marker date="1546481600925" expanded="true" signature="1344:1495" ph="/// 添加Json序列化支持 ... " />
+            <marker date="1546481600925" expanded="true" signature="1577:1926" ph="{...}" />
+            <marker date="1546481600925" expanded="true" signature="1936:2139" ph="/// 设置服务路由管理者 ... " />
+            <marker date="1546481600925" expanded="true" signature="2256:2379" ph="{...}" />
+            <marker date="1546481600925" expanded="true" signature="2389:2592" ph="/// 设置服务路由管理者 ... " />
+            <marker date="1546481600925" expanded="true" signature="2722:2826" ph="{...}" />
+            <marker date="1546481600925" expanded="true" signature="2836:3038" ph="/// 设置服务路由管理者 ... " />
+            <marker date="1546481600925" expanded="true" signature="3145:3250" ph="{...}" />
+            <marker date="1546481600925" expanded="true" signature="3260:3463" ph="/// 设置服务地址选择器 ... " />
+            <marker date="1546481600925" expanded="true" signature="3579:3698" ph="{...}" />
+            <marker date="1546481600925" expanded="true" signature="3708:3911" ph="/// 设置服务地址选择器 ... " />
+            <marker date="1546481600925" expanded="true" signature="4040:4144" ph="{...}" />
+            <marker date="1546481600925" expanded="true" signature="4154:4354" ph="/// 设置服务地址选择器 ... " />
+            <marker date="1546481600925" expanded="true" signature="4460:4565" ph="{...}" />
+            <marker date="1546481600925" expanded="true" signature="4575:4725" ph="/// 使用轮询的地址选择器 ... " />
+            <marker date="1546481600925" expanded="true" signature="4811:4951" ph="{...}" />
+            <marker date="1546481600925" expanded="true" signature="4961:5111" ph="/// 使用随机的地址选择器 ... " />
+            <marker date="1546481600925" expanded="true" signature="5196:5335" ph="{...}" />
+            <marker date="1546481600925" expanded="true" signature="5345:5539" ph="/// 使用编解码器 ... " />
+            <marker date="1546481600925" expanded="true" signature="5652:5761" ph="{...}" />
+            <marker date="1546481600925" expanded="true" signature="5771:5972" ph="/// 使用编解码器 ... " />
+            <marker date="1546481600925" expanded="true" signature="6091:6223" ph="{...}" />
+            <marker date="1546481600925" expanded="true" signature="6233:6437" ph="/// 使用编解码器 ... " />
+            <marker date="1546481600925" expanded="true" signature="6586:6695" ph="{...}" />
+            <marker date="1546481600925" expanded="true" signature="6705:6855" ph="/// 使用Json编解码器 ... " />
+            <marker date="1546481600925" expanded="true" signature="6928:7021" ph="{...}" />
+            <marker date="1546481600925" expanded="true" signature="7031:7181" ph="/// 添加客户端运行时服务 ... " />
+            <marker date="1546481600925" expanded="true" signature="7258:7638" ph="{...}" />
+            <marker date="1546481600925" expanded="true" signature="7648:7797" ph="/// 添加服务运行时服务 ... " />
+            <marker date="1546481600925" expanded="true" signature="7868:8724" ph="{...}" />
+            <marker date="1546481600925" expanded="true" signature="8734:8880" ph="/// 添加RPC核心服务 ... " />
+            <marker date="1546481600925" expanded="true" signature="8957:9527" ph="{...}" />
+            <marker date="1546481600925" expanded="true" signature="9603:9872" ph="{...}" />
+            <marker date="1546481600925" expanded="true" signature="9949:10098" ph="{...}" />
+            <marker date="1546481600925" expanded="true" signature="10108:10265" ph="/// 使用DotNetty进行传输。 ... " />
+            <marker date="1546481600925" expanded="true" signature="10346:11039" ph="{...}" />
+            <marker date="1546481600925" expanded="true" signature="10749:10966" ph="{...}" />
+            <marker date="1546481600925" expanded="true" signature="11049:11180" ph="/// 添加控制台输出 ... " />
+            <marker date="1546481600925" expanded="true" signature="11261:11428" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

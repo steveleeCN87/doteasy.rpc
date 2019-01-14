@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="RIDER_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$/../../../.gitignore" />
+    <content url="file://$MODULE_DIR$/../../../LICENSE" />
+    <content url="file://$MODULE_DIR$/../../../README.md" />
+    <content url="file://$MODULE_DIR$/../.." />
+    <content url="file://$MODULE_DIR$/../../../微服务框架.png" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
