@@ -5,7 +5,7 @@
         private static void Main()
         {
             RpcClient.Test();
-//            AuthClient.TestTokenValidate();
+//            AuthClient.TestAllDisco();
         }
     }
 }

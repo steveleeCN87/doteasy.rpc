@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ContentModelStore">
     <e p="C:\Users\Administrator\.Rider2018.2\config\extensions" t="IncludeRecursive" />
-    <e p="C:\Users\Administrator\.Rider2018.2\config\scratches" t="IncludeRecursive" />
     <e p="C:\Users\Administrator\.Rider2018.2\system\extResources" t="IncludeRecursive" />
     <e p="C:\Users\Administrator\.Rider2018.2\system\resharper-host\local\Transient\ReSharperHost\v182\SolutionCaches\_DotEasy.Rpc.-2141262590.00" t="ExcludeRecursive" />
-    <e p="F:\doteasy.rpc\.gitignore" t="Include" />
-    <e p="F:\doteasy.rpc\LICENSE" t="Include" />
-    <e p="F:\doteasy.rpc\README.md" t="Include" />
-    <e p="F:\doteasy.rpc\src" t="IncludeFlat">
+    <e p="F:\DotEasy.RPC\.gitignore" t="Include" />
+    <e p="F:\DotEasy.RPC\LICENSE" t="Include" />
+    <e p="F:\DotEasy.RPC\README.md" t="Include" />
+    <e p="F:\DotEasy.RPC\src" t="IncludeFlat">
       <e p="Docs" t="Include" />
       <e p="DotEasy.Rpc.ApiGateway" t="IncludeRecursive">
         <e p="appsettings.json" t="Include" />
@@ -356,6 +355,6 @@
       <e p="DotEasy.Rpc.sln" t="IncludeFlat" />
       <e p="packages" t="ExcludeRecursive" />
     </e>
-    <e p="F:\doteasy.rpc\微服务框架.png" t="Include" />
+    <e p="F:\DotEasy.RPC\微服务框架.png" t="Include" />
   </component>
 </project>
