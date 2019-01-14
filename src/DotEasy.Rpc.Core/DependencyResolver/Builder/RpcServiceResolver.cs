@@ -8,9 +8,9 @@ namespace DotEasy.Rpc.Core.DependencyResolver.Builder
     /// <summary>
     /// IOC容器对象
     /// </summary>
-    public class ServiceResolver : IDependencyResolver
+    public class RpcServiceResolver : IDependencyResolver
     {
-        private static readonly ServiceResolver _defaultInstance = new ServiceResolver();
+        private static readonly RpcServiceResolver _defaultInstance = new RpcServiceResolver();
 
         private readonly ConcurrentDictionary<Tuple<Type, string>, object> _initializers =
             new ConcurrentDictionary<Tuple<Type, string>, object>();
@@ -37,7 +37,7 @@ namespace DotEasy.Rpc.Core.DependencyResolver.Builder
         /// 	<para>创建：范亮</para>
         /// 	<para>日期：2016/4/2</para>
         /// </remarks>
-        public static ServiceResolver Current => _defaultInstance;
+        public static RpcServiceResolver Current => _defaultInstance;
 
         /// <summary>
         /// 通过KEY和TYPE获取实例对象

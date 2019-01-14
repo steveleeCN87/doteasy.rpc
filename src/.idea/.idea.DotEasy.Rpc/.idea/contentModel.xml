@@ -71,12 +71,38 @@
         </e>
         <e p="bin" t="ExcludeRecursive" />
         <e p="Cache" t="Include">
-          <e p="CacheEndpoint.cs" t="Include" />
           <e p="Caching" t="Include">
-            <e p="CacheContainer.cs" t="Include" />
+            <e p="CachingCheck.cs" t="Include" />
+            <e p="CachingContainer.cs" t="Include" />
+            <e p="CachingEndpoint.cs" t="Include" />
+            <e p="CachingException.cs" t="Include" />
+            <e p="CachingObjectPool.cs" t="Include" />
+            <e p="CachingProvider.cs" t="Include" />
+            <e p="CachingResources.Designer.cs" t="Include" />
+            <e p="CachingResources.resx" t="Include" />
           </e>
-          <e p="CachingProvider.cs" t="Include" />
+          <e p="HashAlgorithms" t="Include">
+            <e p="ConsistentHash.cs" t="Include" />
+            <e p="ConsistentHashNode.cs" t="Include" />
+            <e p="HashAlgorithm.cs" t="Include" />
+            <e p="IHashAlgorithm.cs" t="Include" />
+          </e>
+          <e p="ICacheClient.cs" t="Include" />
           <e p="ICacheProvider.cs" t="Include" />
+          <e p="Impl" t="Include">
+            <e p="Memeory" t="Include">
+              <e p="DefaultGCThreadProvider.cs" t="Include" />
+              <e p="DefaultMemoryCache.cs" t="Include" />
+              <e p="DefaultMemoryCacheProvider.cs" t="Include" />
+            </e>
+            <e p="Redis" t="Include">
+              <e p="DefaultRedisCacheClient.cs" t="Include" />
+              <e p="DefaultRedisCacheProvider.cs" t="Include" />
+              <e p="DefaultRedisContext.cs" t="Include" />
+              <e p="DefaultRedisEndpoint.cs" t="Include" />
+              <e p="StackExchangeRedisExtensions.cs" t="Include" />
+            </e>
+          </e>
           <e p="Model" t="Include">
             <e p="binding.cs" t="Include" />
             <e p="CacheTargetType.cs" t="Include" />
@@ -91,13 +117,13 @@
         <e p="DependencyResolver" t="Include">
           <e p="Builder" t="Include">
             <e p="RpcBuilder.cs" t="Include" />
+            <e p="RpcDependencyResolverExtensions.cs" t="Include" />
+            <e p="RpcServiceBase.cs" t="Include" />
             <e p="RpcServiceExtensions.cs" t="Include" />
-            <e p="ServiceResolver.cs" t="Include" />
+            <e p="RpcServiceResolver.cs" t="Include" />
           </e>
-          <e p="DependencyResolverExtensions.cs" t="Include" />
           <e p="IDependencyResolver.cs" t="Include" />
           <e p="IRpcBuilder.cs" t="Include" />
-          <e p="ServiceBase.cs" t="Include" />
         </e>
         <e p="DotEasy.Rpc.Core.csproj" t="IncludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
@@ -230,6 +256,7 @@
           </e>
           <e p="ServiceLocator.cs" t="Include" />
         </e>
+        <e p="test.cs" t="Include" />
         <e p="Transport" t="Include">
           <e p="Codec" t="Include">
             <e p="Implementation" t="Include">

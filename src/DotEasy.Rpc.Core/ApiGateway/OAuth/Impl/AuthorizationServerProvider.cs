@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DotEasy.Rpc.Core.Cache;
 using DotEasy.Rpc.Core.Cache.Caching;
+using DotEasy.Rpc.Core.Cache.Impl;
 using DotEasy.Rpc.Core.ConfigCenter;
 using DotEasy.Rpc.Core.Proxy;
 using DotEasy.Rpc.Core.Routing;
@@ -18,12 +19,11 @@ namespace DotEasy.Rpc.Core.ApiGateway.OAuth.Impl
         private readonly IServiceRouteProvider _serviceRouteProvider;
         private readonly ICacheProvider _cacheProvider;
 
-        public AuthorizationServerProvider(IServiceProxyProvider serviceProxyProvider,
-            IServiceRouteProvider serviceRouteProvider)
+        public AuthorizationServerProvider(IServiceProxyProvider serviceProxyProvider, IServiceRouteProvider serviceRouteProvider)
         {
             _serviceProxyProvider = serviceProxyProvider;
             _serviceRouteProvider = serviceRouteProvider;
-            _cacheProvider = CacheContainer.GetService<ICacheProvider>(GatewayConfig.CacheMode);
+            _cacheProvider = CachingContainer.GetService<ICacheProvider>(GatewayConfig.CacheMode);
         }
 
         public async Task<string> GenerateTokenCredential(Dictionary<string, object> parameters)
@@ -45,7 +45,7 @@ namespace DotEasy.Rpc.Core.ApiGateway.OAuth.Impl
 
         public async Task<bool> ValidateClientAuthentication(string token)
         {
-            bool isSuccess = false;
+            var isSuccess = false;
             var jwtToken = token.Split('.');
             if (jwtToken.Length == 3)
             {

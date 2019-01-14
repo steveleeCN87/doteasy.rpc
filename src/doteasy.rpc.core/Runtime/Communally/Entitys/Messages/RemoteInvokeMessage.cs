@@ -16,5 +16,10 @@ namespace DotEasy.Rpc.Core.Runtime.Communally.Entitys.Messages
         /// 服务参数
         /// </summary>
         public IDictionary<string, object> Parameters { get; set; }
+
+        /// <summary>
+        /// 访问Token
+        /// </summary>
+        public string AccessToken { get; set; }
     }
 }

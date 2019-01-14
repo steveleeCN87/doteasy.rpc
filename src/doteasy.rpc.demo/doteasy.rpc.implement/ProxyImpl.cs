@@ -2,15 +2,20 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using doteasy.rpc.interfaces;
-using DotEasy.Rpc.Core.DependencyResolver;
+using DotEasy.Rpc.Core.DependencyResolver.Builder;
 
 namespace doteasy.rpc.implement
 {
-    public class ProxyImpl : ServiceBase, IProxyService
+    public class ProxyImpl : RpcServiceBase, IProxyService
     {
         public Task<string> Async(int id)
         {
             return Task.FromResult($"我执行了异步方法{id}.");
+        }
+
+        public string MultiParTest(string a, string b, string c)
+        {
+            return $"{a}.{b}.{c}";
         }
 
         public Task<IDictionary<string, string>> GetDictionary()

@@ -27,9 +27,13 @@ namespace DotEasy.Rpc.Core.Proxy.Impl
         /// <returns>服务代理实例</returns>
         public object CreateProxy(Type proxyType)
         {
-            return proxyType.GetTypeInfo().GetConstructors().First().Invoke(
-                new object[] {_remoteInvokeService, _typeConvertibleService}
-            );
+            return proxyType
+                .GetTypeInfo()
+                .GetConstructors()
+                .First()
+                .Invoke(
+                    new object[] {_remoteInvokeService, _typeConvertibleService}
+                );
         }
     }
 }

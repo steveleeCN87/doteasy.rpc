@@ -19,11 +19,11 @@ namespace DotEasy.Rpc.Consul.Entry
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public static T Generate<T>(string consulUrl)
+        public static T Generate<T>(Uri consulUrl)
         {
             serviceCollection.AddLogging().AddClient().UseDotNettyTransport().UseConsulRouteManager(new RpcOptionsConfiguration
             {
-                ConsulClientConfiguration = new ConsulClientConfiguration {Address = new Uri(consulUrl)}
+                ConsulClientConfiguration = new ConsulClientConfiguration {Address = consulUrl}
             });
 
             return Proxy<T>();
@@ -34,32 +34,19 @@ namespace DotEasy.Rpc.Consul.Entry
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public static T Generate<T>(RpcOptionsConfiguration configuration)
+        public static T Generate<T>(Uri consulUrl, string accessToken)
         {
-            serviceCollection.AddLogging().AddClient().UseDotNettyTransport().UseConsulRouteManager(configuration);
-            return Proxy<T>();
-        }
+            serviceCollection
+                .AddLogging()
+                .AddClient()
+                .UseDotNettyTransport()
+                .UseConsulRouteManager(new RpcOptionsConfiguration
+                {
+                    ConsulClientConfiguration = new ConsulClientConfiguration {Address = consulUrl}
+                });
 
-        /// <summary>
-        /// 代理生成预编译的客户端
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        public static T Generate<T>()
-        {
-            throw new NotImplementedException();
+            return Proxy<T>(accessToken);
         }
-
-        /// <summary>
-        /// 代理生成预编译的客户端
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        public static T Generate<T>(object context)
-        {
-            throw new NotImplementedException();
-        }
-
 
         #region 私有方法
 
@@ -68,7 +55,7 @@ namespace DotEasy.Rpc.Consul.Entry
             return serviceCollection.BuildServiceProvider();
         }
 
-        private static T Proxy<T>()
+        private static T Proxy<T>(string accessToken = "")
         {
             var serviceProvider = Builder();
 #if DEBUG
@@ -78,7 +65,7 @@ namespace DotEasy.Rpc.Consul.Entry
             var serviceProxyFactory = serviceProvider.GetRequiredService<IServiceProxyFactory>();
 
             return serviceProxyFactory
-                .CreateProxy<T>(serviceProxyGenerate.GenerateProxys(new[] {typeof(T)})
+                .CreateProxy<T>(serviceProxyGenerate.GenerateProxys(new[] {typeof(T)}, accessToken)
                     .ToArray()
                     .Single(typeof(T).GetTypeInfo().IsAssignableFrom));
         }

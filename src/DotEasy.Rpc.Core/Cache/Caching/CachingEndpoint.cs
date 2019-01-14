@@ -1,6 +1,6 @@
-namespace DotEasy.Rpc.Core.Cache
+namespace DotEasy.Rpc.Core.Cache.Caching
 {
-    public abstract class CacheEndpoint
+    public abstract class CachingEndpoint
     {
         public string Host { get; set; }
 
@@ -10,7 +10,7 @@ namespace DotEasy.Rpc.Core.Cache
 
         public override bool Equals(object obj)
         {
-            var model = obj as CacheEndpoint;
+            var model = obj as CachingEndpoint;
             if (model == null)
                 return false;
 
@@ -25,12 +25,12 @@ namespace DotEasy.Rpc.Core.Cache
             return ToString().GetHashCode();
         }
 
-        public static bool operator ==(CacheEndpoint model1, CacheEndpoint model2)
+        public static bool operator ==(CachingEndpoint model1, CachingEndpoint model2)
         {
             return Equals(model1, model2);
         }
 
-        public static bool operator !=(CacheEndpoint model1, CacheEndpoint model2)
+        public static bool operator !=(CachingEndpoint model1, CachingEndpoint model2)
         {
             return !Equals(model1, model2);
         }

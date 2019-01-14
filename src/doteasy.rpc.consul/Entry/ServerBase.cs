@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Consul;
-using DotEasy.Rpc.Core.DependencyResolver;
 using DotEasy.Rpc.Core.DependencyResolver.Builder;
 using DotEasy.Rpc.Core.Routing;
 using DotEasy.Rpc.Core.Runtime.Communally.Entitys.Address;
@@ -68,6 +67,7 @@ namespace DotEasy.Rpc.Consul.Entry
                 .AddLogging()
                 .AddRpcCore()
                 .AddService()
+                .AddAuthentication()
                 .UseDotNettyTransport()
                 .UseConsulRouteManager(_rpcOptionsConfiguration);
         }

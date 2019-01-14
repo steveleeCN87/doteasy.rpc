@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DotEasy.Rpc.Core.DependencyResolver
+namespace DotEasy.Rpc.Core.DependencyResolver.Builder
 {
     /// <summary>
-    /// 扩展依赖注入IOC容器
+    /// 扩展依赖注入IOC容器 DotEasy.Rpc主要入口
     /// </summary>
-    public static class DependencyResolverExtensions
+    public static class RpcDependencyResolverExtensions
     {
         /// <summary>
         /// 通过KEY获取<see cref="T"/>实例

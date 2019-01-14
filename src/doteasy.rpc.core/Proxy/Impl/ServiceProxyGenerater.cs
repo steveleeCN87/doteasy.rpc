@@ -23,6 +23,7 @@ namespace DotEasy.Rpc.Core.Proxy.Impl
     {
         private readonly IServiceIdGenerator _serviceIdGenerator;
         private readonly ILogger<ServiceProxyGenerater> _logger;
+        private string _Token = "";
 
         public ServiceProxyGenerater(IServiceIdGenerator serviceIdGenerator, ILogger<ServiceProxyGenerater> logger)
         {
@@ -30,8 +31,10 @@ namespace DotEasy.Rpc.Core.Proxy.Impl
             _logger = logger;
         }
 
-        public IEnumerable<Type> GenerateProxys(IEnumerable<Type> interfaceTypes)
+        public IEnumerable<Type> GenerateProxys(IEnumerable<Type> interfaceTypes, string accessToken = "")
         {
+            _Token = accessToken;
+
             var assembles = DependencyContext.Default.RuntimeLibraries
                 .SelectMany(i => i.GetDefaultAssemblyNames(DependencyContext.Default)
                     .Select(z => Assembly.Load(new AssemblyName(z.Name))));
@@ -50,7 +53,7 @@ namespace DotEasy.Rpc.Core.Proxy.Impl
 
             if (stream == null)
             {
-                throw new ArgumentException("没有生成任何客户端代码", nameof(stream));
+                throw new ArgumentException(@"没有生成任何客户端代码", nameof(stream));
             }
 
             using (stream)
@@ -72,7 +75,7 @@ namespace DotEasy.Rpc.Core.Proxy.Impl
 
             var interf = interfaceType.GetInterfaces()[0];
             var mthods = interfaceType.GetMethods();
-            if (interf.FullName.Contains("IDisposable"))
+            if (interf.FullName != null && interf.FullName.Contains("IDisposable"))
             {
                 var m = interf.GetMethods()[0];
                 var mm = mthods.ToList();
@@ -241,6 +244,26 @@ namespace DotEasy.Rpc.Core.Proxy.Impl
                 parameterDeclarationList.RemoveAt(parameterDeclarationList.Count - 1);
             }
 
+            if (!method.Name.Contains("Dispose"))
+            {
+                parameterDeclarationList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
+                parameterDeclarationList.Add(SyntaxFactory.Parameter(
+                        SyntaxFactory.Identifier("token"))
+                    .WithType(GetQualifiedNameSyntax(typeof(string))));
+            
+                parameterList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
+                parameterList.Add(
+                    SyntaxFactory.InitializerExpression(SyntaxKind.ComplexElementInitializerExpression,
+                        SyntaxFactory.SeparatedList<ExpressionSyntax>(new SyntaxNodeOrToken[]
+                        {
+                            SyntaxFactory.LiteralExpression(
+                                SyntaxKind.StringLiteralExpression,
+                                SyntaxFactory.Literal("token")),
+                            SyntaxFactory.Token(SyntaxKind.CommaToken),
+                            SyntaxFactory.IdentifierName("\"" + _Token + "\"")
+                        })));
+            }
+
             MethodDeclarationSyntax declaration;
             if (method.ToString().Contains("Task"))
             {
@@ -260,7 +283,6 @@ namespace DotEasy.Rpc.Core.Proxy.Impl
                         SyntaxFactory.Identifier("Dispose")
                     ).WithModifiers(
                         SyntaxFactory.TokenList(SyntaxFactory.Token(SyntaxKind.PublicKeyword)));
-//                                    .WithBody(SyntaxFactory.Block())));
                 }
                 else
                 {
@@ -269,7 +291,8 @@ namespace DotEasy.Rpc.Core.Proxy.Impl
                         SyntaxFactory.Identifier(method.Name)
                     ).WithModifiers(
                         SyntaxFactory.TokenList(SyntaxFactory.Token(SyntaxKind.PublicKeyword)
-                        )).WithParameterList(SyntaxFactory.ParameterList(SyntaxFactory.SeparatedList<ParameterSyntax>(parameterDeclarationList)));
+                        )).WithParameterList(
+                        SyntaxFactory.ParameterList(SyntaxFactory.SeparatedList<ParameterSyntax>(parameterDeclarationList)));
                 }
             }
 
@@ -300,11 +323,9 @@ namespace DotEasy.Rpc.Core.Proxy.Impl
                                         SyntaxFactory.TypeArgumentList(
                                             SyntaxFactory.SeparatedList<TypeSyntax>(new SyntaxNodeOrToken[]
                                             {
-                                                SyntaxFactory.PredefinedType(
-                                                    SyntaxFactory.Token(SyntaxKind.StringKeyword)),
+                                                SyntaxFactory.PredefinedType(SyntaxFactory.Token(SyntaxKind.StringKeyword)),
                                                 SyntaxFactory.Token(SyntaxKind.CommaToken),
-                                                SyntaxFactory.PredefinedType(
-                                                    SyntaxFactory.Token(SyntaxKind.ObjectKeyword))
+                                                SyntaxFactory.PredefinedType(SyntaxFactory.Token(SyntaxKind.ObjectKeyword)),
                                             })))).WithInitializer(
                                     SyntaxFactory.InitializerExpression(SyntaxKind.CollectionInitializerExpression,
                                         SyntaxFactory.SeparatedList<ExpressionSyntax>(parameterList)))),
@@ -338,7 +359,8 @@ namespace DotEasy.Rpc.Core.Proxy.Impl
                                     )
                             ),
                             SyntaxFactory.Token(SyntaxKind.CommaToken),
-                            SyntaxFactory.Argument(SyntaxFactory.LiteralExpression(SyntaxKind.StringLiteralExpression, SyntaxFactory.Literal(serviceId)))
+                            SyntaxFactory.Argument(SyntaxFactory.LiteralExpression(SyntaxKind.StringLiteralExpression,
+                                SyntaxFactory.Literal(serviceId)))
                         }
                     )));
             }

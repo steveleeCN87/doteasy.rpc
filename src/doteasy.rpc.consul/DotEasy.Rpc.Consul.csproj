@@ -10,18 +10,13 @@
   
   <ItemGroup>
     <PackageReference Include="Consul" Version="0.7.2.6" />
-    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="2.1.1.0" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.0.0" />
   </ItemGroup>
   
   <ItemGroup>
     <ProjectReference Include="..\doteasy.rpc.core\DotEasy.Rpc.Core.csproj" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <Reference Include="Microsoft.AspNetCore.Authorization, Version=2.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60">
-      <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.aspnetcore.authorization\2.1.1\lib\netstandard2.0\Microsoft.AspNetCore.Authorization.dll</HintPath>
-    </Reference>
   </ItemGroup>
   
 </Project>

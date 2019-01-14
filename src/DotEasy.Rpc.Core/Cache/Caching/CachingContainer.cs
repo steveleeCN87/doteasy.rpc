@@ -4,7 +4,7 @@ using DotEasy.Rpc.Core.Runtime;
 
 namespace DotEasy.Rpc.Core.Cache.Caching
 {
-    public class CacheContainer
+    public class CachingContainer
     {
         public static T GetInstances<T>(string name) where T : class
         {

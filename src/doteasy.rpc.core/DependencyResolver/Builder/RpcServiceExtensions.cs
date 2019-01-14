@@ -25,8 +25,10 @@ using DotEasy.Rpc.Core.Transport;
 using DotEasy.Rpc.Core.Transport.Codec;
 using DotEasy.Rpc.Core.Transport.Codec.Implementation;
 using DotEasy.Rpc.Core.Transport.Impl;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 
 namespace DotEasy.Rpc.Core.DependencyResolver.Builder
 {
@@ -250,7 +252,8 @@ namespace DotEasy.Rpc.Core.DependencyResolver.Builder
             services.AddSingleton<IServiceEntryFactory, ServiceEntryFactory>();
             services.AddSingleton<IServiceEntryProvider>(provider =>
                 new AttributeServiceEntryProvider(
-                    AppDomain.CurrentDomain.GetAssemblies().AsParallel().Where(i => i.IsDynamic == false).SelectMany(i => i.ExportedTypes).ToArray(),
+                    AppDomain.CurrentDomain.GetAssemblies().AsParallel().Where(i => i.IsDynamic == false).SelectMany(i => i.ExportedTypes)
+                        .ToArray(),
                     provider.GetRequiredService<IServiceEntryFactory>(),
                     provider.GetRequiredService<ILogger<AttributeServiceEntryProvider>>()));
             services.AddSingleton<IServiceEntryManager, DefaultServiceEntryManager>();
@@ -328,25 +331,29 @@ namespace DotEasy.Rpc.Core.DependencyResolver.Builder
             return builder;
         }
 
-
+        /// <summary>
+        /// 添加RPC服务认证 | 认证在服务端
+        /// </summary>
+        /// <param name="builder"></param>
+        /// <returns></returns>
         public static IRpcBuilder AddAuthentication(this IRpcBuilder builder)
         {
-//            var services = builder.Services;
-            
+            var services = builder.Services;
+
             // 该服务需要验证
-//            services.AddAuthentication(options =>
-//                {
-//                    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-//                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-//                })
-//                .AddJwtBearer(options =>
-//                {
-//                    options.TokenValidationParameters = new TokenValidationParameters();
-//                    options.RequireHttpsMetadata = false;
-//                    options.Audience = "api1"; //api范围
-//                    options.Authority = "http://127.0.0.1:8080"; //IdentityServer地址
-//                });
-            
+            services.AddAuthentication(options =>
+                {
+                    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters();
+                    options.RequireHttpsMetadata = false;
+                    options.Audience = "api1"; //api范围
+                    options.Authority = "http://127.0.0.1:8080"; //IdentityServer地址 | rpc中待测
+                });
+
             return builder;
         }
     }

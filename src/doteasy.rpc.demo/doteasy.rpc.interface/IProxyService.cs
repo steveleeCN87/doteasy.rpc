@@ -8,10 +8,11 @@ namespace doteasy.rpc.interfaces
     [RpcTagBundle]
     public interface IProxyService : IDisposable
     {
-        Task<string> Async(int id);
+        string MultiParTest(string a, string b, string c);
+        
+//        Task<string> Async(int id);
+//        string Sync(int id);
+//        Task<IDictionary<string, string>> GetDictionary();
 
-        Task<IDictionary<string, string>> GetDictionary();
-
-        string Sync(int id);
     }
 }

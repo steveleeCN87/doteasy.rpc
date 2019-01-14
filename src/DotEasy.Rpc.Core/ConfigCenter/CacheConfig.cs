@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography;
 using DotEasy.Rpc.Core.Attributes;
-using DotEasy.Rpc.Core.Cache;
+using DotEasy.Rpc.Core.Cache.Caching;
 using DotEasy.Rpc.Core.Cache.Model;
 using DotEasy.Rpc.Core.DependencyResolver;
 using DotEasy.Rpc.Core.DependencyResolver.Builder;
@@ -16,13 +16,15 @@ namespace DotEasy.Rpc.Core.ConfigCenter
     {
         private const string CacheSectionName = "CachingProvider";
         private readonly CachingProvider _cacheWrapperSetting;
-        internal static string Path;
+#pragma warning disable 414
+        internal static string Path = null;
+#pragma warning restore 414
         internal static IConfigurationRoot Configuration { get; set; }
 
         public CacheConfig()
         {
-            ServiceResolver.Current.Register(null, Activator.CreateInstance(typeof(HashAlgorithm), new object[] { }));
-//            _cacheWrapperSetting = Configuration.Get<CachingProvider>();
+            RpcServiceResolver.Current.Register(null, Activator.CreateInstance(typeof(HashAlgorithm), new object[] { }));
+            _cacheWrapperSetting = Configuration.Get<CachingProvider>();
             RegisterConfigInstance();
             RegisterLocalInstance("ICacheClient`1");
             InitSettingMethod();
@@ -32,11 +34,11 @@ namespace DotEasy.Rpc.Core.ConfigCenter
         {
             get
             {
-                var config = ServiceResolver.Current.GetService<CacheConfig>();
+                var config = RpcServiceResolver.Current.GetService<CacheConfig>();
                 if (config == null)
                 {
                     config = Activator.CreateInstance(typeof(CacheConfig), new object[] { }) as CacheConfig;
-                    ServiceResolver.Current.Register(null, config);
+                    RpcServiceResolver.Current.Register(null, config);
                 }
 
                 return config;
@@ -45,13 +47,13 @@ namespace DotEasy.Rpc.Core.ConfigCenter
 
         public T GetContextInstance<T>() where T : class
         {
-            var context = ServiceResolver.Current.GetService<T>(typeof(T));
+            var context = RpcServiceResolver.Current.GetService<T>(typeof(T));
             return context;
         }
 
         public T GetContextInstance<T>(string name) where T : class
         {
-            var context = ServiceResolver.Current.GetService<T>(name);
+            var context = RpcServiceResolver.Current.GetService<T>(name);
             return context;
         }
 
@@ -61,7 +63,7 @@ namespace DotEasy.Rpc.Core.ConfigCenter
             foreach (var t in types)
             {
                 var attribute = t.GetTypeInfo().GetCustomAttribute<IdentifyCacheAttribute>();
-                ServiceResolver.Current.Register(attribute.Name.ToString(),
+                RpcServiceResolver.Current.Register(attribute.Name.ToString(),
                     Activator.CreateInstance(t));
             }
         }
@@ -83,22 +85,22 @@ namespace DotEasy.Rpc.Core.ConfigCenter
                             properties.Select(p => p.Maps)
                                 .FirstOrDefault(p => p != null && p.Any());
                         var type = Type.GetType(setting.Class, true);
-                        if (ServiceResolver.Current.GetService(type, setting.Id) == null)
-                            ServiceResolver.Current.Register(setting.Id, Activator.CreateInstance(type, args));
+                        if (RpcServiceResolver.Current.GetService(type, setting.Id) == null)
+                            RpcServiceResolver.Current.Register(setting.Id, Activator.CreateInstance(type, args));
                         if (maps == null) continue;
                         if (!maps.Any()) continue;
                         foreach (
                             var mapsetting in
                             maps.Where(mapsetting => t.Name.StartsWith(mapsetting.Name, StringComparison.CurrentCultureIgnoreCase)))
                         {
-                            ServiceResolver.Current.Register(string.Format("{0}.{1}", setting.Id, mapsetting.Name),
+                            RpcServiceResolver.Current.Register(string.Format("{0}.{1}", setting.Id, mapsetting.Name),
                                 Activator.CreateInstance(t, setting.Id));
                         }
                     }
 
                     var attribute = t.GetTypeInfo().GetCustomAttribute<IdentifyCacheAttribute>();
                     if (attribute != null)
-                        ServiceResolver.Current.Register(attribute.Name.ToString(),
+                        RpcServiceResolver.Current.Register(attribute.Name.ToString(),
                             Activator.CreateInstance(t));
                 }
             }
@@ -149,8 +151,9 @@ namespace DotEasy.Rpc.Core.ConfigCenter
             var settings = _cacheWrapperSetting.CachingSettings.Where(p => !string.IsNullOrEmpty(p.InitMethod));
             foreach (var setting in settings)
             {
-                var bindingInstance = ServiceResolver.Current.GetService(Type.GetType(setting.Class, true), setting.Id);
-                bindingInstance.GetType().GetMethod(setting.InitMethod, BindingFlags.InvokeMethod)?.Invoke(bindingInstance, new object[] { });
+                var bindingInstance = RpcServiceResolver.Current.GetService(Type.GetType(setting.Class, true), setting.Id);
+                bindingInstance.GetType().GetMethod(setting.InitMethod, BindingFlags.InvokeMethod)
+                    ?.Invoke(bindingInstance, new object[] { });
             }
         }
     }

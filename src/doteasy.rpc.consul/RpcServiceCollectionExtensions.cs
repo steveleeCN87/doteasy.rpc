@@ -1,5 +1,4 @@
-﻿using DotEasy.Rpc.Core;
-using DotEasy.Rpc.Core.DependencyResolver;
+﻿using DotEasy.Rpc.Core.DependencyResolver;
 using DotEasy.Rpc.Core.DependencyResolver.Builder;
 using DotEasy.Rpc.Core.Routing;
 using DotEasy.Rpc.Core.Runtime.Communally.Serialization;

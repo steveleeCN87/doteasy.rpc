@@ -1,8 +1,8 @@
 using System;
 
-namespace DotEasy.Rpc.Core.DependencyResolver
+namespace DotEasy.Rpc.Core.DependencyResolver.Builder
 {
-    public class ServiceBase
+    public class RpcServiceBase
     {
         public void Dispose()
         {

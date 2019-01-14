@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DotEasy.Rpc.Core.Cache.HashAlgorithms;
 using DotEasy.Rpc.Core.Routing;
 using DotEasy.Rpc.Core.Runtime.Client.Address.Resolvers.Implementation.Selectors;
 using DotEasy.Rpc.Core.Runtime.Client.HealthChecks;
@@ -71,6 +72,11 @@ namespace DotEasy.Rpc.Core.Runtime.Client.Address.Resolvers.Implementation
                 Descriptor = descriptor.ServiceDescriptor,
                 Address = address
             });
+        }
+
+        public ValueTask<ConsistentHashNode> Resolver(string cacheId, string item)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

@@ -40,7 +40,7 @@ namespace DotEasy.Rpc.Core.ConfigCenter
             internal set => _tokenEndpointPath = value;
         }
 
-        private static string _cacheMode = "MemoryCache";
+        private static string _cacheMode = "DefaultMemoryCache";
         public static string CacheMode => Configuration["CacheMode"] ?? _cacheMode;
     }
 }
