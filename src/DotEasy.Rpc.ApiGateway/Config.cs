@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using IdentityServer4.Models;
 using IdentityServer4.Test;
 
-namespace doteasy.rpc.identityServer
+namespace DotEasy.Rpc.ApiGateway
 {
     public class Config
     {
@@ -14,18 +14,8 @@ namespace doteasy.rpc.identityServer
         {
             return new List<TestUser>
             {
-                new TestUser
-                {
-                    SubjectId = "1",
-                    Username = "alice",
-                    Password = "password"
-                },
-                new TestUser
-                {
-                    SubjectId = "2",
-                    Username = "bob",
-                    Password = "password"
-                }
+                new TestUser {SubjectId = "1", Username = "alice", Password = "password"},
+                new TestUser {SubjectId = "2", Username = "bob", Password = "password"}
             };
         }
 

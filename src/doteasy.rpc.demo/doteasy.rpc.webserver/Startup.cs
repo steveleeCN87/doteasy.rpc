@@ -22,6 +22,7 @@ namespace doteasy.rpc.webserver
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            // 该服务需要验证
             services.AddAuthentication(options =>
                 {
                     options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -32,7 +33,7 @@ namespace doteasy.rpc.webserver
                     options.TokenValidationParameters = new TokenValidationParameters();
                     options.RequireHttpsMetadata = false;
                     options.Audience = "api1"; //api范围
-                    options.Authority = "http://127.0.0.1:2000"; //IdentityServer地址
+                    options.Authority = "http://127.0.0.1:8080"; //IdentityServer地址
                 });
         }
 
