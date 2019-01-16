@@ -41,6 +41,6 @@ namespace DotEasy.Rpc.Core.ConfigCenter
         }
 
         private static string _cacheMode = "DefaultMemoryCache";
-        public static string CacheMode => Configuration["CacheMode"] ?? _cacheMode;
+        public static string CacheMode => "DefaultRedisCache";
     }
 }

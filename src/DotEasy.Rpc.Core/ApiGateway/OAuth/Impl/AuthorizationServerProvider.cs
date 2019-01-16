@@ -15,16 +15,21 @@ namespace DotEasy.Rpc.Core.ApiGateway.OAuth.Impl
 {
     public class AuthorizationServerProvider : IAuthorizationServerProvider
     {
-//        private readonly IServiceProxyProvider _serviceProxyProvider;
-//        private readonly IServiceRouteProvider _serviceRouteProvider;
-//        private readonly ICacheProvider _cacheProvider;
+        private readonly IServiceProxyProvider _serviceProxyProvider;
+        private readonly IServiceRouteProvider _serviceRouteProvider;
+        private readonly ICacheProvider _cacheProvider;
 
-//        public AuthorizationServerProvider(IServiceProxyProvider serviceProxyProvider, IServiceRouteProvider serviceRouteProvider)
-//        {
-//            _serviceProxyProvider = serviceProxyProvider;
-//            _serviceRouteProvider = serviceRouteProvider;
-//            _cacheProvider = CachingContainer.GetService<ICacheProvider>(GatewayConfig.CacheMode);
-//        }
+        public AuthorizationServerProvider(IServiceProxyProvider serviceProxyProvider, IServiceRouteProvider serviceRouteProvider)
+        {
+            _serviceProxyProvider = serviceProxyProvider;
+            _serviceRouteProvider = serviceRouteProvider;
+            _cacheProvider = CachingContainer.GetService<ICacheProvider>(GatewayConfig.CacheMode);
+        }
+
+        public AuthorizationServerProvider()
+        {
+            _cacheProvider = CachingContainer.GetService<ICacheProvider>(GatewayConfig.CacheMode);
+        }
 
 //        public async Task<string> GenerateTokenCredential(Dictionary<string, object> parameters)
 //        {
