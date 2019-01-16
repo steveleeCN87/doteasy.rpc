@@ -25,14 +25,15 @@ namespace DotEasy.Rpc.Core.Cache.Impl.Redis
         {
             _context = new Lazy<DefaultRedisContext>(() =>
             {
-                if (CachingContainer.IsRegistered<DefaultRedisContext>(appName))
-                    return CachingContainer.GetService<DefaultRedisContext>(appName);
-                else
-                    return CachingContainer.GetInstances<DefaultRedisContext>(appName);
+                return CachingContainer.IsRegistered<DefaultRedisContext>(appName)
+                    ? CachingContainer.GetService<DefaultRedisContext>(appName)
+                    : CachingContainer.GetInstances<DefaultRedisContext>(appName);
             });
+
             _keySuffix = appName;
             _defaultExpireTime = new Lazy<long>(() => long.Parse(_context.Value._defaultExpireTime));
             _connectTimeout = new Lazy<int>(() => int.Parse(_context.Value._connectTimeout));
+
             if (CachingContainer.IsRegistered<ICacheClient<IDatabase>>(CacheTargetType.Redis.ToString()))
             {
                 _addressResolver = CachingContainer.GetService<IAddressResolver>();

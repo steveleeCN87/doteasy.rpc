@@ -9,13 +9,11 @@ using StackExchange.Redis;
 
 namespace DotEasy.Rpc.Core.Cache.Impl.Redis
 {
+    
     [IdentifyCache(CacheTargetType.Redis)]
-    public class DefaultRedisCacheClient<T> : ICacheClient<T>
-        where T : class
-
+    public class DefaultRedisCacheClient<T> : ICacheClient<T> where T : class
     {
-        private static readonly ConcurrentDictionary<string, Lazy<CachingObjectPool<T>>> Pool =
-            new ConcurrentDictionary<string, Lazy<CachingObjectPool<T>>>();
+        private static readonly ConcurrentDictionary<string, Lazy<CachingObjectPool<T>>> Pool = new ConcurrentDictionary<string, Lazy<CachingObjectPool<T>>>();
 
         // ReSharper disable once EmptyConstructor
         public DefaultRedisCacheClient()
@@ -76,10 +74,8 @@ namespace DotEasy.Rpc.Core.Cache.Impl.Redis
                     Pool.GetOrAdd(key, objectPool);
                     return objectPool.Value.GetObject();
                 }
-                else
-                {
-                    return Pool[key].Value.GetObject();
-                }
+
+                return Pool[key].Value.GetObject();
             }
             catch (Exception e)
             {

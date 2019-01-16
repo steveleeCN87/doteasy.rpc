@@ -4,8 +4,8 @@
     {
         private static void Main()
         {
-            RpcClient.Test();
-//            AuthClient.TestAllDisco();
+//            RpcClient.Test();
+            AuthClient.TestAllDisco();
         }
     }
 }

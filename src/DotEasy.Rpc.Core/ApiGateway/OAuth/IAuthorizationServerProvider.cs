@@ -8,19 +8,13 @@ namespace DotEasy.Rpc.Core.ApiGateway.OAuth
     /// </summary>
     public interface IAuthorizationServerProvider
     {
-        /// <summary>
-        /// 生成Token凭据
-        /// </summary>
-        /// <param name="parameters"></param>
-        /// <returns></returns>
-        Task<string> GenerateTokenCredential(Dictionary<string, object> parameters);
-
+        
         /// <summary>
         /// 验证客户端
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        Task<bool> ValidateClientAuthentication(string token);
+        bool ValidateClientAuthentication(string token);
 
         /// <summary>
         /// 获取载荷

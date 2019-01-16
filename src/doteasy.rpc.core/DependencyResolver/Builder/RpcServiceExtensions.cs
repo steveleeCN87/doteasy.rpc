@@ -1,6 +1,11 @@
 using System;
 using System.Linq;
+using DotEasy.Rpc.Core.ApiGateway.OAuth;
+using DotEasy.Rpc.Core.ApiGateway.OAuth.Impl;
 using DotEasy.Rpc.Core.Attributes;
+using DotEasy.Rpc.Core.Cache;
+using DotEasy.Rpc.Core.Cache.Impl.Memeory;
+using DotEasy.Rpc.Core.Cache.Impl.Redis;
 using DotEasy.Rpc.Core.Proxy;
 using DotEasy.Rpc.Core.Proxy.Impl;
 using DotEasy.Rpc.Core.Routing;
@@ -25,10 +30,8 @@ using DotEasy.Rpc.Core.Transport;
 using DotEasy.Rpc.Core.Transport.Codec;
 using DotEasy.Rpc.Core.Transport.Codec.Implementation;
 using DotEasy.Rpc.Core.Transport.Impl;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.IdentityModel.Tokens;
 
 namespace DotEasy.Rpc.Core.DependencyResolver.Builder
 {
@@ -340,21 +343,13 @@ namespace DotEasy.Rpc.Core.DependencyResolver.Builder
         {
             var services = builder.Services;
 
-            // 该服务需要验证
-            services.AddAuthentication(options =>
-                {
-                    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                })
-                .AddJwtBearer(options =>
-                {
-                    options.TokenValidationParameters = new TokenValidationParameters();
-                    options.RequireHttpsMetadata = false;
-                    options.Audience = "api1"; //api范围
-                    options.Authority = "http://127.0.0.1:8080"; //IdentityServer地址 | rpc中待测
-                });
-
+            services.AddSingleton<IAuthorizationServerProvider, AuthorizationServerProvider>();
+            services.AddSingleton<ICacheProvider, DefaultRedisCacheProvider>();
+            
             return builder;
         }
+
+        
     }
+
 }

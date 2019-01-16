@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Security.Authentication;
 using System.Threading.Tasks;
+using DotEasy.Rpc.Core.ApiGateway.OAuth;
 using DotEasy.Rpc.Core.Runtime.Communally.Convertibles;
 using DotEasy.Rpc.Core.Runtime.Communally.Entitys;
 using DotEasy.Rpc.Core.Runtime.Communally.IdGenerator;
@@ -31,21 +33,27 @@ namespace DotEasy.Rpc.Core.Runtime.Server.Impl
         /// </summary>
         private readonly ITypeConvertibleService _typeConvertibleService;
 
+        /// <summary>
+        /// 客户端验证
+        /// </summary>
+        private readonly IAuthorizationServerProvider _authorization;
+
         public ServiceEntryFactory(IServiceProvider serviceProvider, IServiceIdGenerator serviceIdGenerator,
-            ITypeConvertibleService typeConvertibleService)
+            ITypeConvertibleService typeConvertibleService, IAuthorizationServerProvider authorizationServerProvider)
         {
             _serviceProvider = serviceProvider;
             _serviceIdGenerator = serviceIdGenerator;
             _typeConvertibleService = typeConvertibleService;
+            _authorization = authorizationServerProvider;
         }
 
         public IEnumerable<ServiceEntity> CreateServiceEntry(Type service, Type serviceImplementation)
         {
             return from methodInfo in service.GetTypeInfo().GetMethods()
-                let implementationMethodInfo = serviceImplementation.GetTypeInfo().GetMethod(
-                    methodInfo.Name,
-                    methodInfo.GetParameters().Select(p => p.ParameterType).ToArray()
-                )
+                let implementationMethodInfo = serviceImplementation
+                    .GetTypeInfo()
+                    .GetMethod(methodInfo.Name,
+                        methodInfo.GetParameters().Select(p => p.ParameterType).ToArray())
                 select Create(methodInfo, implementationMethodInfo);
         }
 
@@ -63,17 +71,28 @@ namespace DotEasy.Rpc.Core.Runtime.Server.Impl
             return new ServiceEntity
             {
                 Descriptor = serviceDescriptor,
-                Func = parameters =>
+                Func = async parameters =>
                 {
                     // 从Microsoft.Extensions.DependencyInjection获取当前范围
                     var serviceScopeFactory = _serviceProvider.GetRequiredService<IServiceScopeFactory>();
+                    
+                    if (parameters.Any(p => p.Key.Equals("token")))
+                    {
+                        if (!_authorization.ValidateClientAuthentication(parameters.First(l => l.Key.Equals("token")).Value.ToString()))
+                        {
+                            return Task.FromResult("failure token");
+                        }
+                    }
+                    else
+                    {
+                        return Task.FromResult("client don`t have an token");
+                    }
 
                     using (var scope = serviceScopeFactory.CreateScope())
                     {
-                        return Task.FromResult(implementationMethod.Invoke(
-                            scope.ServiceProvider.GetRequiredService(method.DeclaringType),
-                            implementationMethod.GetParameters().Select(parameterInfo =>
-                                _typeConvertibleService.Convert(parameters[parameterInfo.Name], parameterInfo.ParameterType)).ToArray()
+                        return Task.FromResult(
+                            implementationMethod.Invoke(scope.ServiceProvider.GetRequiredService(method.DeclaringType),
+                            implementationMethod.GetParameters().Select(parameterInfo => _typeConvertibleService.Convert(parameters[parameterInfo.Name], parameterInfo.ParameterType)).ToArray()
                         ));
                     }
                 }

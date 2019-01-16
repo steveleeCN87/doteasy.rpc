@@ -23,7 +23,7 @@ namespace DotEasy.Rpc.Core.Proxy.Impl
     {
         private readonly IServiceIdGenerator _serviceIdGenerator;
         private readonly ILogger<ServiceProxyGenerater> _logger;
-        private string _Token = "";
+        private string _token = "";
 
         public ServiceProxyGenerater(IServiceIdGenerator serviceIdGenerator, ILogger<ServiceProxyGenerater> logger)
         {
@@ -33,7 +33,7 @@ namespace DotEasy.Rpc.Core.Proxy.Impl
 
         public IEnumerable<Type> GenerateProxys(IEnumerable<Type> interfaceTypes, string accessToken = "")
         {
-            _Token = accessToken;
+            _token = accessToken;
 
             var assembles = DependencyContext.Default.RuntimeLibraries
                 .SelectMany(i => i.GetDefaultAssemblyNames(DependencyContext.Default)
@@ -246,10 +246,10 @@ namespace DotEasy.Rpc.Core.Proxy.Impl
 
             if (!method.Name.Contains("Dispose"))
             {
-                parameterDeclarationList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
-                parameterDeclarationList.Add(SyntaxFactory.Parameter(
-                        SyntaxFactory.Identifier("token"))
-                    .WithType(GetQualifiedNameSyntax(typeof(string))));
+//                parameterDeclarationList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
+//                parameterDeclarationList.Add(SyntaxFactory.Parameter(
+//                        SyntaxFactory.Identifier("token"))
+//                    .WithType(GetQualifiedNameSyntax(typeof(string))));
             
                 parameterList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
                 parameterList.Add(
@@ -260,7 +260,9 @@ namespace DotEasy.Rpc.Core.Proxy.Impl
                                 SyntaxKind.StringLiteralExpression,
                                 SyntaxFactory.Literal("token")),
                             SyntaxFactory.Token(SyntaxKind.CommaToken),
-                            SyntaxFactory.IdentifierName("\"" + _Token + "\"")
+                            SyntaxFactory.LiteralExpression(
+                                SyntaxKind.StringLiteralExpression,
+                                SyntaxFactory.Literal(_token))
                         })));
             }
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using DotEasy.Rpc.ApiGateway.AuthMiddleware;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -25,9 +26,9 @@ namespace DotEasy.Rpc.ApiGateway
             // 添加权限认证服务
             services.AddIdentityServer()
                 .AddDeveloperSigningCredential()
-                .AddInMemoryApiResources(Config.GetApiResources())
-                .AddInMemoryClients(Config.GetClients())
-                .AddTestUsers(Config.GetUsers());
+                .AddInMemoryApiResources(TestConfig.GetApiResources())
+                .AddInMemoryClients(TestConfig.GetClients())
+                .AddTestUsers(TestConfig.GetUsers());
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -40,6 +41,8 @@ namespace DotEasy.Rpc.ApiGateway
             {
                 app.UseHsts();
             }
+
+            app.UseIdentityServerToken();
             app.UseIdentityServer();
             app.UseOcelot().Wait();
             app.UseMvc();

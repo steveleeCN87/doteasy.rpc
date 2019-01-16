@@ -1,7 +1,5 @@
 using System;
-using System.ComponentModel.DataAnnotations;
 using System.Net.Http;
-using DotEasy.Rpc.Core.ApiGateway.OAuth.Impl;
 using IdentityModel.Client;
 
 namespace doteasy.client

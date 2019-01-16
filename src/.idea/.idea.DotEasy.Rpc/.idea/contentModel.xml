@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ContentModelStore">
     <e p="C:\Users\Administrator\.Rider2018.2\config\extensions" t="IncludeRecursive" />
+    <e p="C:\Users\Administrator\.Rider2018.2\config\scratches" t="IncludeRecursive" />
     <e p="C:\Users\Administrator\.Rider2018.2\system\extResources" t="IncludeRecursive" />
     <e p="C:\Users\Administrator\.Rider2018.2\system\resharper-host\local\Transient\ReSharperHost\v182\SolutionCaches\_DotEasy.Rpc.-2141262590.00" t="ExcludeRecursive" />
     <e p="F:\DotEasy.RPC\.gitignore" t="Include" />
@@ -11,8 +12,13 @@
       <e p="Docs" t="Include" />
       <e p="DotEasy.Rpc.ApiGateway" t="IncludeRecursive">
         <e p="appsettings.json" t="Include" />
+        <e p="AuthMiddleware" t="Include">
+          <e p="IdentityServer.cs" t="Include" />
+          <e p="MemoryWrappedHttpResponseStream.cs" t="Include" />
+          <e p="TestConfig.cs" t="Include" />
+          <e p="TokenMiddleware.cs" t="Include" />
+        </e>
         <e p="bin" t="ExcludeRecursive" />
-        <e p="Config.cs" t="Include" />
         <e p="DotEasy.Rpc.ApiGateway.csproj" t="IncludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">

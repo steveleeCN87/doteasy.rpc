@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using IdentityServer4.Models;
 using IdentityServer4.Test;
 
-namespace DotEasy.Rpc.ApiGateway
+namespace DotEasy.Rpc.ApiGateway.AuthMiddleware
 {
-    public class Config
+    public class TestConfig
     {
         /// <summary>
         /// 获取用户

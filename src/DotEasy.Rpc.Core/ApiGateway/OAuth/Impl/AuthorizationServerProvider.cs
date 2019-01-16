@@ -15,44 +15,46 @@ namespace DotEasy.Rpc.Core.ApiGateway.OAuth.Impl
 {
     public class AuthorizationServerProvider : IAuthorizationServerProvider
     {
-        private readonly IServiceProxyProvider _serviceProxyProvider;
-        private readonly IServiceRouteProvider _serviceRouteProvider;
-        private readonly ICacheProvider _cacheProvider;
+//        private readonly IServiceProxyProvider _serviceProxyProvider;
+//        private readonly IServiceRouteProvider _serviceRouteProvider;
+//        private readonly ICacheProvider _cacheProvider;
 
-        public AuthorizationServerProvider(IServiceProxyProvider serviceProxyProvider, IServiceRouteProvider serviceRouteProvider)
-        {
-            _serviceProxyProvider = serviceProxyProvider;
-            _serviceRouteProvider = serviceRouteProvider;
-            _cacheProvider = CachingContainer.GetService<ICacheProvider>(GatewayConfig.CacheMode);
-        }
+//        public AuthorizationServerProvider(IServiceProxyProvider serviceProxyProvider, IServiceRouteProvider serviceRouteProvider)
+//        {
+//            _serviceProxyProvider = serviceProxyProvider;
+//            _serviceRouteProvider = serviceRouteProvider;
+//            _cacheProvider = CachingContainer.GetService<ICacheProvider>(GatewayConfig.CacheMode);
+//        }
 
-        public async Task<string> GenerateTokenCredential(Dictionary<string, object> parameters)
-        {
-            var payload = await _serviceProxyProvider.Invoke<object>(parameters, GatewayConfig.AuthorizationRoutePath, GatewayConfig.AuthorizationServiceKey);
-            if (payload == null || payload.Equals("null")) return null;
-            var jwtHeader = JsonConvert.SerializeObject(new JwtSecureDataHeader
-            {
-                TimeStamp = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss")
-            });
-            var base64Payload = ConverBase64String(JsonConvert.SerializeObject(payload));
-            var encodedString = $"{ConverBase64String(jwtHeader)}.{base64Payload}";
-            var route = await _serviceRouteProvider.GetRouteByPath(GatewayConfig.AuthorizationRoutePath);
-            var signature = HMACSHA256(encodedString, route.ServiceDescriptor.Token);
-            var result = $"{encodedString}.{signature}";
-            _cacheProvider.Add(base64Payload, result, GatewayConfig.AccessTokenExpireTimeSpan);
-            return result;
-        }
+//        public async Task<string> GenerateTokenCredential(Dictionary<string, object> parameters)
+//        {
+//            var payload = await _serviceProxyProvider.Invoke<object>(parameters, GatewayConfig.AuthorizationRoutePath, GatewayConfig.AuthorizationServiceKey);
+//            if (payload == null || payload.Equals("null")) return null;
+//            var jwtHeader = JsonConvert.SerializeObject(new JwtSecureDataHeader
+//            {
+//                TimeStamp = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss")
+//            });
+//            var base64Payload = ConverBase64String(JsonConvert.SerializeObject(payload));
+//            var encodedString = $"{ConverBase64String(jwtHeader)}.{base64Payload}";
+//            var route = await _serviceRouteProvider.GetRouteByPath(GatewayConfig.AuthorizationRoutePath);
+//            var signature = HMACSHA256(encodedString, route.ServiceDescriptor.Token);
+//            var result = $"{encodedString}.{signature}";
+//            _cacheProvider.Add(base64Payload, result, GatewayConfig.AccessTokenExpireTimeSpan);
+//            return result;
+//        }
 
-        public async Task<bool> ValidateClientAuthentication(string token)
+        public bool ValidateClientAuthentication(string token)
         {
-            var isSuccess = false;
             var jwtToken = token.Split('.');
             if (jwtToken.Length == 3)
             {
-                isSuccess = await _cacheProvider.GetAsync<string>(jwtToken[1]) == token;
+                var payload = GetPayloadString(token);
+                Console.WriteLine(payload);
+//                isSuccess = await _cacheProvider.GetAsync<string>(jwtToken[1]) == token;
+                return true;
             }
 
-            return isSuccess;
+            return false;
         }
 
         public string GetPayloadString(string token)

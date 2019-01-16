@@ -58,8 +58,7 @@ namespace DotEasy.Rpc.Core.Attributes
             var entries = new List<ServiceEntity>();
             foreach (var service in services)
             {
-                foreach (var serviceImplementation in serviceImplementations.Where(i => service.GetTypeInfo().IsAssignableFrom(i))
-                )
+                foreach (var serviceImplementation in serviceImplementations.Where(i => service.GetTypeInfo().IsAssignableFrom(i)))
                 {
                     entries.AddRange(_serviceEntryFactory.CreateServiceEntry(service, serviceImplementation));
                 }

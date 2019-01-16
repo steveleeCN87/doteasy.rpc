@@ -1,5 +1,6 @@
 ﻿// TODO: Compilation Utility's
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -20,6 +21,7 @@ namespace DotEasy.Rpc.Core.Proxy.Unit
         {
             references = new[]
             {
+                MetadataReference.CreateFromFile(typeof(string).GetTypeInfo().Assembly.Location),
                 MetadataReference.CreateFromFile(typeof(Task).GetTypeInfo().Assembly.Location),
                 MetadataReference.CreateFromFile(typeof(ServiceDescriptor).GetTypeInfo().Assembly.Location),
                 MetadataReference.CreateFromFile(typeof(IRemoteInvokeService).GetTypeInfo().Assembly.Location),
@@ -42,6 +44,7 @@ namespace DotEasy.Rpc.Core.Proxy.Unit
                 foreach (var message in result.Diagnostics.Select(i => i.ToString()))
                 {
                     logger.LogError(message);
+                    Console.WriteLine(message);
                 }
 
                 return null;
