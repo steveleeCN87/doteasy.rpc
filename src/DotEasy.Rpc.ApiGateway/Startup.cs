@@ -1,4 +1,6 @@
-﻿using DotEasy.Rpc.ApiGateway.AuthMiddleware;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using DotEasy.Rpc.ApiGateway.AuthMiddleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -6,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
+using Ocelot.Middleware.Multiplexer;
 
 namespace DotEasy.Rpc.ApiGateway
 {
@@ -23,6 +26,7 @@ namespace DotEasy.Rpc.ApiGateway
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             // 添加网关
             services.AddOcelot();
+//                .AddTransientDefinedAggregator<FakeDefinedAggregator>();
             // 添加权限认证服务
             services.AddIdentityServer()
                 .AddDeveloperSigningCredential()
@@ -46,6 +50,14 @@ namespace DotEasy.Rpc.ApiGateway
             app.UseIdentityServer();
             app.UseOcelot().Wait();
             app.UseMvc();
+        }
+    }
+
+    public class FakeDefinedAggregator : IDefinedAggregator 
+    {
+        public Task<DownstreamResponse> Aggregate(List<DownstreamResponse> responses)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

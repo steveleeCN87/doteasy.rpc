@@ -343,8 +343,8 @@ namespace DotEasy.Rpc.Core.DependencyResolver.Builder
         {
             var services = builder.Services;
 
-            services.AddSingleton<IAuthorizationServerProvider, AuthorizationServerProvider>();
             services.AddSingleton<ICacheProvider, DefaultRedisCacheProvider>();
+            services.AddSingleton<IAuthorizationServerProvider, AuthorizationServerProvider>();
             
             return builder;
         }

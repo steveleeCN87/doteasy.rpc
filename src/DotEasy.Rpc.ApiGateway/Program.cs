@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore;
+﻿using System;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 
 namespace DotEasy.Rpc.ApiGateway
 {
-    public class Program
+    public class Program 
     {
         public static void Main(string[] args)
         {
