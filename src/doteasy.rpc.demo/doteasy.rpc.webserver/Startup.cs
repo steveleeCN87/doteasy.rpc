@@ -41,7 +41,14 @@ namespace doteasy.rpc.webserver
         {
             app.UseDeveloperExceptionPage();
             // 使用Consul服务发现
-            app.UseConsulServerExtensions(Configuration, collection => { collection.AddSingleton<IProxyService, ProxyImpl>(); });
+            app.UseConsulServerExtensions(Configuration,
+                collection =>
+                {
+                    collection.AddSingleton<IProxyService, ProxyImpl>();
+                    collection.AddSingleton<IProxyCommpoundService, ProxyCommpoundService>();
+                },
+                typeof(AuthorizationServerProvider)
+            );
             // 指定该APP需要认证使用
             app.UseAuthentication();
             app.UseHttpsRedirection();

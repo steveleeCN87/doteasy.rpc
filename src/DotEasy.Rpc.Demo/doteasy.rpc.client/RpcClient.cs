@@ -14,6 +14,10 @@ namespace doteasy.client
                 Console.WriteLine($@"{proxy.Sync(1)}");
                 Console.WriteLine($@"{proxy.Async(1).Result}");
                 Console.WriteLine($@"{proxy.GetDictionaryAsync().Result["key"]}");
+            }
+
+            using (var proxy = ClientProxy.Generate<IProxyCommpoundService>(new Uri("http://127.0.0.1:8500")))
+            {
                 Console.WriteLine($@"{JsonConvert.SerializeObject(proxy.GetCurrentObject(new CompoundObject()))}");
             }
         }
@@ -30,6 +34,10 @@ namespace doteasy.client
                 Console.WriteLine($@"{proxy.Sync(1)}");
                 Console.WriteLine($@"{proxy.Async(1).Result}");
                 Console.WriteLine($@"{proxy.GetDictionaryAsync().Result["key"]}");
+            }
+            
+            using (var proxy = ClientProxy.Generate<IProxyCommpoundService>(new Uri("http://127.0.0.1:8500"), token))
+            {
                 Console.WriteLine($@"{JsonConvert.SerializeObject(proxy.GetCurrentObject(new CompoundObject()))}");
             }
         }

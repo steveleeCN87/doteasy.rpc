@@ -18,12 +18,6 @@ namespace doteasy.rpc.implement
             return Task.FromResult<IDictionary<string, string>>(new Dictionary<string, string> {{"key", DateTime.Now.ToLongTimeString()}});
         }
 
-        public CompoundObject GetCurrentObject(CompoundObject parameter)
-        {
-            parameter.HashCdoe = parameter.GetHashCode();
-            return parameter;
-        }
-
         public string Sync(int id)
         {
             return $"我执行了同步方法{id}.";

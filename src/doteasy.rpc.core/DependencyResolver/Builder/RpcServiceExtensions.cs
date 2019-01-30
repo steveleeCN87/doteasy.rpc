@@ -4,7 +4,6 @@ using DotEasy.Rpc.Core.ApiGateway.OAuth;
 using DotEasy.Rpc.Core.ApiGateway.OAuth.Impl;
 using DotEasy.Rpc.Core.Attributes;
 using DotEasy.Rpc.Core.Cache;
-using DotEasy.Rpc.Core.Cache.Impl.Memeory;
 using DotEasy.Rpc.Core.Cache.Impl.Redis;
 using DotEasy.Rpc.Core.Proxy;
 using DotEasy.Rpc.Core.Proxy.Impl;
@@ -276,11 +275,10 @@ namespace DotEasy.Rpc.Core.DependencyResolver.Builder
             if (services == null)
                 throw new ArgumentNullException(nameof(services));
 
+            services.AddSingleton<ICacheProvider, DefaultRedisCacheProvider>();
             services.AddSingleton<IServiceIdGenerator, DefaultServiceIdGenerator>();
-
             services.AddSingleton<ITypeConvertibleProvider, DefaultTypeConvertibleProvider>();
             services.AddSingleton<ITypeConvertibleService, DefaultTypeConvertibleService>();
-
             services.AddSingleton<IServiceRouteFactory, DefaultServiceRouteFactory>();
 
             return new RpcBuilder(services)
@@ -338,18 +336,16 @@ namespace DotEasy.Rpc.Core.DependencyResolver.Builder
         /// 添加RPC服务认证 | 认证在服务端
         /// </summary>
         /// <param name="builder"></param>
+        /// <param name="authorizationServerProvider"></param>
         /// <returns></returns>
-        public static IRpcBuilder AddAuthentication(this IRpcBuilder builder)
+        public static IRpcBuilder AddAuthentication(this IRpcBuilder builder, Type authorizationServerProvider = null)
         {
             var services = builder.Services;
 
-            services.AddSingleton<ICacheProvider, DefaultRedisCacheProvider>();
-            services.AddSingleton<IAuthorizationServerProvider, AuthorizationServerProvider>();
-            
+            services.AddSingleton(typeof(IAuthorizationServerProvider), 
+                authorizationServerProvider == null ? typeof(DefaultAuthorizationServerProvider) : authorizationServerProvider);
+
             return builder;
         }
-
-        
     }
-
 }

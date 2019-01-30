@@ -13,20 +13,20 @@ using Newtonsoft.Json;
 
 namespace DotEasy.Rpc.Core.ApiGateway.OAuth.Impl
 {
-    public class AuthorizationServerProvider : IAuthorizationServerProvider
+    public class DefaultAuthorizationServerProvider : IAuthorizationServerProvider
     {
         private readonly IServiceProxyProvider _serviceProxyProvider;
         private readonly IServiceRouteProvider _serviceRouteProvider;
         private readonly ICacheProvider _cacheProvider;
 
-        public AuthorizationServerProvider(IServiceProxyProvider serviceProxyProvider, IServiceRouteProvider serviceRouteProvider)
+        public DefaultAuthorizationServerProvider(IServiceProxyProvider serviceProxyProvider, IServiceRouteProvider serviceRouteProvider)
         {
             _serviceProxyProvider = serviceProxyProvider;
             _serviceRouteProvider = serviceRouteProvider;
             _cacheProvider = CachingContainer.GetService<ICacheProvider>(GatewayConfig.CacheMode);
         }
 
-        public AuthorizationServerProvider()
+        public DefaultAuthorizationServerProvider()
         {
             _cacheProvider = CachingContainer.GetService<ICacheProvider>(GatewayConfig.CacheMode);
         }

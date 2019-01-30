@@ -54,34 +54,21 @@ Applications were established server and client, the server recommended asp.net 
 * At the asp.net core use middlware extend the package before reference the 'Isample' project and 'DotEasy.Rpc.Entry' dependency package, of course, you can also write your own build method. 
 For example in the server:
 ```
-public static IApplicationBuilder UseConsulServerExtensions(this IApplicationBuilder app, IConfiguration configuration)
-{
-    if (app == null) throw new ArgumentNullException(nameof(app));
-    BaseServer baseServer = new BaseServer(configuration);
-    baseServer.RegisterEvent += collection => collection.AddTransient<ISample, Sample>();
-    baseServer.Start();
-    return app;
-}
+app.UseConsulServerExtensions(Configuration,
+    collection =>
+    {
+        collection.AddSingleton<IProxyService, ProxyImpl>();
+    },
+    typeof(AuthorizationServerProvider)
+);
 ```
 for example in the console appliaction, you need to quote the 'Entry' lazy package, or you can also write your own build method:
 ```
-class Program
+using (var proxy = ClientProxy.Generate<IProxyService>(new Uri("http://127.0.0.1:8500")))
 {
-    static void Main()
-    {
-        new TestClient();
-    }
-}
-
-public class TestClient : BaseClient
-{
-    public TestClient()
-    {
-        var sample = Proxy<ISample>();
-        var name = "world";
-        Console.WriteLine($"{sample.SayHello(name)}");
-        Console.ReadKey();
-    }
+    Console.WriteLine($@"{proxy.Sync(1)}");
+    Console.WriteLine($@"{proxy.Async(1).Result}");
+    Console.WriteLine($@"{proxy.GetDictionaryAsync().Result["key"]}");
 }
 ```
 _**Just need to reference the interface project, not the implementation project**_

@@ -31,6 +31,39 @@ namespace DotEasy.Rpc.Core.Proxy.Impl
             _logger = logger;
         }
 
+        public IEnumerable<Type> GenerateProxys(IEnumerable<Type> interfaceTypes)
+        {
+            var assembles = DependencyContext.Default.RuntimeLibraries
+                .SelectMany(i => i.GetDefaultAssemblyNames(DependencyContext.Default)
+                    .Select(z => Assembly.Load(new AssemblyName(z.Name))));
+
+            assembles = assembles.Where(i => i.IsDynamic == false).ToArray();
+
+            var enumerable = interfaceTypes as Type[] ?? interfaceTypes.ToArray();
+            var trees = enumerable.Select(GenerateProxyTree).ToList();
+            var stream = CompilationUnits.CompileClientProxy(trees,
+                assembles
+                    .Select(a => MetadataReference.CreateFromFile(a.Location))
+                    .Concat(new[]
+                    {
+                        MetadataReference.CreateFromFile(typeof(Task).GetTypeInfo().Assembly.Location)
+                    }),
+                enumerable.ToArray()[0],
+                _logger);
+
+            if (stream == null)
+            {
+                throw new ArgumentException(@"没有生成任何客户端代码", nameof(stream));
+            }
+
+            using (stream)
+            {
+                var assembly = AssemblyLoadContext.Default.LoadFromStream(stream);
+                return assembly.GetExportedTypes();
+            }
+        }
+
+        // ReSharper disable once MethodOverloadWithOptionalParameter
         public IEnumerable<Type> GenerateProxys(IEnumerable<Type> interfaceTypes, string accessToken = "")
         {
             _token = accessToken;
@@ -41,7 +74,8 @@ namespace DotEasy.Rpc.Core.Proxy.Impl
 
             assembles = assembles.Where(i => i.IsDynamic == false).ToArray();
 
-            var trees = interfaceTypes.Select(GenerateProxyTree).ToList();
+            var enumerable = interfaceTypes as Type[] ?? interfaceTypes.ToArray();
+            var trees = enumerable.Select(GenerateProxyTree).ToList();
             var stream = CompilationUnits.CompileClientProxy(trees,
                 assembles
                     .Select(a => MetadataReference.CreateFromFile(a.Location))
@@ -49,6 +83,7 @@ namespace DotEasy.Rpc.Core.Proxy.Impl
                     {
                         MetadataReference.CreateFromFile(typeof(Task).GetTypeInfo().Assembly.Location)
                     }),
+                enumerable.ToArray()[0],
                 _logger);
 
             if (stream == null)
@@ -244,14 +279,17 @@ namespace DotEasy.Rpc.Core.Proxy.Impl
                 parameterDeclarationList.RemoveAt(parameterDeclarationList.Count - 1);
             }
 
-            if (!method.Name.Contains("Dispose"))
+            if (!method.Name.Contains("Dispose") && _token != "")
             {
 //                parameterDeclarationList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
 //                parameterDeclarationList.Add(SyntaxFactory.Parameter(
 //                        SyntaxFactory.Identifier("token"))
 //                    .WithType(GetQualifiedNameSyntax(typeof(string))));
-            
-                parameterList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
+                if (method.GetParameters().Any())
+                {
+                    parameterList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
+                }
+                
                 parameterList.Add(
                     SyntaxFactory.InitializerExpression(SyntaxKind.ComplexElementInitializerExpression,
                         SyntaxFactory.SeparatedList<ExpressionSyntax>(new SyntaxNodeOrToken[]

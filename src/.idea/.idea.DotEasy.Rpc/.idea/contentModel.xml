@@ -62,7 +62,7 @@
           <e p="OAuth" t="Include">
             <e p="IAuthorizationServerProvider.cs" t="Include" />
             <e p="Impl" t="Include">
-              <e p="AuthorizationServerProvider.cs" t="Include" />
+              <e p="DefaultAuthorizationServerProvider.cs" t="Include" />
               <e p="EncryptMode.cs" t="Include" />
               <e p="JwtSecureDataHeader.cs" t="Include" />
               <e p="JwtSecureDataType.cs" t="Include" />
@@ -320,11 +320,13 @@
               </e>
             </e>
           </e>
+          <e p="ProxyCommpoundService.cs" t="Include" />
           <e p="ProxyImpl.cs" t="Include" />
         </e>
         <e p="doteasy.rpc.interface" t="IncludeRecursive">
           <e p="bin" t="ExcludeRecursive" />
           <e p="doteasy.rpc.interface.csproj" t="IncludeRecursive" />
+          <e p="IProxyCommpoundService.cs" t="Include" />
           <e p="IProxyService.cs" t="Include" />
           <e p="obj" t="ExcludeRecursive">
             <e p="Debug" t="Include">
@@ -337,6 +339,7 @@
         <e p="doteasy.rpc.webserver" t="IncludeRecursive">
           <e p="appsettings.Development.json" t="Include" />
           <e p="appsettings.json" t="Include" />
+          <e p="AuthorizationServerProvider.cs" t="Include" />
           <e p="bin" t="ExcludeRecursive" />
           <e p="Controllers" t="Include">
             <e p="HealthController.cs" t="Include" />

@@ -18,7 +18,7 @@ namespace DotEasy.Rpc.Consul.Entry
     public class ServerBase
     {
         private readonly ServiceCollection _serviceCollection = new ServiceCollection();
-        private readonly RpcOptionsConfiguration _rpcOptionsConfiguration;
+        private RpcOptionsConfiguration _rpcOptionsConfiguration;
 
         public delegate void RegisterEventHandler(ServiceCollection serviceCollection);
 
@@ -30,44 +30,24 @@ namespace DotEasy.Rpc.Consul.Entry
         /// <param name="configuration"></param>
         public ServerBase(IConfiguration configuration)
         {
-            var configuration1 = configuration ?? throw new ArgumentNullException(nameof(configuration));
-
-            _rpcOptionsConfiguration = new RpcOptionsConfiguration
-            {
-                HostingAndRpcHealthCheck = configuration1["Hosting.And.Rpc.Health.Check"],
-                GRpc = new Rpc
-                {
-                    Ip = configuration1["Rpc:IP"],
-                    Port = int.Parse(configuration1["Rpc:Port"])
-                },
-                ServiceDescriptors = new ServiceDescriptor
-                {
-                    Name = configuration1["ServiceDescriptor:Name"]
-                },
-                ConsulRegister = new ConsulRegister
-                {
-                    Ip = configuration1["ConsulRegister:IP"],
-                    Port = int.Parse(configuration1["ConsulRegister:Port"]),
-                    Timeout = int.Parse(configuration1["ConsulRegister:Timeout"])
-                },
-                ConsulClientConfiguration = new ConsulClientConfiguration
-                {
-                    Address = new Uri(
-                        $"http://{configuration1["ConsulRegister:IP"]}" +
-                        ":" +
-                        $"{int.Parse(configuration1["ConsulRegister:Port"])}")
-                }
-            };
-            Builder();
-        }
-
-        private void Builder()
-        {
+            Configuration(configuration);
             _serviceCollection
                 .AddLogging()
                 .AddRpcCore()
                 .AddService()
                 .AddAuthentication()
+                .UseDotNettyTransport()
+                .UseConsulRouteManager(_rpcOptionsConfiguration);
+        }
+
+        public ServerBase(IConfiguration configuration, Type authorizationServerProvider)
+        {
+            Configuration(configuration);
+            _serviceCollection
+                .AddLogging()
+                .AddRpcCore()
+                .AddService()
+                .AddAuthentication(authorizationServerProvider)
                 .UseDotNettyTransport()
                 .UseConsulRouteManager(_rpcOptionsConfiguration);
         }
@@ -109,6 +89,38 @@ namespace DotEasy.Rpc.Consul.Entry
                         _rpcOptionsConfiguration.GRpc.Port)
                 );
             });
+        }
+
+        private void Configuration(IConfiguration configuration)
+        {
+            var configuration1 = configuration ?? throw new ArgumentNullException(nameof(configuration));
+
+            _rpcOptionsConfiguration = new RpcOptionsConfiguration
+            {
+                HostingAndRpcHealthCheck = configuration1["Hosting.And.Rpc.Health.Check"],
+                GRpc = new Rpc
+                {
+                    Ip = configuration1["Rpc:IP"],
+                    Port = int.Parse(configuration1["Rpc:Port"])
+                },
+                ServiceDescriptors = new ServiceDescriptor
+                {
+                    Name = configuration1["ServiceDescriptor:Name"]
+                },
+                ConsulRegister = new ConsulRegister
+                {
+                    Ip = configuration1["ConsulRegister:IP"],
+                    Port = int.Parse(configuration1["ConsulRegister:Port"]),
+                    Timeout = int.Parse(configuration1["ConsulRegister:Timeout"])
+                },
+                ConsulClientConfiguration = new ConsulClientConfiguration
+                {
+                    Address = new Uri(
+                        $"http://{configuration1["ConsulRegister:IP"]}" +
+                        ":" +
+                        $"{int.Parse(configuration1["ConsulRegister:Port"])}")
+                }
+            };
         }
     }
 }
