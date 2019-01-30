@@ -1,11 +1,8 @@
 ﻿namespace doteasy.client
 {
-    static class Program
+    internal static class Program
     {
-        private static void Main()
-        {
-//            RpcClient.Test();
-            AuthClient.TestAllDisco();
-        }
+        private static void Main() => RpcClient.TestNoToken();
+//        private static void Main() => RpcClient.TestHaveToken();
     }
 }

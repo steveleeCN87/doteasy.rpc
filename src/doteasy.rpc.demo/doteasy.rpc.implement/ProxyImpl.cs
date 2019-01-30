@@ -13,14 +13,15 @@ namespace doteasy.rpc.implement
             return Task.FromResult($"我执行了异步方法{id}.");
         }
 
-        public string MultiParTest(string a, string b, string c)
-        {
-            return $"{a}.{b}.{c}";
-        }
-
-        public Task<IDictionary<string, string>> GetDictionary()
+        public Task<IDictionary<string, string>> GetDictionaryAsync()
         {
             return Task.FromResult<IDictionary<string, string>>(new Dictionary<string, string> {{"key", DateTime.Now.ToLongTimeString()}});
+        }
+
+        public CompoundObject GetCurrentObject(CompoundObject parameter)
+        {
+            parameter.HashCdoe = parameter.GetHashCode();
+            return parameter;
         }
 
         public string Sync(int id)

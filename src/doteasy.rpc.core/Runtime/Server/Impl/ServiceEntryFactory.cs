@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Security.Authentication;
 using System.Threading.Tasks;
 using DotEasy.Rpc.Core.ApiGateway.OAuth;
 using DotEasy.Rpc.Core.Runtime.Communally.Convertibles;
@@ -75,25 +74,28 @@ namespace DotEasy.Rpc.Core.Runtime.Server.Impl
                 {
                     // 从Microsoft.Extensions.DependencyInjection获取当前范围
                     var serviceScopeFactory = _serviceProvider.GetRequiredService<IServiceScopeFactory>();
-                    
+
                     if (parameters.Any(p => p.Key.Equals("token")))
                     {
                         if (!_authorization.ValidateClientAuthentication(parameters.First(l => l.Key.Equals("token")).Value.ToString()))
                         {
-                            return Task.FromResult("failure token");
+                            return Task.FromResult("{\"error\":\"failure token\"}");
                         }
-                    }
-                    else
-                    {
-                        return Task.FromResult("client don`t have an token");
                     }
 
                     using (var scope = serviceScopeFactory.CreateScope())
                     {
-                        return Task.FromResult(
-                            implementationMethod.Invoke(scope.ServiceProvider.GetRequiredService(method.DeclaringType),
-                            implementationMethod.GetParameters().Select(parameterInfo => _typeConvertibleService.Convert(parameters[parameterInfo.Name], parameterInfo.ParameterType)).ToArray()
-                        ));
+                        var par = implementationMethod.GetParameters()
+                            .Select(parameterInfo => _typeConvertibleService.Convert(parameters[parameterInfo.Name], parameterInfo.ParameterType))
+                            .ToArray();
+                        var invoke = implementationMethod.Invoke(scope.ServiceProvider.GetRequiredService(method.DeclaringType), par);
+                        var fullName = invoke.GetType().FullName;
+                        if (fullName != null && fullName.Contains(typeof(Task).FullName ?? throw new InvalidOperationException()))
+                        {
+                            return Task.FromResult(((dynamic) invoke).Result);
+                        }
+
+                        return Task.FromResult(invoke);
                     }
                 }
             };

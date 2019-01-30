@@ -64,10 +64,19 @@ namespace DotEasy.Rpc.Consul.Entry
             var serviceProxyGenerate = serviceProvider.GetRequiredService<IServiceProxyGenerater>();
             var serviceProxyFactory = serviceProvider.GetRequiredService<IServiceProxyFactory>();
 
+            if (accessToken == "")
+            {
+                return serviceProxyFactory
+                    .CreateProxy<T>(serviceProxyGenerate.GenerateProxys(new[] {typeof(T)})
+                        .ToArray()
+                        .Single(typeof(T).GetTypeInfo().IsAssignableFrom));
+            }
+            
             return serviceProxyFactory
                 .CreateProxy<T>(serviceProxyGenerate.GenerateProxys(new[] {typeof(T)}, accessToken)
                     .ToArray()
                     .Single(typeof(T).GetTypeInfo().IsAssignableFrom));
+            
         }
 
         #endregion
