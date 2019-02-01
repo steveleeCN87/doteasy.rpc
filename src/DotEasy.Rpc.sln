@@ -23,6 +23,7 @@ ProjectSection(SolutionItems) = preProject
 	..\LICENSE = ..\LICENSE
 	..\README.md = ..\README.md
 	..\微服务框架.png = ..\微服务框架.png
+	..\README.cn.md = ..\README.cn.md
 EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotEasy.Rpc.ApiGateway", "DotEasy.Rpc.ApiGateway\DotEasy.Rpc.ApiGateway.csproj", "{38A457EF-99B5-4317-AC62-E7D458A402D8}"

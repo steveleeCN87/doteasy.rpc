@@ -1,6 +1,4 @@
-﻿// TODO: Compilation Utility's
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -17,7 +15,9 @@ namespace DotEasy.Rpc.Core.Proxy.Unit
 {
     public static class CompilationUnits
     {
-        public static MemoryStream CompileClientProxy(IEnumerable<SyntaxTree> trees, IEnumerable<MetadataReference> references, ILogger logger = null)
+        public static MemoryStream CompileClientProxy(IEnumerable<SyntaxTree> trees, 
+            IEnumerable<MetadataReference> references, Type interfaceType, 
+            ILogger logger = null)
         {
             references = new[]
             {
@@ -27,12 +27,16 @@ namespace DotEasy.Rpc.Core.Proxy.Unit
                 MetadataReference.CreateFromFile(typeof(IRemoteInvokeService).GetTypeInfo().Assembly.Location),
                 MetadataReference.CreateFromFile(typeof(IServiceProxyGenerater).GetTypeInfo().Assembly.Location)
             }.Concat(references);
-            return Compile(AssemblyInfo.Create("DotEasy.Rpc.ClientProxys"), trees, references, logger);
+            
+            var className = interfaceType.Name.StartsWith("I") ? interfaceType.Name.Substring(1) : interfaceType.Name;
+            return Compile(AssemblyInfo.Create($"DotEasy.Rpc.{className}Proxys"), trees, references, logger);
         }
 
-        public static MemoryStream Compile(AssemblyInfo assemblyInfo, IEnumerable<SyntaxTree> trees, IEnumerable<MetadataReference> references, ILogger logger = null) => Compile(assemblyInfo.Title, assemblyInfo, trees, references, logger);
+        public static MemoryStream Compile(AssemblyInfo assemblyInfo, IEnumerable<SyntaxTree> trees, IEnumerable<MetadataReference> references,
+            ILogger logger = null) => Compile(assemblyInfo.Title, assemblyInfo, trees, references, logger);
 
-        public static MemoryStream Compile(string assemblyName, AssemblyInfo assemblyInfo, IEnumerable<SyntaxTree> trees, IEnumerable<MetadataReference> references, ILogger logger = null)
+        public static MemoryStream Compile(string assemblyName, AssemblyInfo assemblyInfo, IEnumerable<SyntaxTree> trees,
+            IEnumerable<MetadataReference> references, ILogger logger = null)
         {
             trees = trees.Concat(new[] {GetAssemblyInfo(assemblyInfo)});
             var compilation = CSharpCompilation.Create(assemblyName, trees, references, new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
@@ -78,7 +82,6 @@ namespace DotEasy.Rpc.Core.Proxy.Unit
                                     SyntaxFactory.IdentifierName("Runtime")),
                                 SyntaxFactory.IdentifierName("Versioning")))
                         }))
-                
                 .WithAttributeLists(
                     SyntaxFactory.List(
                         new[]
@@ -104,7 +107,7 @@ namespace DotEasy.Rpc.Core.Proxy.Unit
                                     SyntaxFactory.AttributeTargetSpecifier(
                                         SyntaxFactory.Token(SyntaxKind.AssemblyKeyword))),
 
-                            
+
                             SyntaxFactory.AttributeList(SyntaxFactory.SingletonSeparatedList(SyntaxFactory
                                     .Attribute(SyntaxFactory.IdentifierName("AssemblyTitle"))
                                     .WithArgumentList(
