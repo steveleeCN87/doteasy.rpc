@@ -9,7 +9,7 @@
        /{url} - 使用泛型（万用）规则方式配置下游PATH规则
        */
       "DownstreamPathTemplate": "/{url}",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "tcp", // 自定义下游通信协议
       "DownstreamHostAndPorts": [
         /*
         下游主机信息

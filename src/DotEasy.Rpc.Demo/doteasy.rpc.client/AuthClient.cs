@@ -40,7 +40,7 @@ namespace doteasy.client
                 httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + GetToken());
                 // 通过网关访问具体资源
                 // 此处访问的是网关的接口映射路径，而不是实际的接口URL路径
-                response = httpClient.GetAsync(new Uri("http://127.0.0.1:8080/api/values")).Result; 
+                response = httpClient.GetAsync(new Uri("http://127.0.0.1:8080/api/values?scheme=rpc")).Result; 
             }
 
             Console.WriteLine("response: " + response);
