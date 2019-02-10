@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Net.Http.Headers;
 using DotEasy.Rpc.Core.Runtime.Client;
 using DotEasy.Rpc.Core.Runtime.Communally.Convertibles;
-using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 
 namespace DotEasy.Rpc.Core.ApiGateway.Impl
 {
@@ -12,17 +13,14 @@ namespace DotEasy.Rpc.Core.ApiGateway.Impl
     {
         private IRemoteInvokeService _remoteInvokeService;
         private ITypeConvertibleService _typeConvertibleService;
-        private ILogger<DefaultRelayHttpRouteRpc> _logger;
 
-        public DefaultRelayHttpRouteRpc(IRemoteInvokeService remoteInvokeService, ITypeConvertibleService typeConvertibleService,
-            ILogger<DefaultRelayHttpRouteRpc> logger)
+        public DefaultRelayHttpRouteRpc(IRemoteInvokeService remoteInvokeService, ITypeConvertibleService typeConvertibleService)
         {
             _remoteInvokeService = remoteInvokeService;
             _typeConvertibleService = typeConvertibleService;
-            _logger = logger;
         }
 
-        public RelayScriptor HttpRouteRpc(List<dynamic> proxys, Uri urlPath, HttpRequestHeaders headers)
+        public StringContent HttpRouteRpc(List<dynamic> proxys, Uri urlPath, HttpRequestHeaders headers)
         {
             foreach (var proxy in proxys)
             {
@@ -36,13 +34,21 @@ namespace DotEasy.Rpc.Core.ApiGateway.Impl
                 if (!type.GetMethods().Any(methodInfo => methodInfo.Name.Contains(absName))) continue;
 
                 var method = type.GetMethod(absName);
-                var parameters = method.GetParameters();
-                var parType = parameters[0].ParameterType; // only one parameter
-                var par = _typeConvertibleService.Convert(absPars, parType);
+                if (method != null)
+                {
+                    var parameters = method.GetParameters();
+                    var parType = parameters[0].ParameterType; // only one parameter
+                    var par = _typeConvertibleService.Convert(absPars, parType);
 
-                var relayScriptor = new RelayScriptor {InvokeType = type, InvokeParameter = new dynamic[] {par}};
+                    var relayScriptor = new RelayScriptor {InvokeType = type, InvokeParameter = new dynamic[] {par}};
 
-                return relayScriptor;
+                    var result = method.Invoke(
+                        Activator.CreateInstance(relayScriptor.InvokeType, _remoteInvokeService, _typeConvertibleService),
+                        relayScriptor.InvokeParameter);
+
+                    var strResult = JsonConvert.SerializeObject(result);
+                    return new StringContent(strResult);
+                }
             }
 
             return null;
