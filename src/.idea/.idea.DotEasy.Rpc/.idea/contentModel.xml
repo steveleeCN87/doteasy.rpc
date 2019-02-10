@@ -38,10 +38,13 @@
           </e>
         </e>
         <e p="Ocelot.json" t="Include" />
+        <e p="OcelotPipelineConfigurationExtensions.cs" t="Include" />
         <e p="Program.cs" t="Include" />
         <e p="Properties" t="Include">
           <e p="launchSettings.json" t="Include" />
         </e>
+        <e p="RelayRequesterMiddleware.cs" t="Include" />
+        <e p="RpcRequesterMiddlewareExtensions.cs" t="Include" />
         <e p="Startup.cs" t="Include" />
         <e p="tempkey.rsa" t="Include" />
       </e>
@@ -69,6 +72,10 @@
       </e>
       <e p="doteasy.rpc.core" t="IncludeRecursive">
         <e p="ApiGateway" t="Include">
+          <e p="Impl" t="Include">
+            <e p="DefaultRelayHttpRouteRpc.cs" t="Include" />
+          </e>
+          <e p="IRelayHttpRouteRpc.cs" t="Include" />
           <e p="OAuth" t="Include">
             <e p="IAuthorizationServerProvider.cs" t="Include" />
             <e p="Impl" t="Include">
@@ -78,6 +85,7 @@
               <e p="JwtSecureDataType.cs" t="Include" />
             </e>
           </e>
+          <e p="RelayScriptor.cs" t="Include" />
         </e>
         <e p="Attributes" t="Include">
           <e p="AttributeServiceEntryProvider.cs" t="Include" />

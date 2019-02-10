@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Loader;
@@ -58,9 +59,22 @@ namespace DotEasy.Rpc.Core.Proxy.Impl
 
             using (stream)
             {
-                var assembly = AssemblyLoadContext.Default.LoadFromStream(stream);
-                return assembly.GetExportedTypes();
+                var className = enumerable.ToArray()[0].Name.StartsWith("I")
+                    ? enumerable.ToArray()[0].Name.Substring(1)
+                    : enumerable.ToArray()[0].Name;
+                return AppDomain.CurrentDomain.GetAssemblies().Any(x => x.FullName.Contains(className))
+                    ? Assembly.Load(StreamToBytes(stream)).GetExportedTypes()
+                    : AssemblyLoadContext.Default.LoadFromStream(stream).GetExportedTypes();
             }
+        }
+
+
+        public byte[] StreamToBytes(Stream stream)
+        {
+            var bytes = new byte[stream.Length];
+            stream.Read(bytes, 0, bytes.Length);
+            stream.Seek(0, SeekOrigin.Begin);
+            return bytes;
         }
 
         // ReSharper disable once MethodOverloadWithOptionalParameter
@@ -93,8 +107,12 @@ namespace DotEasy.Rpc.Core.Proxy.Impl
 
             using (stream)
             {
-                var assembly = AssemblyLoadContext.Default.LoadFromStream(stream);
-                return assembly.GetExportedTypes();
+                var className = enumerable.ToArray()[0].Name.StartsWith("I")
+                    ? enumerable.ToArray()[0].Name.Substring(1)
+                    : enumerable.ToArray()[0].Name;
+                return AppDomain.CurrentDomain.GetAssemblies().Any(x => x.FullName.Contains(className))
+                    ? Assembly.Load(StreamToBytes(stream)).GetExportedTypes()
+                    : AssemblyLoadContext.Default.LoadFromStream(stream).GetExportedTypes();
             }
         }
 
@@ -105,6 +123,7 @@ namespace DotEasy.Rpc.Core.Proxy.Impl
 
             var members = new List<MemberDeclarationSyntax>
             {
+//                GetConstructorNoParmaterDeclaration(className),
                 GetConstructorDeclaration(className)
             };
 
@@ -183,6 +202,13 @@ namespace DotEasy.Rpc.Core.Proxy.Impl
                     SyntaxFactory.UsingDirective(GetQualifiedNameSyntax(typeof(ISerializer<>).Namespace)),
                     SyntaxFactory.UsingDirective(GetQualifiedNameSyntax(typeof(ServiceProxyBase).Namespace))
                 });
+        }
+
+        private static ConstructorDeclarationSyntax GetConstructorNoParmaterDeclaration(string className)
+        {
+            return SyntaxFactory.ConstructorDeclaration(SyntaxFactory.Identifier(className))
+                .WithModifiers(SyntaxFactory.TokenList(SyntaxFactory.Token(SyntaxKind.PublicKeyword)))
+                .WithBody(SyntaxFactory.Block());
         }
 
         private static ConstructorDeclarationSyntax GetConstructorDeclaration(string className)
@@ -289,7 +315,7 @@ namespace DotEasy.Rpc.Core.Proxy.Impl
                 {
                     parameterList.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
                 }
-                
+
                 parameterList.Add(
                     SyntaxFactory.InitializerExpression(SyntaxKind.ComplexElementInitializerExpression,
                         SyntaxFactory.SeparatedList<ExpressionSyntax>(new SyntaxNodeOrToken[]

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using DotEasy.Rpc.Core.Runtime.Client;
@@ -35,5 +36,6 @@ namespace DotEasy.Rpc.Core.Proxy.Impl
                     new object[] {_remoteInvokeService, _typeConvertibleService}
                 );
         }
+
     }
 }

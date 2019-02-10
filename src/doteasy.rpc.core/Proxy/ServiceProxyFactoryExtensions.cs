@@ -18,5 +18,6 @@ namespace DotEasy.Rpc.Core.Proxy
         {
             return (T) serviceProxyFactory.CreateProxy(proxyType);
         }
+        
     }
 }

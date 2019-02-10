@@ -9,6 +9,7 @@ namespace doteasy.client
     {
         public static void TestNoToken()
         {
+            
             using (var proxy = ClientProxy.Generate<IProxyService>(new Uri("http://127.0.0.1:8500")))
             {
                 Console.WriteLine($@"{proxy.Sync(1)}");
@@ -20,6 +21,8 @@ namespace doteasy.client
             {
                 Console.WriteLine($@"{JsonConvert.SerializeObject(proxy.GetCurrentObject(new CompoundObject()))}");
             }
+            
+            
         }
 
         public static void TestHaveToken()
