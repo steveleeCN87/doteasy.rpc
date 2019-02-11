@@ -11,12 +11,12 @@ namespace DotEasy.Rpc.ApiGateway
 {
     public static class OcelotPipelineConfigurationExtensions
     {
-        public static void AddRpcGateway(this OcelotPipelineConfiguration config)
+        public static void AddRpcMiddleware(this OcelotPipelineConfiguration config)
         {
-            config.MapWhenOcelotPipeline.Add(builder => builder.AddRpcGateway());
+            config.MapWhenOcelotPipeline.Add(builder => builder.AddRpcMiddleware());
         }
 
-        private static Func<DownstreamContext, bool> AddRpcGateway(this IOcelotPipelineBuilder builder)
+        private static Func<DownstreamContext, bool> AddRpcMiddleware(this IOcelotPipelineBuilder builder)
         {
             builder.UseHttpHeadersTransformationMiddleware();
 

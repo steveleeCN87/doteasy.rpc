@@ -45,7 +45,7 @@ namespace DotEasy.Rpc.ApiGateway
 
             app.UseIdentityServerToken();
             app.UseIdentityServer();
-            app.UseOcelot(config => config.AddRpcGateway()).Wait();
+            app.UseOcelot(pipelineConfiguration => pipelineConfiguration.AddRpcMiddleware()).Wait();
             app.UseMvc();
         }
     }
