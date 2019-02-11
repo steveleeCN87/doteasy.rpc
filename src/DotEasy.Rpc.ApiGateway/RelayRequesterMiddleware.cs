@@ -33,10 +33,9 @@ namespace DotEasy.Rpc.ApiGateway
         {
             IRelayHttpRouteRpc relayHttpRouteRpc = new DefaultRelayHttpRouteRpc(ClientProxy.IRemoteInvokeService, ClientProxy.ITypeConvertibleService);
 
-            var httpContent = relayHttpRouteRpc.HttpRouteRpc(
-                ClientProxy.GenerateAll(new Uri("http://127.0.0.1:8500")),
+            var httpContent = relayHttpRouteRpc.HttpRouteRpc(ClientProxy.GenerateAll(new Uri("http://127.0.0.1:8500")),
                 new Uri(context.DownstreamRequest.ToUri()),
-                context.DownstreamRequest.Headers);
+                context.DownstreamRequest.Headers); // 目前尚未处理Headers消息头
 
             context.DownstreamResponse = new DownstreamResponse(httpContent, HttpStatusCode.OK, context.DownstreamRequest.Headers);
             await _next.Invoke(context);
