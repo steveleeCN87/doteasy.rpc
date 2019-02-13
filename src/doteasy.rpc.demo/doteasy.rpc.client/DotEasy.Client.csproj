@@ -15,6 +15,15 @@
     <PackageReference Include="IdentityModel">
       <Version>2.0.2</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory">
+      <Version>3.0.0-preview.19074.2</Version>
+    </PackageReference>
+    <PackageReference Include="Polly">
+      <Version>7.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="Polly.Caching.Memory">
+      <Version>3.0.0</Version>
+    </PackageReference>
   </ItemGroup>
 
 </Project>

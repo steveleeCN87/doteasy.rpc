@@ -3,7 +3,7 @@ using doteasy.rpc.interfaces;
 using DotEasy.Rpc.Consul.Entry;
 using Newtonsoft.Json;
 
-namespace doteasy.client
+namespace doteasy.client.Clients
 {
     public static class RpcClient
     {

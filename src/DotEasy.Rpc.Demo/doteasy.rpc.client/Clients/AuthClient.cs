@@ -2,7 +2,7 @@ using System;
 using System.Net.Http;
 using IdentityModel.Client;
 
-namespace doteasy.client
+namespace doteasy.client.Clients
 {
     public static class AuthClient
     {
