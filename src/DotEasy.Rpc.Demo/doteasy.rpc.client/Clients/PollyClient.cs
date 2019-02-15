@@ -96,12 +96,20 @@ namespace doteasy.client.Clients
 
         public static void Cache()
         {
-            var policy = Policy.Cache(new MemoryCacheProvider(new MemoryCache(new MemoryCacheOptions())), TimeSpan.FromSeconds(60));
-            var frist = policy.Execute(context => new Context("success", new Dictionary<string, object> {{"1", "1"}}),
-                new Context("Frist", new Dictionary<string, object> {{"exception", "1"}}));
-            var second = policy.Execute(context => new Context("success", new Dictionary<string, object> {{"1", "2"}}),
-                new Context("Second", new Dictionary<string, object> {{"exception", "1"}}));
-            Console.WriteLine(frist.Values.ToList()[0] + @" : " + second.Values.ToList()[0]);
+            const int ttl = 60;
+            var policy = Policy.Cache(new MemoryCacheProvider(new MemoryCache(new MemoryCacheOptions())), TimeSpan.FromSeconds(ttl));
+
+            var frist = policy.Execute(
+                context => new Context("success", new Dictionary<string, object> {{"1", "1"}}),
+                new Context("Frist", new Dictionary<string, object> {{"exception", "1"}})
+            );
+
+            var second = policy.Execute(
+                context => new Context("success", new Dictionary<string, object> {{"1", "2"}}),
+                new Context("Second", new Dictionary<string, object> {{"exception", "1"}})
+            );
+
+            Console.WriteLine(frist?.Values.ToList()[0] + @" : " + second?.Values.ToList()[0]);
         }
 
         public static void Fallback()
