@@ -12,6 +12,9 @@
         <PackageReference Include="Ocelot">
             <Version>11.0.2</Version>
         </PackageReference>
+        <PackageReference Include="Polly">
+          <Version>7.0.2</Version>
+        </PackageReference>
     </ItemGroup>
 
     <ItemGroup>

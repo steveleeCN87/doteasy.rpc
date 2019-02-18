@@ -29,6 +29,7 @@
           <e p="TokenMiddleware.cs" t="Include" />
         </e>
         <e p="bin" t="ExcludeRecursive" />
+        <e p="CircuitBreakingDelegatingHandler.cs" t="Include" />
         <e p="DotEasy.Rpc.ApiGateway.csproj" t="IncludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
