@@ -16,6 +16,6 @@ namespace doteasy.client
         // 一个包含认证授权的客户端测试，需要API网关做中间转接，且服务节点采用rpc
 //        private static void Main() => AuthClient.TestHttpRouteRpc();
 
-        private static void Main() => PollyClient.Cache();
+        private static void Main() => PollyClient.Timeout();
     }
-}
+} 

@@ -355,6 +355,23 @@
           </e>
         </e>
       </e>
+      <e p="DotEasy.Rpc.Demo\doteasy.rpc.SkyAPM" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="doteasy.rpc.SkyAPM.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.1" t="Include">
+              <e p="doteasy.rpc.SkyAPM.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="launchSettings.json" t="Include" />
+        </e>
+        <e p="skyapm.json" t="Include" />
+        <e p="Startup.cs" t="Include" />
+      </e>
       <e p="DotEasy.Rpc.Demo\doteasy.rpc.webserver" t="IncludeRecursive">
         <e p="appsettings.Development.json" t="Include" />
         <e p="appsettings.json" t="Include" />

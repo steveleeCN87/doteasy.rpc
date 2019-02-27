@@ -37,11 +37,9 @@ namespace doteasy.client.Clients
              * 指定要处理的返回结果
              */
             // 处理带条件的返回值
-            Policy
-                .HandleResult<HttpResponseMessage>(r => r.StatusCode == HttpStatusCode.NotFound);
+            Policy.HandleResult<HttpResponseMessage>(r => r.StatusCode == HttpStatusCode.NotFound);
             // 处理多个条件的返回值
-            Policy
-                .HandleResult<HttpResponseMessage>(r => r.StatusCode == HttpStatusCode.InternalServerError)
+            Policy.HandleResult<HttpResponseMessage>(r => r.StatusCode == HttpStatusCode.InternalServerError)
                 .OrResult(r => r.StatusCode == HttpStatusCode.BadGateway);
             // 结果判断
             Policy.HandleResult<int>(ret => ret <= 0);
