@@ -5,7 +5,7 @@ namespace doteasy.client
     internal static class Program
     {
         // RPC接口，不包含RPC通信验证
-//        private static void Main() => RpcClient.TestNoToken();
+        private static void Main() => RpcClient.TestNoToken();
 
         // RPC接口，包含RPC通信验证
 //        private static void Main() => RpcClient.TestHaveToken();

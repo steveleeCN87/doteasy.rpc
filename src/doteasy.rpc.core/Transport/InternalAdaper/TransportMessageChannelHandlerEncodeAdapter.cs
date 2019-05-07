@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 namespace DotEasy.Rpc.Core.Transport.InternalAdaper
 {
     /// <summary>
-    /// 默认通道的解码器
+    /// 默认通道的解码器，也是默认通道状态监测器
     /// </summary>
     public class TransportMessageChannelHandlerEncodeAdapter : ChannelHandlerAdapter
     {

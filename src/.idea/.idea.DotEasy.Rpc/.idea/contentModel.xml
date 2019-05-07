@@ -150,6 +150,9 @@
         <e p="DotEasy.Rpc.Core.csproj" t="IncludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
+            <e p="net461" t="Include">
+              <e p="DotEasy.Rpc.Core.AssemblyInfo.cs" t="Include" />
+            </e>
             <e p="netstandard2.0" t="Include">
               <e p="DotEasy.Rpc.Core.AssemblyInfo.cs" t="Include" />
             </e>
@@ -303,6 +306,7 @@
           </e>
           <e p="InternalAdaper" t="Include">
             <e p="ByteBufferExtend.cs" t="Include" />
+            <e p="KeepAliveChannelHandlerAdapter.cs" t="Include" />
             <e p="TransportMessageChannelHandlerDecodeAdapter.cs" t="Include" />
             <e p="TransportMessageChannelHandlerEncodeAdapter.cs" t="Include" />
           </e>
@@ -347,6 +351,9 @@
         <e p="IProxyService.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
+            <e p="net461" t="Include">
+              <e p="doteasy.rpc.interface.AssemblyInfo.cs" t="Include" />
+            </e>
             <e p="netcoreapp2.1" t="Include">
               <e p="doteasy.rpc.interface.AssemblyInfo.cs" t="Include" />
             </e>
@@ -387,7 +394,9 @@
         <e p="doteasy.winform.csproj" t="IncludeRecursive" />
         <e p="FormSample.cs" t="Include" />
         <e p="FormSample.Designer.cs" t="Include" />
+        <e p="FormSample.resx" t="Include" />
         <e p="obj" t="ExcludeRecursive" />
+        <e p="packages.config" t="Include" />
         <e p="Program.cs" t="Include" />
         <e p="Properties" t="Include">
           <e p="AssemblyInfo.cs" t="Include" />

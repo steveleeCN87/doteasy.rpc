@@ -10,18 +10,19 @@ namespace doteasy.client.Clients
         public static void TestNoToken()
         {
             
-            using (var proxy = ClientProxy.Generate<IProxyService>(new Uri("http://127.0.0.1:8500")))
-            {
-                Console.WriteLine($@"{proxy.Sync(1)}");
-                Console.WriteLine($@"{proxy.Async(1).Result}");
-                Console.WriteLine($@"{proxy.GetDictionaryAsync().Result["key"]}");
-            }
+//            using (var proxy = ClientProxy.Generate<IProxyService>(new Uri("http://127.0.0.1:8500")))
+//            {
+//                Console.WriteLine($@"{proxy.Sync(1)}");
+//                Console.WriteLine($@"{proxy.Async(1).Result}");
+//                Console.WriteLine($@"{proxy.GetDictionaryAsync().Result["key"]}");
+//            }
 
             using (var proxy = ClientProxy.Generate<IProxyCommpoundService>(new Uri("http://127.0.0.1:8500")))
             {
                 Console.WriteLine($@"{JsonConvert.SerializeObject(proxy.GetCurrentObject(new CompoundObject()))}");
             }
-            
+
+            Console.ReadKey();
         }
 
         public static void TestHaveToken()

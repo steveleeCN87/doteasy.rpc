@@ -46,6 +46,11 @@ namespace DotEasy.Rpc.Core.Transport.Impl
             await Received(sender, message);
         }
 
+        /// <summary>
+        /// 启动DotNetty宿主（短连接宿主）
+        /// </summary>
+        /// <param name="endPoint"></param>
+        /// <returns></returns>
         public async Task StartAsync(EndPoint endPoint)
         {
             _logger.LogInformation($"准备启动服务主机，监听地址：{endPoint}");
@@ -62,18 +67,21 @@ namespace DotEasy.Rpc.Core.Transport.Impl
                     var pipeline = channel.Pipeline;
                     pipeline.AddLast(new LengthFieldPrepender(_lengthFieldPrepender));
                     pipeline.AddLast(new LengthFieldBasedFrameDecoder(int.MaxValue, 0, _basedFrame, 0, _basedFrame));
+                    pipeline.AddLast(new KeepAliveChannelHandlerAdapter(_logger));
                     pipeline.AddLast(new TransportMessageChannelHandlerDecodeAdapter(_transportMessageDecoder));
                     pipeline.AddLast(new TransportMessageChannelHandlerEncodeAdapter(async (contenxt, message) =>
-                        {
-                            var sender = new DefaultDotNettyServerMessageSender(_transportMessageEncoder, contenxt);
-                            await OnReceived(sender, message);
-                        },
-                        _logger));
+                    {
+                        var sender = new DefaultDotNettyServerMessageSender(_transportMessageEncoder, contenxt);
+                        await OnReceived(sender, message);
+                    }, _logger));
                 }));
             _channel = await bootstrap.BindAsync(endPoint);
             _logger.LogInformation($"服务主机启动成功，监听地址：{endPoint}");
         }
 
+        /// <summary>
+        /// 手动释放资源
+        /// </summary>
         public void Dispose()
         {
             Task.Run(async () => { await _channel.DisconnectAsync(); }).Wait();
