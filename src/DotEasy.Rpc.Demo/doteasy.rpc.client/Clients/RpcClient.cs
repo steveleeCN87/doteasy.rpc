@@ -22,7 +22,6 @@ namespace doteasy.client.Clients
                 Console.WriteLine($@"{JsonConvert.SerializeObject(proxy.GetCurrentObject(new CompoundObject()))}");
             }
             
-            
         }
 
         public static void TestHaveToken()
