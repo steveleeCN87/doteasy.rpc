@@ -150,9 +150,6 @@
         <e p="DotEasy.Rpc.Core.csproj" t="IncludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
-            <e p="net461" t="Include">
-              <e p="DotEasy.Rpc.Core.AssemblyInfo.cs" t="Include" />
-            </e>
             <e p="netstandard2.0" t="Include">
               <e p="DotEasy.Rpc.Core.AssemblyInfo.cs" t="Include" />
             </e>
@@ -351,9 +348,6 @@
         <e p="IProxyService.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
-            <e p="net461" t="Include">
-              <e p="doteasy.rpc.interface.AssemblyInfo.cs" t="Include" />
-            </e>
             <e p="netcoreapp2.1" t="Include">
               <e p="doteasy.rpc.interface.AssemblyInfo.cs" t="Include" />
             </e>
@@ -373,6 +367,8 @@
         <e p="logs" t="Include">
           <e p="skyapm-20190228.log" t="Include" />
           <e p="skyapm-20190507.log" t="Include" />
+          <e p="skyapm-20190508.log" t="Include" />
+          <e p="skyapm-20190508_001.log" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
@@ -387,24 +383,6 @@
           <e p="launchSettings.json" t="Include" />
         </e>
         <e p="Startup.cs" t="Include" />
-      </e>
-      <e p="DotEasy.Rpc.Demo\doteasy.winform" t="IncludeRecursive">
-        <e p="App.config" t="Include" />
-        <e p="bin" t="ExcludeRecursive" />
-        <e p="doteasy.winform.csproj" t="IncludeRecursive" />
-        <e p="FormSample.cs" t="Include" />
-        <e p="FormSample.Designer.cs" t="Include" />
-        <e p="FormSample.resx" t="Include" />
-        <e p="obj" t="ExcludeRecursive" />
-        <e p="packages.config" t="Include" />
-        <e p="Program.cs" t="Include" />
-        <e p="Properties" t="Include">
-          <e p="AssemblyInfo.cs" t="Include" />
-          <e p="Resources.Designer.cs" t="Include" />
-          <e p="Resources.resx" t="Include" />
-          <e p="Settings.Designer.cs" t="Include" />
-          <e p="Settings.settings" t="Include" />
-        </e>
       </e>
       <e p="DotEasy.Rpc.sln" t="IncludeFlat" />
       <e p="packages" t="ExcludeRecursive" />

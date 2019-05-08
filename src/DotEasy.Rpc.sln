@@ -36,8 +36,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{980AB9
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{E5B6DFD8-5C63-4811-AA8A-C986BF22ACD0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "doteasy.winform", "DotEasy.Rpc.Demo\doteasy.winform\doteasy.winform.csproj", "{735F9F04-C6F0-442A-963A-0BB66EAF0209}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -72,10 +70,6 @@ Global
 		{38A457EF-99B5-4317-AC62-E7D458A402D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38A457EF-99B5-4317-AC62-E7D458A402D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38A457EF-99B5-4317-AC62-E7D458A402D8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{735F9F04-C6F0-442A-963A-0BB66EAF0209}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{735F9F04-C6F0-442A-963A-0BB66EAF0209}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{735F9F04-C6F0-442A-963A-0BB66EAF0209}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{735F9F04-C6F0-442A-963A-0BB66EAF0209}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -91,7 +85,6 @@ Global
 		{9F6D55F3-5AFF-4D4C-8CED-C8DC319BC718} = {241AD446-B9FB-4DDD-96A9-F12F5D7D87F0}
 		{C3006429-84A4-4081-99B7-8A17C344786E} = {241AD446-B9FB-4DDD-96A9-F12F5D7D87F0}
 		{980AB972-40E2-4F27-9E3D-34B04AFB1632} = {241AD446-B9FB-4DDD-96A9-F12F5D7D87F0}
-		{735F9F04-C6F0-442A-963A-0BB66EAF0209} = {980AB972-40E2-4F27-9E3D-34B04AFB1632}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F3075595-3DEE-4B8B-8508-DB07636B3682}
